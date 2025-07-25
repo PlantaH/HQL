@@ -1,0 +1,34 @@
+ <script language="vbscript" runat="server">
+Sub Session_OnStart
+	 
+	Session.timeout = 60*10
+
+	session.LCID = 1033 
+	
+	session("InscriptoID_Work") = 0
+	session("InscriptoID_Estado") = 0
+	
+	session("InscriptoID_Modo") = "I"
+	 
+End Sub 
+
+Sub Session_OnEnd
+	 
+
+End sub 
+
+
+Sub Application_OnStart     
+	'gada.noresponder@gmail.com
+	'Rojo1905
+	'gefz annh hdvm pxqu 
+	
+	Application("title") = "HQL - LOGISTICA"
+
+	Application("String") = "Provider=SQLOLEDB; Data Source=WIN-IFK26VFLCQ9; Initial Catalog=FundacionGADA_V2; User ID=FundacionLive; Password=FundacionLive1905"	
+	Application("String.Net") = "Data Source=WIN-IFK26VFLCQ9; Initial Catalog=FundacionGADA_V2; User ID=FundacionLive; Password=FundacionLive1905"
+	 
+End sub  
+ 
+</script>
+ 
