@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      AJAX Image Upload Demo
+    </title>
+
+    <!-- FontAwesome 4.7.0 -->
+    <link rel="stylesheet" type="text/css" href="font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  </head>
+
+  <body>
+
+    <!--<form id="upform" onsubmit="return ajaxup();">-->
+    <form id="upform" action="4-ajax-upload.php">
+
+      <div class="upload--wrapper form_col">
+
+        <div class="upload--lead">Subir Banner <span class="upload--lead-span">(<strong>700px</strong> largo - <strong>650px</strong> alto)</span></div>
+        <div class="upload--file-data">
+
+          <div class="upload--preview-wrapper">
+            <img class="upload--preview" alt="">
+            <span></span>
+          </div>
+          
+          <ul class="upload--file-infolist">
+            <li>Tipo de imagen: <strong>.png, .gif, .jpg, .jpeg</strong></li>
+            <li>Peso máximo: <strong>10 Mb</strong></li>
+            <li>Recomendamos: La imagen <strong>no debería superar los 900 Kb</strong> <a href="https://compressjpeg.com/es/" target="_blank"><i class="fa fa-cog" aria-hidden="true"></i> optimizar online</a></li>
+          </ul>
+
+        </div>
+
+        <span class="btn btn-success fileinput-button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Agregar archivo</span>
+            <input type="file" name="upfile" class="upload--file" 
+            data-file-path="1"
+            data-file-width="700" 
+            data-file-height="650"
+            data-file-type="image"
+            data-file-accept=".png,.gif,.jpg,.jpeg"
+            data-file-maxsize="10" />
+        </span>
+        <button type="button" class="btn btn-danger upload--delete-file disabled">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <span>Borrar</span>
+        </button>
+
+        <input type="hidden" name="Foto" class="upload--file-save" value="" />   
+
+        <div class="loaderbar-progress blue" style="display: none;">
+          <span class="progress-bar"></span>
+        </div>
+
+        <div class="upload--drag-and-drop-zone">
+          <div>
+            Puede soltar el banner aquí para cargarlo.
+          </div>
+        </div>
+
+      </div>		
+      <br><br>
+
+
+
+
+
+
+      <div class="upload--wrapper form_col">
+
+        <div class="upload--lead">Subir Doc</div>
+        <div class="upload--file-data">
+
+          <div class="upload--preview-wrapper">
+            <img class="upload--preview" alt="">
+            <span></span>
+          </div>
+          
+          <ul class="upload--file-infolist">
+            <li>Tipo de Doc: <strong>PDF</strong></li>
+            <li>Peso máximo: <strong>2 Mb</strong></li>
+            <li>Recomendamos: El archivo <strong>no debería superar los 1.5Mb</strong></li>
+          </ul>
+
+        </div>
+
+        <span class="btn btn-success fileinput-button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Agregar archivo</span>
+            <input type="file" name="upfile" class="upload--file" 
+            data-file-path="2"
+            data-file-type="doc"
+            data-file-accept=".pdf"
+            data-file-maxsize="2" />
+        </span>
+        <button type="button" class="btn btn-danger upload--delete-file disabled">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <span>Borrar</span>
+        </button>
+
+        <input type="hidden" name="Foto" class="upload--file-save" value="" />   
+
+        <div class="loaderbar-progress blue" style="display: none;">
+          <span class="progress-bar"></span>
+        </div>
+
+        <div class="upload--drag-and-drop-zone">
+          <div>
+            Puede soltar el banner aquí para cargarlo.
+          </div>
+        </div>
+
+      </div>		
+      <br><br>
+
+
+    </form>
+
+
+
+    <!-- [VANILLA JS VERSION] -->
+    <script src="js/uploadNew.js"></script>
+
+  </body>
+</html>

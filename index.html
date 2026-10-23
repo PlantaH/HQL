@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>HQL — Software para correo y logística</title>
+<meta name="description" content="HQL es la plataforma de ruteo, tracking y gestión de flota para empresas de correo, courier y logística.">
+<link rel="icon" href="webassets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="webcss/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <img src="webassets/logo.svg" alt="HQL" class="brand-mark" width="36" height="36">
+      <span class="brand-word">HQL</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#producto">Producto</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#contacto" class="mobile-nav-cta">Solicitar demo</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Software de ruteo y logística</p>
+      <h1>El software que mueve cada envío, del depósito a la puerta.</h1>
+      <p class="hero-sub">HQL conecta couriers, empresas de correo y operadores logísticos en una sola plataforma de ruteo, tracking y gestión de flota en tiempo real.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+        <a href="#producto" class="btn btn-ghost">Ver producto</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 190" class="route-svg" xmlns="http://www.w3.org/2000/svg">
+        <path class="route-line" d="M20 150 C 90 150, 110 60, 170 60 S 260 150, 330 40" fill="none" stroke="#FF7A1A" stroke-width="2.5" stroke-linecap="round"/>
+        <circle class="route-node n1" cx="20" cy="150" r="5" fill="#F5F3EC"/>
+        <circle class="route-node n2" cx="170" cy="60" r="5" fill="#7FA9C9"/>
+        <circle class="route-node n3" cx="330" cy="40" r="5" fill="#FF7A1A"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Resultados">
+    <div class="stat-row">
+      <span class="stat-num">120M+</span>
+      <span class="stat-label">envíos ruteados por año</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-num">98.7%</span>
+      <span class="stat-label">entregas dentro de ventana horaria</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-num">10+</span>
+      <span class="stat-label">integraciones con couriers y ERPs</span>
+    </div>
+  </section>
+
+  <section id="producto" class="products">
+    <div class="container">
+      <h2>Una plataforma para toda la operación</h2>
+      <ul class="product-list">
+        <li>
+          <span class="product-index">Ruteo</span>
+          <div>
+            <h3>Ruteo inteligente</h3>
+            <p>Algoritmos de optimización que arman las rutas según capacidad de flota, ventanas horarias y zonas de reparto.</p>
+          </div>
+        </li>
+        <li>
+          <span class="product-index">Tracking</span>
+          <div>
+            <h3>Seguimiento en tiempo real</h3>
+            <p>Visibilidad end-to-end del envío, con notificaciones automáticas para tus clientes y tu equipo de operaciones.</p>
+          </div>
+        </li>
+        <li>
+          <span class="product-index">Flota</span>
+          <div>
+            <h3>Gestión de flota</h3>
+            <p>Asignación de choferes y vehículos, control de capacidad y disponibilidad desde un solo panel.</p>
+          </div>
+        </li>
+        <li>
+          <span class="product-index">API</span>
+          <div>
+            <h3>Integraciones abiertas</h3>
+            <p>Conectá HQL con tu ERP, WMS, marketplace o los couriers con los que ya trabajás.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="how">
+    <div class="container">
+      <h2>Cómo funciona</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">01</span>
+          <div><h3>Conectá tu operación</h3><p>Integrá tu ERP, WMS o los couriers que ya usás mediante nuestra API.</p></div>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <div><h3>Definí las reglas de ruteo</h3><p>Zonas de reparto, ventanas horarias, capacidad de flota y prioridades.</p></div>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <div><h3>Seguí cada envío en vivo</h3><p>Mapa en tiempo real para tu equipo de operaciones y tus clientes finales.</p></div>
+        </li>
+        <li>
+          <span class="step-num">04</span>
+          <div><h3>Medí y optimizá</h3><p>Reportes de performance, costos por ruta y cumplimiento de SLA.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="clientes" class="sectors">
+    <div class="container">
+      <h2>Para quién es HQL</h2>
+    </div>
+    <div class="sector-grid">
+      <div class="sector"><h3>Correo postal</h3><p>Empresas de correo que necesitan modernizar el ruteo y el tracking de sus envíos.</p></div>
+      <div class="sector"><h3>Última milla</h3><p>Operadores de entregas urbanas que compiten en tiempos de entrega.</p></div>
+      <div class="sector"><h3>Mensajería</h3><p>Empresas de mensajería con múltiples zonas y flotas mixtas.</p></div>
+      <div class="sector"><h3>Distribución mayorista</h3><p>Operaciones B2B con entregas programadas y grandes volúmenes.</p></div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact">
+    <div class="container">
+      <h2>Hablemos de tu operación</h2>
+      <p>Contanos cómo trabajás hoy y te mostramos cómo HQL se adapta a tu flota.</p>
+      <form id="contactForm" class="contact-form" novalidate>
+        <label>
+          Nombre
+          <input type="text" name="nombre" autocomplete="name" required>
+        </label>
+        <label>
+          Email de trabajo
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>
+          Empresa
+          <input type="text" name="empresa" autocomplete="organization" required>
+        </label>
+        <label>
+          Contanos tu operación
+          <textarea name="mensaje" rows="4"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+      </form>
+      <p class="form-note" id="formNote" role="status"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="webassets/logo.svg" alt="HQL" width="28" height="28">
+    <span>HQL</span>
+  </div>
+  <p>Software para empresas de correo y logística.</p>
+
+  <div class="footer-contact">
+    <a href="mailto:hola@hql.com" class="footer-contact-link">info@hql.com.ar</a>
+    <a href="tel:+541155550100" class="footer-contact-link">+54 11 6930-9425</a>
+  </div>
+
+  <div class="footer-social" aria-label="Redes sociales de HQL">
+    <a href="https://linkedin.com/company/hqlsoft" class="social-link" aria-label="HQL en LinkedIn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7.5" y1="10.2" x2="7.5" y2="17"/><circle cx="7.5" cy="6.8" r="0.9" fill="currentColor" stroke="none"/><path d="M11.3 17v-4.3c0-1.6 1-2.5 2.4-2.5s2.2 0.9 2.2 2.5V17"/><line x1="11.3" y1="10.2" x2="11.3" y2="17"/></svg>
+    </a>
+    <a href="https://instagram.com/hqlsoft" class="social-link" aria-label="HQL en Instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://x.com/hqlsoft" class="social-link" aria-label="HQL en X" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4.5" y1="4.5" x2="19.5" y2="19.5"/><line x1="19.5" y1="4.5" x2="4.5" y2="19.5"/></svg>
+    </a>
+  </div>
+
+  <p class="footer-meta">&copy; <span id="year"></span> HQL</p>
+</footer>
+
+<script src="webjs/script.js"></script>
+</body>
+</html>

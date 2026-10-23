@@ -1,0 +1,3509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Diccionario>
+	<inicio tipo="campos">
+		<es>Inicio</es>
+		<en>Home</en>
+		<po>Home</po>
+	</inicio>
+	<producto tipo="campos">
+		<es>Producto</es>
+		<en>Product</en>
+		<po>Produto</po>
+	</producto>
+	<nuestroproducto tipo="campos">
+		<es>Nuestro producto</es>
+		<en>Our product</en>
+		<po>Nosso produto</po>
+	</nuestroproducto>
+	<nosotros tipo="campos">
+		<es>Nosotros</es>
+		<en>About us</en>
+		<po>Nós</po>
+	</nosotros>
+	<testimonios tipo="campos">
+		<es>Testimonios</es>
+		<en>Testimonials</en>
+		<po>Testimonios</po>
+	</testimonios>
+	<contacto tipo="campos">
+		<es>Contacto</es>
+		<en>Contact</en>
+		<po>Contacto</po>
+	</contacto>
+	<contactenos tipo="campos">
+		<es>Contáctanos</es>
+		<en>Contact us</en>
+		<po>Contactenos</po>
+	</contactenos>
+	<contactenosahora tipo="campos">
+		<es>Contáctenos ahora</es>
+		<en>Contact us now</en>
+		<po>Entre em contato conosco agora</po>
+	</contactenosahora>
+	<mapadelsitio tipo="campos">
+		<es>Mapa del sitio</es>
+		<en>Site map</en>
+		<po>Mapa do site</po>
+	</mapadelsitio>
+	<su tipo="campos">
+		<es>Tu</es>
+		<en>Your</en>
+		<po>Sua</po>
+	</su>
+	<inteligente tipo="campos">
+		<es>inteligente</es>
+		<en>smart</en>
+		<po>inteligente</po>
+	</inteligente>
+	<eleccion tipo="campos">
+		<es>elección</es>
+		<en>choice</en>
+		<po>escolha</po>
+	</eleccion>
+	<eleccioninteligente tipo="campos">
+		<es>Elección inteligente</es>
+		<en>Smart choice</en>
+		<po>Escolha inteligente</po>
+	</eleccioninteligente>
+	<sueleccioninteligente tipo="campos">
+		<es>Tu elección inteligente</es>
+		<en>Your smart choice</en>
+		<po>Sua escolha inteligente</po>
+	</sueleccioninteligente>
+	<siguenos tipo="campos">
+		<es>Síguenos</es>
+		<en>Follow us</en>
+		<po>Siga-nos</po>
+	</siguenos>
+	<todoslosclimas tipo="campos">
+		<es>Garage para</es>
+		<en>All weather</en>
+		<po>Garagem para</po>
+	</todoslosclimas>
+	<garaje tipo="campos">
+		<es>Todos los climas</es>
+		<en>Garage</en>
+		<po>Todos os climas</po>
+	</garaje>
+	<comprar tipo="campos">
+		<es>Comprar</es>
+		<en>Buy</en>
+		<po>Comprar</po>
+	</comprar>
+	<comprarahora tipo="campos">
+		<es>Comprar ahora</es>
+		<en>Buy Now</en>
+		<po>Comprar agora</po>
+	</comprarahora>
+	<enviarmensaje tipo="campos">
+		<es>Enviar mensaje</es>
+		<en>Send message</en>
+		<po>Enviar mensagem</po>
+	</enviarmensaje>
+	<supedido tipo="campos">
+		<es>Por favor, haga su pedido</es>
+		<en>Please, place your order</en>
+		<po>Por favor, coloque a sua encomenda</po>
+	</supedido>
+
+	<estamosaquiparaayudarte tipo="campos">
+		<es>Estamos aquí para ayudarlo. Por favor complete el formulario y nos contactaremos con usted</es>
+		<en>We are here to help you. Please complete the form and we will contact you</en>
+		<po>Estamos aqui para ajudá-lo. Por favor, preencha o formulário e entraremos em contato</po>
+	</estamosaquiparaayudarte>
+	<yaeresclientedesmartcov tipo="campos">
+		<es>¿Ya es un cliente de SMARTCOV o necesita ayuda con un pedido?</es>
+		<en>Already a SMARTCOV client or need help with an order?</en>
+		<po>¿Já é um cliente do SMARTCOV ou precisa de ajuda com um pedido?</po>
+	</yaeresclientedesmartcov>
+	<felicitacionesestacercadecomprar tipo="campos">
+		<es>Felicitaciones, está muy cerca de comprar un excelente producto para su automóvil</es>
+		<en>Congratulations, you are proximity to buy an excellent product for your car</en>
+		<po>Parabéns, você está perto de comprar um excelente produto para seu carro</po>
+	</felicitacionesestacercadecomprar>
+
+	<todoslosvehiculos tipo="campos">
+		<es>Todos los vehiculos</es>
+		<en>All vehicles</en>
+		<po>Todos os veículos</po>
+	</todoslosvehiculos>
+	<eligetuvehiculo tipo="campos">
+		<es>Elige tu vehículo</es>
+		<en>Choose your vehicle</en>
+		<po>Escolha seu veiculo</po>
+	</eligetuvehiculo>
+
+	<pagarcon tipo="campos">
+		<es>Ir a pagar con</es>
+		<en>Check out with</en>
+		<po>Vá pagar com</po>
+	</pagarcon>
+	<porfavordiganossunombre tipo="campos">
+		<es>Por favor, díganos su nombre, dirección de correo electrónico y número de teléfono</es>
+		<en>Please, say us your name, e-mail address and phone number</en>
+		<po>Por favor, diga-nos o seu nome, endereço de e-mail e número de telefone</po>
+	</porfavordiganossunombre>
+
+	<estossonsoloalgunostestimonios tipo="campos">
+		<es>Estos son solo algunos de los testimonios de quienes han comprado nuestro producto</es>
+		<en>These are just some of the testimonies of those who have purchased our product</en>
+		<po>Estes são apenas alguns dos testemunhos daqueles que compraram nosso produto</po>
+	</estossonsoloalgunostestimonios>
+
+	<formerror_nombrerequerido tipo="campos">
+		<es>Por favor ingresa tu nombre y apellido</es>
+		<en>Please enter your first and last name</en>
+		<po>Por favor, digite seu primeiro e último nome</po>
+	</formerror_nombrerequerido>
+	<formerror_nombreminimo tipo="campos">
+		<es>El nombre debe tener al menos 3 caracteres</es>
+		<en>The name must have at least 3 characters</en>
+		<po>O nome deve ter pelo menos 3 caracteres</po>
+	</formerror_nombreminimo>
+
+	<formerror_telefonorequerido tipo="campos">
+		<es>Por favor ingresa tu teléfono</es>
+		<en>Please enter your phone number</en>
+		<po>Por favor, digite seu telefone</po>
+	</formerror_telefonorequerido>
+	<formerror_telefonominimo tipo="campos">
+		<es>El teléfono debe tener al menos 6 caracteres</es>
+		<en>The name must have at least 6 characters</en>
+		<po>The phone must have at least 6 characters</po>
+	</formerror_telefonominimo>
+
+	<formerror_emailrequerido tipo="campos">
+		<es>Por favor ingresa tu dirección de e-mail</es>
+		<en>Please enter your e-mail address</en>
+		<po>Por favor insira o seu endereço de e-mail</po>
+	</formerror_emailrequerido>
+	<formerror_emailvalido tipo="campos">
+		<es>Por favor ingrese un e-mail válido</es>
+		<en>Please enter a valid e-mail</en>
+		<po>Por favor insira um e-mail válido</po>
+	</formerror_emailvalido>
+
+	<formerror_newslettererror tipo="campos">
+		<es>No se pudo registrar tu e-mail, intentalo más tarde</es>
+		<en>Your e-mail could not be registered, try later</en>
+		<po>Seu e-mail não pôde ser registrado, tente mais tarde</po>
+	</formerror_newslettererror>
+	<formerror_newsletterexiste tipo="campos">
+		<es>Tu email ya está registrado con anterioridad, gracias</es>
+		<en>Your email is already registered, thank you</en>
+		<po>Seu e-mail já está registrado, obrigado</po>
+	</formerror_newsletterexiste>
+	<formerror_newsletterok tipo="campos">
+		<es>Gracias por registrarte en nuestro newsletter!</es>
+		<en>Thank you for registering in our newsletter!</en>
+		<po>Obrigado por se registrar em nossa newsletter!</po>
+	</formerror_newsletterok>
+	<formerror_contactoerror tipo="campos">
+		<es>No se pudo enviar tu consulta, intentelo más tarde</es>
+		<en>Your query could not be sent, try later</en>
+		<po>Sua consulta não pôde ser enviada, tente mais tarde</po>
+	</formerror_contactoerror>
+	<formerror_contactook tipo="campos">
+		<es>Gracias por contactarte con nosotros, te responderemos en breve!</es>
+		<en>Thank you for contacting us, we will respond shortly!</en>
+		<po>Obrigado por entrar em contato conosco, nós responderemos em breve!</po>
+	</formerror_contactook>
+
+	<meta_page_home tipo="abm">
+		<es>Tu Elección inteligente! Garage para todos los climas. La mejor manera de proteger las piezas plásticas y la pintura de su automóvil contra el viento, nieve, lluvia, temperaturas extremas y rayos UV. Tecnología hidráulica (open/close). Se abre y cierra con muy poco esfuerzo y rápidamente. Smartcov se instala a la interperie y se mantiene intacta durante años y años de uso.</es>
+		<en>Your Smart choice! All weather garage. The best way to protect plastic parts and paint of your car against wind, snow, rain, extreme temperatures and UV. Hydraulic technology (open/close). It opens and closes with very little effort and quickly. Smartcov is installed outdoors and remains intact for years and years of use.</en>
+		<po>Sua escolha inteligente! Garagem para todos os climas. A melhor maneira de proteger peças de plástico e pintar seu carro contra vento, neve, chuva, temperaturas extremas e raios UV. Tecnologia hidráulica (abrir / fechar). Abre e fecha com muito pouco esforço e rapidez. Smartcov é instalado ao ar livre e permanece intacto por anos e anos de uso.</po>
+	</meta_page_home>
+	<meta_page_product tipo="abm">
+		<es>Protección móvil. La solución para proteger su inversión ante la inclemencia ambiental.</es>
+		<en>Mobile protection. The solution to protect your investment in the face of environmental inclemency.</en>
+		<po>Proteção móvel A solução para proteger seu investimento contra a ambição ambiental.</po>
+	</meta_page_product>
+	<meta_page_about_us tipo="abm">
+		<es>SmartCov® es una empresa joven, radicada en el estado de La Florida, y con oficina central en el estado de California, Estados Unidos. Su innovador diseño, patentado con estándares de alta calidad, hacen de ella una empresa en búsqueda de la excelencia. Sus productos poseen componentes certificados Hight Quality para la protección y seguridad de todos los bienes que se encuentren expuestos a los riesgos del medio ambiente. SmartCov® brinda un servicio diferenciado, flexible y dinámico.</es>
+		<en>SmartCov® is a young company, based in the state of Florida, and headquartered in the state of California, United States. Innovative design, patented with high quality standards, makes it a company in search of excellence. Products have Hight Quality certified components for the protection and safety of all goods that are exposed to environmental risks. SmartCov® provides a differentiated, flexible and dynamic service.</en>
+		<po>A SmartCov® é uma empresa jovem, com sede no estado da Flórida e com sede no estado da Califórnia, nos Estados Unidos. Seu design inovador, patenteado com alto padrão de qualidade, faz dele uma empresa em busca da excelência. Seus produtos possuem componentes certificados Hight Quality para a proteção e segurança de todos os produtos expostos a riscos ambientais. O SmartCov® oferece um serviço diferenciado, flexível e dinâmico.</po>
+	</meta_page_about_us>
+	<meta_page_testimonials tipo="abm">
+		<es>Estos son solo algunos de los testimonios de quienes han comprado nuestro producto.</es>
+		<en>These are just some of the testimonies of those who have purchased our product.</en>
+		<po>Estes são apenas alguns dos testemunhos daqueles que compraram nosso produto.</po>
+	</meta_page_testimonials>
+	<meta_page_contact tipo="abm">
+		<es>Estamos aquí para ayudarlo. Por favor complete el formulario y nos contactaremos con usted.</es>
+		<en>We are here to help you. Please complete the form and we will contact you.</en>
+		<po>Estamos aqui para ajudá-lo. Por favor, preencha o formulário e entraremos em contato.</po>
+	</meta_page_contact>
+	<meta_page_buy tipo="abm">
+		<es>Por favor, haga su pedido!</es>
+		<en>Please, place your order!</en>
+		<po>Por favor, faça o seu pedido!</po>
+	</meta_page_buy>
+
+	<modelo tipo="campos">
+		<es>Modelo</es>
+		<en>Model</en>
+		<po>Modelo</po>
+	</modelo>
+	<medidas tipo="campos">
+		<es>Medidas</es>
+		<en>Measurement</en>
+		<po>Medidas</po>
+	</medidas>	
+	<metros tipo="campos">
+		<es>Metros</es>
+		<en>Inches</en>
+		<po>Metros</po>
+	</metros>
+	<color tipo="campos">
+		<es>Color</es>
+		<en>Color</en>
+		<po>Cor</po>
+	</color>
+	<oliva tipo="campos">
+		<es>Verde oliva</es>
+		<en>Olive green</en>
+		<po>Verde oliva</po>
+	</oliva>
+	<abierto tipo="campos">
+		<es>Abierto</es>
+		<en>Open</en>
+		<po>Abierto</po>
+	</abierto>	
+	<plegado tipo="campos">
+		<es>Plegado</es>
+		<en>Creased</en>
+		<po>Folding</po>
+	</plegado>
+	<cerrado tipo="campos">
+		<es>Cerrado</es>
+		<en>Close</en>
+		<po>Cerrado</po>
+	</cerrado>
+
+	<dejessucorreoelectronico tipo="campos">
+		<es>Deje su correo electrónico para recibir nuestras últimas noticias</es>
+		<en>Leave your email to receive our latest news</en>
+		<po>Deixe seu email para receber nossas últimas novidades</po>
+	</dejessucorreoelectronico>
+	<medidasreales1 tipo="campos">
+		<es>2.7 x 2.5 x 0.25</es>
+		<en>106 x 99 x 10</en>
+		<po>2.7 x 2.5 x 0.25</po>
+	</medidasreales1>
+	<medidasreales2 tipo="campos">
+		<es>5.2 x 2.5 x 2.4</es>
+		<en>209 x 99 x 95</en>
+		<po>5.2 x 2.5 x 2.4</po>
+	</medidasreales2>
+	
+	<proteccionmovil tipo="campos">
+		<es>Protección móvil</es>
+		<en>Mobile protection</en>
+		<po>Proteção móvel</po>
+	</proteccionmovil>
+	<lasolucionparaprotegersuinversion tipo="campos">
+		<es>La solución para proteger su inversión ante la inclemencia ambiental</es>
+		<en>The solution to protect your investment in the face of environmental inclemency</en>
+		<po>A solução para proteger seu investimento em face de inclemência ambiental</po>
+	</lasolucionparaprotegersuinversion>
+
+	<facildeinstalar tipo="campos">
+		<es>Fácil de instalar</es>
+		<en>Easy to install</en>
+		<po>Fácil de instalar</po>
+	</facildeinstalar>
+	<tecnologiahidroneumatica tipo="campos">
+		<es>Tecnología hidráulica</es>
+		<en>Hydraulic technology</en>
+		<po>Tecnologia hidráulica</po>
+	</tecnologiahidroneumatica>
+	<estructurametalicanocorrosiva tipo="campos">
+		<es>Estructura metálica no corrosiva</es>
+		<en>Non-corrosive metallic structure</en>
+		<po>Estrutura metálica não corrosiva</po>
+	</estructurametalicanocorrosiva>		
+
+	<proteccioncontra tipo="campos">
+		<es>Protección contra</es>
+		<en>Protection against</en>
+		<po>Proteção contra</po>
+	</proteccioncontra>
+	<rayossolares tipo="campos">
+		<es>Rayos solares</es>
+		<en>Sun rays</en>
+		<po>Raios solares</po>
+	</rayossolares>
+	<heladas tipo="campos">
+		<es>Heladas</es>
+		<en>Frost</en>
+		<po>Geada</po>
+	</heladas>
+	<nieve tipo="campos">
+		<es>Nieve</es>
+		<en>Snow</en>
+		<po>Neve</po>
+	</nieve>
+	<lluvia tipo="campos">
+		<es>Lluvia</es>
+		<en>Rain</en>
+		<po>chuva</po>
+	</lluvia>
+	<polucion tipo="campos">
+		<es>Polución</es>
+		<en>Pollution</en>
+		<po>Poluição</po>
+	</polucion>
+	<granizo tipo="campos">
+		<es>Granizo</es>
+		<en>Hail</en>
+		<po>Granizo</po>
+	</granizo>
+	<viento tipo="campos">
+		<es>Viento</es>
+		<en>Wind</en>
+		<po>Vento</po>
+	</viento>
+	<ventajas tipo="campos">
+		<es>Ventajas</es>
+		<en>Advantage</en>
+		<po>Vantagens</po>
+	</ventajas>
+
+	<tecnologiahidraulica tipo="campos">
+		<es>Tecnología hidráulica</es>
+		<en>Hydraulic technology</en>
+		<po>Tecnologia hidráulica</po>
+	</tecnologiahidraulica>
+	<seabreycierraconmuypocoesfuerzo tipo="campos">
+		<es>se abre y cierra con muy poco esfuerzo y rápidamente</es>
+		<en>it opens and closes with very little effort and quickly</en>
+		<po>abre e fecha com muito pouco esforço e rapidamente</po>
+	</seabreycierraconmuypocoesfuerzo>
+	<elcobertornotomacontactoconelobjeto tipo="campos">
+		<es>El cobertor no toma contacto con el objeto o bien a proteger, evitando los eventuales impactos directos</es>
+		<en>The cover does not make contact with the object or to be protected, avoiding possible direct impacts</en>
+		<po>A capa não entra em contato com o objeto ou para ser protegida, evitando possíveis impactos diretos</po>
+	</elcobertornotomacontactoconelobjeto>
+	<proteccioncomprobadacontragranizode400gramos tipo="campos">
+		<es>Protección comprobada contra granizo de 400g, rayos UV, bajas temperaturas, rocío y escarcha, fuertes vientos, hollín, ceniza, arena, lluvia, etc</es>
+		<en>Tested protection against hail of 400g, UV rays, low temperatures, dew and frost, strong winds, soot, ash, sand, rain, etc</en>
+		<po>Proteção comprovada contra granizo de 400g, raios UV, baixas temperaturas, orvalho e geada, ventos fortes, fuligem, cinzas, areia, chuva, etc</po>
+	</proteccioncomprobadacontragranizode400gramos>
+	<completamentedesarmablepuedetrasladarsedondeserequiera tipo="campos">
+		<es>Completamente desarmable, puede trasladarse donde se requiera</es>
+		<en>Completely removable, can be moved where required</en>
+		<po>Completamente removível, pode ser movido quando necessário</po>
+	</completamentedesarmablepuedetrasladarsedondeserequiera>
+	<suinstalacionesmuysencillayseadaptafacilmente tipo="campos">
+		<es>Su instalación es muy sencilla y se adapta fácilmente a distintos tipos de suelos (cemento, pavimento, tierra, césped, arena, etc.)</es>
+		<en>installation very simple and easily adapts to different types of floors (cement, pavement, earth, grass, sand, etc.)</en>
+		<po>Sua instalação é muito simples e se adapta facilmente a diferentes tipos de pisos (cimento, pavimento, terra, grama, areia, etc.)</po>
+	</suinstalacionesmuysencillayseadaptafacilmente>
+	<losproductossmartcovsonfabricadosconmaterialesdealtatecnologia tipo="campos">
+		<es>Los productos smartcov son fabricados con materiales de alta tecnología y calidad, garantizando su funcionamiento y efectividad</es>
+		<en>Smartcov products are manufactured with high technology and quality materials, to guarantee best quality</en>
+		<po>Os produtos Smartcov são fabricados com materiais de alta tecnologia e qualidade, garantindo o seu funcionamento e eficácia</po>
+	</losproductossmartcovsonfabricadosconmaterialesdealtatecnologia>
+	<proteccionintegral tipo="campos">
+		<es>Protección integral</es>
+		<en>Integral protection</en>
+		<po>Proteção abrangente</po>
+	</proteccionintegral>
+	<facilyrapido tipo="campos">
+		<es>Fácil y rápido</es>
+		<en>Fast and easy</en>
+		<po>Fácil e rápido</po>
+	</facilyrapido>
+	<ocupapocoespacio tipo="campos">
+		<es>Ocupa poco espacio</es>
+		<en>It takes little space</en>
+		<po>Ocupa pouco espaço</po>
+	</ocupapocoespacio>
+	<modelosstandars tipo="campos">
+		<es>Modelos Standar</es>
+		<en>Standard models</en>
+		<po>Modelos padrão</po>
+	</modelosstandars>
+	<automovilestractoresparajardineriagruposelectrogenos tipo="campos">
+		<es>Automóviles, tractores para jardinería, grupos electrógenos, carros de Golf, cuatriciclos, motocicletas, etc</es>
+		<en>Automobiles, tractors for gardening, generator sets, golf carts, ATVs, motorcycles, etc</en>
+		<po>Automóveis, tratores para jardinagem, grupos geradores, carrinhos de golfe, quadriciclos, motocicletas, etc</po>
+	</automovilestractoresparajardineriagruposelectrogenos>
+	<lonacoberturadepvcmulticapaconmalladehilodepoliester tipo="campos">
+		<es>Lona cobertura de PVC multicapa con malla de hilo de poliéster o malla antigranizo tejida con hilo poliéster, según requerimiento</es>
+		<en>Multilayer PVC cover canvas with polyester thread mesh or anti-hail net woven with polyester thread, according to requirement</en>
+		<po>Lona de cobertura de PVC multicamada com malha de fio de poliéster ou rede anti-granizo tecida com fio de poliéster, de acordo com a necessidade</po>
+	</lonacoberturadepvcmulticapaconmalladehilodepoliester>
+	<sistemahidroneumaticoopenclosereforzadoconvastagocromado tipo="campos">
+		<es>Sistema hidroneumático OPEN/CLOSE reforzado, con vástago cromado</es>
+		<en>Hydraulics system OPEN / CLOSE reinforced, with chromed stem</en>
+		<po>Sistema hidropneumático OPEN/CLOSE reforçado, com haste cromada</po>
+	</sistemahidroneumaticoopenclosereforzadoconvastagocromado>
+	
+	<todoslosclimas_home tipo="campos">
+		<es>Todos los climas</es>
+		<en>All weather</en>
+		<po>Todos os climas</po>
+	</todoslosclimas_home>
+	<texto_home_todoslosclimas tipo="campos">
+		<es>La mejor manera de proteger las piezas plásticas y la pintura de su automóvil contra el viento, nieve, lluvia, temperaturas extremas y rayos UV</es>
+		<en>The best way to protect plastic parts and paint of your car against wind, snow, rain, extreme temperatures and UV rays</en>
+		<po>A melhor maneira de proteger peças plásticas e pintar seu carro contra vento, neve, chuva, temperaturas extremas e raios UV</po>
+	</texto_home_todoslosclimas>
+	<practicidad tipo="campos">
+		<es>Practicidad</es>
+		<en>Practicality</en>
+		<po>Praticidade</po>
+	</practicidad>
+	<texto_home_practicidad tipo="campos">
+		<es>Tecnología hidráulica (open/close). Se abre y cierra con muy poco esfuerzo y rápidamente</es>
+		<en>Hydraulic technology (open/close). It opens and closes with very little effort and quickly</en>
+		<po>Tecnologia hidráulica (open/close). Abre e fecha com muito pouco esforço e rapidamente</po>
+	</texto_home_practicidad>
+	<durabilidad tipo="campos">
+		<es>Durabilidad</es>
+		<en>Durability</en>
+		<po>Durabilidade</po>
+	</durabilidad>
+	<texto_home_durabilidad tipo="campos">
+		<es>Smartcov se instala a la interperie y se mantiene intacta durante años y años de uso</es>
+		<en>Smartcov is installed outdoors and remains intact for years and years of use</en>
+		<po>Smartcov é instalado ao ar livre e permanece intacto por anos e anos de uso</po>
+	</texto_home_durabilidad>
+	<superresistente tipo="campos">
+		<es>Súper resistente</es>
+		<en>Super resistant</en>
+		<po>Super resistente</po>
+	</superresistente>
+	<texto_home_superresistente tipo="campos">
+		<es>Smartcov esta diseñado para resistir nieve y vientos intensos</es>
+		<en>The Smartcov is designed to resist heavy snow and wind loads</en>
+		<po>Smartcov é projetado para suportar neve e ventos fortes</po>
+	</texto_home_superresistente>
+	<diseno tipo="campos">
+		<es>Diseño</es>
+		<en>Design</en>
+		<po>Diseno</po>
+	</diseno>
+	<texto_home_diseno tipo="campos">
+		<es>El diseño de Smartcov no ocupa lugar y permite utilizar el espacio cuando lo necesite</es>
+		<en>The Smartcov design does not take any place and allows you to use the space when you need it</en>
+		<po>O design Smartcov não ocupa nenhum lugar e permite que você use o espaço quando você precisar</po>
+	</texto_home_diseno>
+
+	<proteccionextra tipo="campos">
+		<es>Proteccion extra</es>
+		<en>Extra protection</en>
+		<po>Proteção extra</po>
+	</proteccionextra>
+	<texto_home_proteccionextra tipo="campos">
+		<es>Reducciones significativas del tiempo para calentarse en invierno y enfriarse en verano, protegiéndolo de la suciedad</es>
+		<en>Significant reductions of time to warm in winter and to cool it down in summer, protecting against dirt</en>
+		<po>Educações significativas do tempo para aquecer no inverno e fresco no verão, protegendo-o da sujeira</po>
+	</texto_home_proteccionextra>
+
+	<suscribete tipo="abm">
+		<es>Suscribete</es>
+		<en>Subscribe</en>
+		<po>Subscrever</po>
+	</suscribete>
+	<compartir tipo="abm">
+		<es>Compratir</es>
+		<en>Share</en>
+		<po>Compartilhe</po>
+	</compartir>
+	<compartiren tipo="abm">
+		<es>Compratir en</es>
+		<en>Share on</en>
+		<po>Compartilhe no</po>
+	</compartiren>
+
+	<formularioweb tipo="abm">
+		<es>Formulario web</es>
+		<en>Web form</en>
+		<po>Formulário da Web</po>
+	</formularioweb>
+
+	<cadauno tipo="abm">
+		<es>Cada uno</es>
+		<en>Each</en>
+		<po>Cada uno</po>
+	</cadauno>
+
+	<compra_exitosa tipo="abm">
+		<es>Compra exitosa</es>
+		<en>Successful purchase</en>
+		<po>Compra bem sucedida</po>
+	</compra_exitosa>
+	<compra_exitosa_subtitulo tipo="abm">
+		<es>Felicitaciones, tu compra ha sido exitosa</es>
+		<en>Congratulations, your purchase has been successful</en>
+		<po>Parabéns, sua compra foi bem sucedida</po>
+	</compra_exitosa_subtitulo>
+
+	<compra_error tipo="abm">
+		<es>Error en la compra</es>
+		<en>Purchase error</en>
+		<po>Erro na compra</po>
+	</compra_error>
+	<compra_error_subtitulo tipo="abm">
+		<es>Lamentablemente se produjo un error durante el proceso de compra</es>
+		<en>Unfortunately an error has occurred during the purchase process</en>
+		<po>Infelizmente ocorreu um erro durante o processo de compra</po>
+	</compra_error_subtitulo>
+	<intentalodenuevo tipo="abm">
+		<es>Inténtalo de nuevo</es>
+		<en>Tray again</en>
+		<po>Tente novamente</po>
+	</intentalodenuevo>
+	<iniciandopaypal tipo="abm">
+		<es>Iniciando PayPal</es>
+		<en>Starting PayPal</en>
+		<po>Iniciando o PayPal</po>
+	</iniciandopaypal>
+	<errorinternocompra tipo="abm">
+		<es>Disculpa, hubo un error, por favór vuelve a intentarlo</es>
+		<en>Sorry, there was an error, please try again</en>
+		<po>Desculpe, houve um erro, por favor, tente novamente</po>
+	</errorinternocompra>
+	<politicadeprivacidad tipo="abm">
+		<es>Política de privacidad</es>
+		<en>Privacy policy</en>
+		<po>Política de privacidade</po>
+	</politicadeprivacidad>	
+
+	<granofertalanzamiento tipo="abm">
+		<es>Gran oferta lanzamiento</es>
+		<en>Great launch offer</en>
+		<po>Grande oferta de lançamento</po>
+	</granofertalanzamiento>
+	<tengasuproteccionmovil tipo="abm">
+		<es>Tenga su Protección móvil</es>
+		<en>Have your Mobile Protection</en>
+		<po>Tenha sua proteção móvel</po>
+	</tengasuproteccionmovil>
+	<solopor tipo="abm">
+		<es>solo por</es>
+		<en>only for</en>
+		<po>apenas por</po>
+	</solopor>
+	<enviogratisen tipo="abm">
+		<es>Envío gratis en</es>
+		<en>Free shipping in</en>
+		<po>Frete grátis em</po>
+	</enviogratisen>
+	<consultarradiodeenterega tipo="abm">
+		<es>consultar radio de entrega disponible</es>
+		<en>see available delivery radio</en>
+		<po>consulte o rádio de entrega disponível</po>
+	</consultarradiodeenterega>	
+	<prefierequeloayudemos tipo="abm">
+		<es>¿Prefiere que lo ayudemos?</es>
+		<en>Do you prefer that we help?</en>
+		<po>¿Você prefere que nós ajudemos?</po>
+	</prefierequeloayudemos>
+	<prefierequeloayudemos tipo="abm">
+		<es>¿Prefiere que lo ayudemos?</es>
+		<en>Do you prefer that we help?</en>
+		<po>¿Você prefere que nós ajudemos?</po>
+	</prefierequeloayudemos>
+	<consultedisponibilidaddeinstalacion tipo="abm">
+		<es>Consulte disponibilidad de instalación en su zona</es>
+		<en>Check installation availability in your area</en>
+		<po>Verifique a disponibilidade da instalação na sua área</po>
+	</consultedisponibilidaddeinstalacion>
+	<compresegurousuarioverificado tipo="abm">
+		<es>Compre seguro[br]Somos usuario PayPal verificado</es>
+		<en>Buy insurance[br]We are a verified PayPal user</en>
+		<po>Compre seguro[br]Somos um usuário verificado do PayPal</po>
+	</compresegurousuarioverificado>
+	<consulteporenviogratis tipo="abm">
+		<es>Consulte por envío gratis en</es>
+		<en>Check free shipping in</en>
+		<po>Pedir frete grátis nos</po>
+	</consulteporenviogratis>
+	<garantia tipo="abm">
+		<es>Garantía</es>
+		<en>Warranty</en>
+		<po>Garantia</po>
+	</garantia>
+	<vergarantia tipo="abm">
+		<es>Ver garantía</es>
+		<en>View warranty</en>
+		<po>Veja garantia</po>
+	</vergarantia>
+	<manualdelproducto tipo="abm">
+		<es>Manual del producto</es>
+		<en>Product manual</en>
+		<po>Manual do produto</po>
+	</manualdelproducto>
+	<vergaraqui tipo="abm">
+		<es>ver aquí</es>
+		<en>see here</en>
+		<po>veja aqui</po>
+	</vergaraqui>
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<apellido tipo="campos">
+		<es>Apellido</es>
+		<en>Surname</en>
+		<po>Sobrenome</po>
+	</apellido>
+	<primerapellido tipo="campos">
+		<es>Primer Apellido</es>
+		<en>First Surname</en>
+		<po>Primer Sobrenome</po>
+	</primerapellido>
+	<primernombre tipo="campos">
+		<es>Primer nombre</es>
+		<en>First Name</en>
+		<po>Primer Nome</po>
+	</primernombre>
+	<nombre tipo="campos">
+		<es>Nombre</es>
+		<en>Name</en>
+		<po>Nome</po>
+	</nombre>
+	<estado tipo="grilla">
+		<es>Estado</es>
+		<en>Status</en>
+		<po>Estado</po>
+	</estado>
+
+	<semanaanterior tipo="dias">
+		<es>semana anterior</es>
+		<en>previous week</en>
+		<po>semana anterior</po>
+	</semanaanterior>
+	<semanasiguiente tipo="dias">
+		<es>semana siguiente</es>
+		<en>next week</en>
+		<po>próxima semana</po>
+	</semanasiguiente>
+		
+	<lunes tipo="dias">
+		<es>Lunes</es>
+		<en>Monday</en>
+		<po>Segunda-feira</po>
+	</lunes>
+	<martes tipo="dias">
+		<es>Martes</es>
+		<en>Tuesday</en>
+		<po>Terça-feira</po>
+	</martes>
+	<miercoles tipo="dias">
+		<es>Miercoles</es>
+		<en>Wednesday</en>
+		<po>Quarta-feira</po>
+	</miercoles>
+	<jueves tipo="dias">
+		<es>Jueves</es>
+		<en>Thursday</en>
+		<po>Quinta-feira</po>
+	</jueves>
+	<viernes tipo="dias">
+		<es>Viernes</es>
+		<en>Friday</en>
+		<po>Sexta-feira</po>
+	</viernes>
+	<sabado tipo="dias">
+		<es>Sabado</es>
+		<en>Saturday</en>
+		<po>Sábado</po>
+	</sabado>
+	<domingo tipo="dias">
+		<es>Domingo</es>
+		<en>Sunday</en>
+		<po>Domingo</po>
+	</domingo>
+	<enero tipo="meses">
+		<es>Enero</es>
+		<en>January</en>
+		<po>Janeiro</po>
+	</enero>
+	<febrero tipo="meses">
+		<es>Febrero</es>
+		<en>February</en>
+		<po>Fevereiro</po>
+	</febrero>
+	<marzo tipo="meses">
+		<es>Marzo</es>
+		<en>March</en>
+		<po>Março</po>
+	</marzo>
+	<abril tipo="meses">
+		<es>Abril</es>
+		<en>April</en>
+		<po>Abril</po>
+	</abril>
+	<mayo tipo="meses">
+		<es>Mayo</es>
+		<en>May</en>
+		<po>Maio</po>
+	</mayo>
+	<junio tipo="meses">
+		<es>Junio</es>
+		<en>June</en>
+		<po>Junho</po>
+	</junio>
+	<julio tipo="meses">
+		<es>Julio</es>
+		<en>July</en>
+		<po>Julho</po>
+	</julio>
+	<agosto tipo="meses">
+		<es>Agosto</es>
+		<en>August</en>
+		<po>Agosto</po>
+	</agosto>
+	<septiembre tipo="meses">
+		<es>Septiembre</es>
+		<en>September</en>
+		<po>Setembro</po>
+	</septiembre>
+	<octubre tipo="meses">
+		<es>Octubre</es>
+		<en>October</en>
+		<po>Outubro</po>
+	</octubre>
+	<noviembre tipo="meses">
+		<es>Noviembre</es>
+		<en>November</en>
+		<po>Novembro</po>
+	</noviembre>
+	<diciembre tipo="meses">
+		<es>Diciembre</es>
+		<en>December</en>
+		<po>Dezembro</po>
+	</diciembre>
+	
+	<telefonom tipo="medioscomunicacion">
+		<es>Telefono</es>
+		<en>Telephone</en>
+		<po>Telefone</po>
+	</telefonom>
+	<celular tipo="medioscomunicacion">
+		<es>Celular</es>
+		<en>Phone / Mobile No</en>
+		<po>Celular</po>
+	</celular>
+	<email tipo="medioscomunicacion">
+		<es>E-mail</es>
+		<en>E-mail</en>
+		<po>E-mail</po>
+	</email>
+	<hoteles tipo="Servicios">
+		<es>Hoteles</es>
+		<en>Hotels</en>
+		<po>Hotéis</po>
+	</hoteles>
+	<vuelos tipo="Servicios">
+		<es>Vuelos</es>
+		<en>Flights</en>
+		<po>Vuelos</po>
+	</vuelos>
+	<vuelo tipo="Servicios">
+		<es>Vuelo</es>
+		<en>Flight</en>
+		<po>Vuelo</po>
+	</vuelo>
+	<ciudad tipo="abm">
+		<es>Ciudad</es>
+		<en>City</en>
+		<po>Cidade</po>
+	</ciudad>
+	<estrellas tipo="abm">
+		<es>Estrellas</es>
+		<en>Stars</en>
+		<po>Estrelas</po>
+	</estrellas>
+	<direccion tipo="abm">
+		<es>Direccion</es>
+		<en>Address</en>
+		<po>Endereço</po>
+	</direccion>
+	<telefono tipo="abm">
+		<es>Teléfono</es>
+		<en>Telephone</en>
+		<po>Telefone</po>
+	</telefono>
+	<telefono2 tipo="abm">
+		<es>Telefono</es>
+		<en>Phone</en>
+		<po>Telefone</po>
+	</telefono2>
+	<desde tipo="abm">
+		<es>Desde</es>
+		<en>From</en>
+		<po>Desde</po>
+	</desde>
+	<hasta tipo="abm">
+		<es>hasta</es>
+		<en>to</en>
+		<po>até</po>
+	</hasta>
+	<edad tipo="abm">
+		<es>Edad</es>
+		<en>Age</en>
+		<po>Idade</po>
+	</edad>
+	<paga tipo="abm">
+		<es>Paga</es>
+		<en>Pays</en>
+		<po>Pago</po>
+	</paga>
+	<tipo tipo="abm">
+		<es>Tipo</es>
+		<en>Type</en>
+		<po>Tipo</po>
+	</tipo>
+	<descripcion tipo="abm">
+		<es>Descripción</es>
+		<en>Description</en>
+		<po>Descrição</po>
+	</descripcion>
+
+	<detalles tipo="abm">
+		<es>Detalles</es>
+		<en>Details</en>
+		<po>Detalhes</po>
+	</detalles>
+	
+	<detallespasajeroscontacto tipo="abm">
+		<es>Detalle de contacto de quien solicita el viaje</es>
+		<en>Passenger Contact Details / Orderer of Journey</en>
+		<po>Detalhes de Contato Passageiros / Quem solicitou o Journey</po>
+	</detallespasajeroscontacto>	
+	
+	<actividades tipo="abm">
+		<es>Actividades</es>
+		<en>Sightseeing</en>
+		<po>Atividades</po>
+	</actividades>
+	<actividadesresulatdos tipo="abm">
+		<es>Actividades Resultados</es>
+		<en>Sightseeing Results</en>
+		<po>Atividades Resultados</po>
+	</actividadesresulatdos>
+	<actividaddisponibilidad tipo="abm">
+		<es>Actividades Disponibilidad</es>
+		<en>Sightseeing Availability</en>
+		<po>Atividades Disponibilidade</po>
+	</actividaddisponibilidad>
+	<actividaddetalle tipo="abm">
+		<es>Actividade Detalle</es>
+		<en>Sightseeing Detail</en>
+		<po>Atividades Detalhe</po>
+	</actividaddetalle>
+	<actividadesreserva tipo="abm">
+		<es>Actividades Reservas</es>
+		<en>Sightseeing Reservations</en>
+		<po>Atividades Reservas</po>
+	</actividadesreserva>
+	<al tipo="abm">
+		<es>al</es>
+		<en>to the</en>
+		<po>ao</po>
+	</al>
+	<nombredelaanctividad tipo="abm">
+		<es>Nombre de la Actividad</es>
+		<en>Name of Sightseeing</en>
+		<po>Nome de Actividade</po>
+	</nombredelaanctividad>
+	<actividadesencontradas tipo="abm">
+		<es>Actividades encontradas</es>
+		<en>Sightseeing found</en>
+		<po>Atividades encontrado</po>
+	</actividadesencontradas>
+	<actividadesfiltradas tipo="abm">
+		<es>Actividades filtradas</es>
+		<en>Sightseeing filtered</en>
+		<po>Actividades filtrada</po>
+	</actividadesfiltradas>	
+	
+	<encontrados tipo="abm">
+		<es>encontrados</es>
+		<en>found</en>
+		<po>encontrado</po>
+	</encontrados>	
+		
+	<cotizada tipo="triplanner">
+		<es>cotizada</es>
+		<en>listed</en>
+		<po>enumerados</po>
+	</cotizada>
+	<confirmada tipo="triplanner">
+		<es>confirmada</es>
+		<en>confirmed</en>
+		<po>confirmada</po>
+	</confirmada>
+	<pendientes tipo="triplanner">
+		<es>pendientes</es>
+		<en>pending</en>
+		<po>pendentes</po>
+	</pendientes>
+	<pendientedepago tipo="abm">
+		<es>Pendiente de pago</es>
+		<en>Payment pending</en>
+		<po>Pendiente de pago</po>
+	</pendientedepago>
+	<cancelada tipo="triplanner">
+		<es>cancelada</es>
+		<en>cancelled</en>
+		<po>cancelada</po>
+	</cancelada>
+	<confirmado tipo="triplanner">
+		<es>Confirmado</es>
+		<en>Confirmed</en>
+		<po>Confirmado</po>
+	</confirmado>
+	<resultados tipo="abm">
+		<es>resultados</es>
+		<en>results</en>
+		<po>resultados</po>
+	</resultados>
+	<adulto tipo="resultados">
+		<es>adulto</es>
+		<en>adult</en>
+		<po>adulto</po>
+	</adulto>
+	<menor tipo="resultados">
+		<es>menor</es>
+		<en>menor</en>
+		<po>menor</po>
+	</menor>
+	<infante tipo="resultados">
+		<es>infante</es>
+		<en>infant</en>
+		<po>infante</po>
+	</infante>
+	<ninio tipo="resultados">
+		<es>niño</es>
+		<en>child</en>
+		<po>criança</po>
+	</ninio>
+	<en tipo="resultados">
+		<es>en</es>
+		<en>in</en>
+		<po>em</po>
+	</en>
+	<arequerir tipo="resultados">
+		<es>A requerir</es>
+		<en>On request</en>
+		<po>A requerir</po>
+	</arequerir>
+	<cotizar tipo="resultados">
+		<es>cotizar</es>
+		<en>quote</en>
+		<po>cotizar</po>
+	</cotizar>
+	
+	<sucodigodereservaes tipo="resultados">
+		<es>Tu Código de reserva es</es>
+		<en>Booking code</en>
+		<po>Seu Código de reserva é</po>
+	</sucodigodereservaes>
+	<pais tipo="abm">
+		<es>País</es>
+		<en>Country</en>
+		<po>Pais</po>
+	</pais>
+	<destino tipo="abm">
+		<es>Destino</es>
+		<en>Destination</en>
+		<po>Destino</po>
+	</destino>
+	<pasajeros tipo="abm">
+		<es>Pasajeros</es>
+		<en>Passengers</en>
+		<po>Pasajeros</po>
+	</pasajeros>
+	<pasajero tipo="abm">
+		<es>Pasajero</es>
+		<en>Guest</en>
+		<po>Pasajero</po>
+	</pasajero>
+	<detalledelservicio tipo="abm">
+		<es>Detalle del servicio</es>
+		<en>Service detail</en>
+		<po>Detalle del servicio</po>
+	</detalledelservicio>
+	
+	<datosdelospasajeros tipo="abm">
+		<es>Datos de los pasajeros</es>
+		<en>Passenger data</en>
+		<po>Datos de los pasajeros</po>
+	</datosdelospasajeros>
+
+	<delospasajeros tipo="abm">
+		<es>de los pasajeros</es>
+		<en>Passenger</en>
+		<po>Datos de los</po>
+	</delospasajeros>
+
+	
+	<confirmarhabitacion tipo="abm">
+		<es>Confirmar habitación</es>
+		<en>Confirm room</en>
+		<po>Confirmar quarto</po>
+	</confirmarhabitacion>
+	
+	<confirmarpaquete tipo="abm">
+		<es>Confirmar paquete</es>
+		<en>Confirm package</en>
+		<po>Confirmar paquete</po>
+	</confirmarpaquete>
+
+	<confirmaractividad tipo="abm">
+		<es>Confirmar actividad</es>
+		<en>Confirm sightseeing</en>
+		<po>Confirme atividade</po>
+	</confirmaractividad>
+
+	<confirmar tipo="abm">
+		<es>Confirmar</es>
+		<en>Commfirm</en>
+		<po>Confirmar</po>
+	</confirmar>
+
+		
+	<datosdefacturacion tipo="abm">
+		<es>Datos de facturacion</es>
+		<en>Billing Data</en>
+		<po>Datos de facturacion</po>
+	</datosdefacturacion>
+	<numerodeconfirmaciondelhotel tipo="abm">
+		<es>Número de confirmación del hotel</es>
+		<en>Hotel Confirmation Number</en>
+		<po>Número de confirmación del hotel</po>
+	</numerodeconfirmaciondelhotel>
+	<numerodeconfirmaciondelaactividad tipo="abm">
+		<es>Número de confirmación de la actividad</es>
+		<en>Confirmation Number sightseeing</en>
+		<po>Número de confirmación de la actividad</po>
+	</numerodeconfirmaciondelaactividad>
+	<descripciondelservicio tipo="abm">
+		<es>Descripción del servicio</es>
+		<en>Service Description</en>
+		<po>Descripción del servicio</po>
+	</descripciondelservicio>
+	<checkin tipo="abm">
+		<es>Fecha de llegada</es>
+		<en>Check in</en>
+		<po>Check in</po>
+	</checkin>
+	<checkout tipo="abm">
+		<es>Fecha de salida</es>
+		<en>Check out</en>
+		<po>Check out</po>
+	</checkout>
+	<cantidaddenoches tipo="abm">
+		<es>Cantidad de Noches</es>
+		<en>Number of Nights</en>
+		<po>Cantidad de Noches</po>
+	</cantidaddenoches>
+	<cantidaddenochesadicionales tipo="abm">
+		<es>Cantidad de Noches Adicionales</es>
+		<en>Additional Number of Nights</en>
+		<po>Cantidad de Noches Adicionales</po>
+	</cantidaddenochesadicionales>
+	<pasaporte tipo="abm">
+		<es>Pasaporte</es>
+		<en>Passport</en>
+		<po>Pasaporte</po>
+	</pasaporte>
+	<cedula tipo="abm">
+		<es>Cedula</es>
+		<en>Document</en>
+		<po>Cedula</po>
+	</cedula>
+	<titularhabitacion tipo="abm">
+		<es>Titular habitacion</es>
+		<en>Titular room</en>
+		<po>Titular habitacion</po>
+	</titularhabitacion>
+	<apellidoynombrerazonsocial tipo="abm">
+		<es>Apellido y nombre / Razon Social</es>
+		<en>First and last name / Company name</en>
+		<po>Apellido y nombre / Razon Social</po>
+	</apellidoynombrerazonsocial>
+	<codpostal tipo="abm">
+		<es>Cod. Postal</es>
+		<en>Postal Code</en>
+		<po>Cod. Postal</po>
+	</codpostal>
+	<formadepago tipo="abm">
+		<es>Forma de Pago</es>
+		<en>Type of Payment</en>
+		<po>Forma de Pago</po>
+	</formadepago>
+	<requerimientosespeciales tipo="abm">
+		<es>Requerimientos Especiales</es>
+		<en>Special Requirements</en>
+		<po>Requerimientos Especiales</po>
+	</requerimientosespeciales>
+	<politicasdecancelacion tipo="abm">
+		<es>Políticas de cancelación</es>
+		<en>Cancellation Policies</en>
+		<po>Políticas de cancelación</po>
+	</politicasdecancelacion>
+	<fechadesalida tipo="abm">
+		<es>Fecha de Salida</es>
+		<en>Departure date</en>
+		<po>Fecha de Salida</po>
+	</fechadesalida>
+	<elegifechadesalida tipo="abm">
+		<es>Elegí fecha de salida</es>
+		<en>Chose departure date</en>
+		<po>Escolha data de partida</po>
+	</elegifechadesalida>
+	<fechaderegreso tipo="abm">
+		<es>Fecha de regreso</es>
+		<en>Return date</en>
+		<po>Fecha de regreso</po>
+	</fechaderegreso>
+	<ciudadesquerecorre tipo="abm">
+		<es>Ciudades que recorre</es>
+		<en>Cities</en>
+		<po>Ciudades que recorre</po>
+	</ciudadesquerecorre>
+	<fechanacimiento tipo="abm">
+		<es>Fecha Nacimiento</es>
+		<en>Date of Birth</en>
+		<po>Fecha Nacimiento</po>
+	</fechanacimiento>
+	<codigosabre tipo="abm">
+		<es>Codigo SABRE</es>
+		<en>SABRE Code</en>
+		<po>Codigo SABRE</po>
+	</codigosabre>
+	
+	<codigohost tipo="abm">
+		<es>Codigo Host</es>
+		<en>Host Code</en>
+		<po>Codigo Host</po>
+	</codigohost>
+	
+	<aerolinea tipo="abm">
+		<es>Aerolínea</es>
+		<en>Airlines</en>
+		<po>Aerolínea</po>
+	</aerolinea>
+	
+	<origen tipo="abm">
+		<es>Origen</es>
+		<en>City of departure</en>
+		<po>Origen</po>
+	</origen>
+	<ndevuelo tipo="abm">
+		<es>N° de vuelo</es>
+		<en>Flight number</en>
+		<po>N° de vuelo</po>
+	</ndevuelo>
+	<operadopor tipo="abm">
+		<es>Operado por</es>
+		<en>Operated by</en>
+		<po>Operado por</po>
+	</operadopor>
+	<avion tipo="abm">
+		<es>Avión</es>
+		<en>Plane</en>
+		<po>Avión</po>
+	</avion>
+	
+	<aerofrecuente tipo="abm">
+		<es>Aero. Frecuente</es>
+		<en>Frequent Flyer</en>
+		<po>Aero. Frecuente</po>
+	</aerofrecuente>
+	
+	<numprograma tipo="abm">
+		<es>Num. Programa</es>
+		<en>Program number</en>
+		<po>Num. Programa</po>
+	</numprograma>
+	
+	<domicilio tipo="abm">
+		<es>Domicilio</es>
+		<en>Address</en>
+		<po>Domicilio</po>
+	</domicilio>
+	
+	<detalledelhotel tipo="abm">
+		<es>Detalle del Hotel</es>
+		<en>Hotel Detail</en>
+		<po>Detalle del Hotel</po>
+	</detalledelhotel>
+	
+	<descripciondelaactividad tipo="abm">
+		<es>Descripción de la actividad</es>
+		<en>Sightseeing Description</en>
+		<po>Descripción de la actividad</po>
+	</descripciondelaactividad>
+	
+	<detalledelaactividad tipo="abm">
+		<es>Detalle de la actividad</es>
+		<en>Sightseeing Detail</en>
+		<po>Detalle de la actividad</po>
+	</detalledelaactividad>
+	
+	<tickettipo tipo="abm">
+		<es>Ticket Tipo</es>
+		<en>Ticket Type</en>
+		<po>Ticket Tipo</po>
+	</tickettipo>
+	
+	<detalledelvuelo tipo="abm">
+		<es>Detalle del Vuelo</es>
+		<en>Flight Detail</en>
+		<po>Detalle del Vuelo</po>
+	</detalledelvuelo>
+	
+	<enviadopor tipo="abm">
+		<es>enviado por</es>
+		<en>sent by</en>
+		<po>enviado por</po>
+	</enviadopor>
+	
+	<tipodehabitacion tipo="abm">
+		<es>Tipo de habitación</es>
+		<en>Room type</en>
+		<po>Tipo de apartamento</po>
+	</tipodehabitacion>
+	
+	<partida tipo="abm">
+		<es>Partida</es>
+		<en>Departure</en>
+		<po>Partida</po>
+	</partida>
+	<regreso tipo="abm">
+		<es>Regreso</es>
+		<en>Return</en>
+		<po>Regreso</po>
+	</regreso>
+	<arribo tipo="abm">
+		<es>Arribo</es>
+		<en>Destination</en>
+		<po>Arribo</po>
+	</arribo>
+	
+	<manana tipo="abm">
+		<es>Mañana</es>
+		<en>Morning</en>
+		<po>Mañana</po>
+	</manana>
+	<tarde tipo="abm">
+		<es>Tarde</es>
+		<en>Afternoon</en>
+		<po>Tarde</po>
+	</tarde>
+	<noche tipo="abm">
+		<es>Noche</es>
+		<en>Night</en>
+		<po>Noche</po>
+	</noche>	
+	<trasnoche tipo="abm">
+		<es>Trasnoche</es>
+		<en>Late Night</en>
+		<po>Trasnoche</po>
+	</trasnoche>
+	<misfechassonflexibles tipo="abm">
+		<es>Fechas cercanas</es>
+		<en>Flexible dates</en>
+		<po>Fechas flexibles</po>
+	</misfechassonflexibles>
+	<aerolineasdepreferencia tipo="abm">
+		<es>Aerolíneas de preferencia</es>
+		<en>Preffer Airlines</en>
+		<po>Aerolíneas de preferencia</po>
+	</aerolineasdepreferencia>
+	<aerolineas tipo="abm">
+		<es>Aerolíneas</es>
+		<en>Airlines</en>
+		<po>Aerolíneas</po>
+	</aerolineas>
+	<ninguna tipo="abm">
+		<es>Ninguna</es>
+		<en>None</en>
+		<po>Ninguna</po>
+	</ninguna>
+	<turistaeconomy tipo="abm">
+		<es>Turista</es>
+		<en>Economy</en>
+		<po>Turista</po>
+	</turistaeconomy>
+	<ejecutivabusiness tipo="abm">
+		<es>Ejecutiva</es>
+		<en>Business</en>
+		<po>Ejecutiva</po>
+	</ejecutivabusiness>
+	<primerafirst tipo="abm">
+		<es>Primera Clase</es>
+		<en>First Class</en>
+		<po>Primera First</po>
+	</primerafirst>	
+	<mismaaerolinea tipo="abm">
+		<es>Misma aerolinea</es>
+		<en>Same airline</en>
+		<po>Misma aerolinea</po>
+	</mismaaerolinea>
+	
+	<solovuelodirecto tipo="abm">
+		<es>Solo vuelo directo</es>
+		<en>Only direct fly</en>
+		<po>Solo vuelo directo</po>
+	</solovuelodirecto>
+	
+	<adultos tipo="abm">
+		<es>Adultos</es>
+		<en>Adults</en>
+		<po>Adultos</po>
+	</adultos>
+	<ninos tipo="abm">
+		<es>Niños</es>
+		<en>Children</en>
+		<po>Niños</po>
+	</ninos>
+	<nino tipo="abm">
+		<es>Niño</es>
+		<en>Child</en>
+		<po>Niño</po>
+	</nino>
+	<a tipo="abm">
+		<es>a</es>
+		<en>to</en>
+		<po>a</po>
+	</a>
+	<infantes tipo="abm">
+		<es>Bebes</es>
+		<en>Babies</en>
+		<po>Bebes</po>
+	</infantes>
+	<busquedaavanzada tipo="abm">
+		<es>Busqueda avanzada</es>
+		<en>Advanced Search</en>
+		<po>Busqueda avanzada</po>
+	</busquedaavanzada>
+	<busquedabasica tipo="abm">
+		<es>Busqueda basica</es>
+		<en>Basic Search</en>
+		<po>Busqueda basica</po>
+	</busquedabasica>
+	
+	<eliminartramo tipo="abm">
+		<es>Eliminar tramo</es>
+		<en>Eliminar tramo</en>
+		<po>Eliminar tramo</po>
+	</eliminartramo>
+	<anadirotrotramo tipo="abm">
+		<es>Añadir otro tramo</es>
+		<en>Añadir otro tramo</en>
+		<po>Añadir otro tramo</po>
+	</anadirotrotramo>
+	<idayvuelta tipo="abm">
+		<es>Ida y Vuelta</es>
+		<en>Round trip</en>
+		<po>Ida y Vuelta</po>
+	</idayvuelta>
+	<ida tipo="abm">
+		<es>Ida</es>
+		<en>Departure</en>
+		<po>Ida</po>
+	</ida>
+	<vuelta tipo="abm">
+		<es>Vuelta</es>
+		<en>Return</en>
+		<po>Vuelta</po>
+	</vuelta>
+	<soloida tipo="abm">
+		<es>Solo Ida</es>
+		<en>One Way</en>
+		<po>Solo Ida</po>
+	</soloida>
+	<multiplesdestinos tipo="abm">
+		<es>Multiples destinos</es>
+		<en>Multiple destinations</en>
+		<po>Multiples destinos</po>
+	</multiplesdestinos>
+	<clase tipo="abm">
+		<es>Clase</es>
+		<en>Class</en>
+		<po>Clase</po>
+	</clase>
+	<horario tipo="abm">
+		<es>Horario</es>
+		<en>Schedule</en>
+		<po>Horario</po>
+	</horario>
+	<ingreselaciudaddedestino tipo="abm">
+		<es>Ingrese la ciudad de destino</es>
+		<en>Select destination city</en>
+		<po>Ingrese la ciudad de destino</po>
+	</ingreselaciudaddedestino>
+	<opcional tipo="abm">
+		<es>opcional</es>
+		<en>optional</en>
+		<po>opcional</po>
+	</opcional>
+	<noches tipo="abm">
+		<es>Noches</es>
+		<en>Nights</en>
+		<po>Noches</po>
+	</noches>
+	<todas tipo="abm">
+		<es>Todas</es>
+		<en>All</en>
+		<po>Todas</po>
+	</todas>
+	<habitaciones tipo="abm">
+		<es>Habitaciones</es>
+		<en>Rooms</en>
+		<po>Habitaciones</po>
+	</habitaciones>
+	<habitacion tipo="abm">
+		<es>Habitacion</es>
+		<en>Room</en>
+		<po>Habitacion</po>
+	</habitacion>
+	<buscar tipo="abm">
+		<es>Buscar</es>
+		<en>Search</en>
+		<po>Buscar</po>
+	</buscar>
+	
+	<datos tipo="abm">
+		<es>Datos</es>
+		<en>Data</en>
+		<po>Datos</po>
+	</datos>
+
+	<mcomprimidonuevabusqueda tipo="abm">
+		<es>Nueva Búsqueda</es>
+		<en>New Search</en>
+		<po>Nova Pesquisa</po>
+	</mcomprimidonuevabusqueda>
+	<mcomprimidoconfirmacioncompra tipo="abm">
+		<es>Confirmación de Compra</es>
+		<en>Purchase Confirmation</en>
+		<po>Confirmação da compra</po>
+	</mcomprimidoconfirmacioncompra>
+
+	
+	<mcomprimidoconfirmacion tipo="abm">
+		<es>Confirmación</es>
+		<en>Purchase</en>
+		<po>Confirmação</po>
+	</mcomprimidoconfirmacion>
+	<mcomprimidodecompra tipo="abm">
+		<es>de Compra</es>
+		<en>Confirmation</en>
+		<po>da compra</po>
+	</mcomprimidodecompra>
+	
+	<nuestraempresa tipo="abm">
+		<es>Empresa</es>
+		<en>About Us</en>
+		<po>Companhia</po>
+	</nuestraempresa>	
+	<gestionarreserva tipo="abm">
+		<es>gestionar la reserva</es>
+		<en>manage booking</en>
+		<po>gerenciar reserva</po>
+	</gestionarreserva>	
+	<seguroviaje tipo="abm">
+		<es>seguro de viaje</es>
+		<en>travel insurance</en>
+		<po>seguro de viagem</po>
+	</seguroviaje>
+	<contactenos tipo="abm">
+		<es>Contactanos</es>
+		<en>Contact Us</en>
+		<po>Contactanos</po>
+	</contactenos>
+	
+	<trabajeconnosotros tipo="abm">
+		<es>Trabajá con nosotros</es>
+		<en>Work with us</en>
+		<po>Trabalhe Conosco</po>
+	</trabajeconnosotros>
+
+	<enviarmisdatos tipo="abm">
+		<es>Enviar mis datos</es>
+		<en>Send data</en>
+		<po>Enviar mis datos</po>
+	</enviarmisdatos>
+	
+	<mensajeformtrabaje1 tipo="abm">
+		<es>Si quiere[BR]formar parte de[BR]Jetmar complete[BR]el siguiente[BR]formulario!</es>
+		<en>If you want to be part of Jetmar complete the following form!</en>
+		<po>Se você quer ser parte da Jetmar preencha o seguinte formulário!</po>
+	</mensajeformtrabaje1>
+	
+	<uploadcv tipo="abm">
+		<es>Suba tu CV (.pdf / .doc)</es>
+		<en>Upload your CV (.pdf / .doc)</en>
+		<po>Envie seu CV (.pdf / .doc)</po>
+	</uploadcv>
+	
+	<hotelesenoferta tipo="abm">
+		<es>Hoteles en Oferta</es>
+		<en>Featured Hotels</en>
+		<po>Hoteles en Oferta</po>
+	</hotelesenoferta>
+	<vuelosenoferta tipo="abm">
+		<es>Vuelos en Oferta</es>
+		<en>Featured Flights</en>
+		<po>Vuelos en Oferta</po>
+	</vuelosenoferta>
+	<paquetesenoferta tipo="abm">
+		<es>Paquetes en Oferta</es>
+		<en>Featured Packages</en>
+		<po>Paquetes en Oferta</po>
+	</paquetesenoferta>
+
+	<vuelosenofertaespeciales tipo="abm">
+		<es>Vuelos en Ofertas Especiales</es>
+		<en>Flight Special Offers</en>
+		<po>Ofertas de Voos Especiais</po>
+	</vuelosenofertaespeciales>
+	
+	<vertodo tipo="abm">
+		<es>Ver todos</es>
+		<en>See all</en>
+		<po>Ver todos</po>
+	</vertodo>	
+	
+	<masinfo tipo="abm">
+		<es>más info</es>
+		<en>see more</en>
+		<po>mas info</po>
+	</masinfo>
+	
+	<buscardispo tipo="abm">
+		<es>buscar disponibilidad</es>
+		<en>search availability</en>
+		<po>pesquisa disponibilidade</po>
+	</buscardispo>
+	
+	<suscribaseanuestronewsletter tipo="abm">
+		<es>Suscribase a nuestro Newsletter</es>
+		<en>Subscribe to Newsletter</en>
+		<po>Suscribase a nuestro Newsletter</po>
+	</suscribaseanuestronewsletter>
+	
+	<formatoincorrecto tipo="abm">
+		<es>formato incorrecto</es>
+		<en>incorrect format</en>
+		<po>formato incorrecto</po>
+	</formatoincorrecto>
+	
+	<lossiguientescampossonrequeridos tipo="abm">
+		<es>Los siguientes campos son requeridos</es>
+		<en>Required data</en>
+		<po>Los siguientes campos son requeridos</po>
+	</lossiguientescampossonrequeridos>
+
+	<porpasajerobasedoble tipo="abm">
+		<es>por pasajero base doble</es>
+		<en>per passenger based on double occupancy</en>
+		<po>por passageiro com base em ocupação dupla</po>
+	</porpasajerobasedoble>	
+	
+	<continuar tipo="abm">
+		<es>Continuar</es>
+		<en>Continue</en>
+		<po>Continuar</po>
+	</continuar>
+	
+	<mensaje tipo="General">
+		<es>Mensaje</es>
+		<en>Comments</en>
+		<po>Mensaje</po>
+	</mensaje>
+	
+	<mensajecontacto1 tipo="General">
+		<es>Póngase en contacto con nosotros con cualquier pregunta o preocupación que tenga</es>
+		<en>Please contact us with any questions or concerns you have</en>
+		<po>Póngase en contacto con nosotros con cualquier pregunta o preocupación que tenga</po>
+	</mensajecontacto1>	
+	
+	<captcha1 tipo="General">
+		<es>Escriba el código de seguridad</es>
+		<en>Enter the code</en>
+		<po>Escriba el código de seguridad</po>
+	</captcha1>	
+	
+	<captcha2 tipo="General">
+		<es>Este sistema nos permite detectar que el formulario es escrito por una persona real y no por un programa automatizado</es>
+		<en>This system allows us to detect that the form is written by a real person and not an automated program</en>
+		<po>Este sistema nos permite detectar que el formulario es escrito por una persona real y no por un programa automatizado</po>
+	</captcha2>
+	
+	<captchavalidar1 tipo="General">
+		<es>Código de seguridad inválido\n* debe ser numérico</es>
+		<en>Invalid code\n* must be numeric</en>
+		<po>Código de seguridad inválido\n* debe ser numérico</po>
+	</captchavalidar1>	
+	<captchavalidar2 tipo="General">
+		<es>Código de seguridad incompleto</es>
+		<en>Incomplete code</en>
+		<po>Código de seguridad incompleto</po>
+	</captchavalidar2>	
+	
+	<captchaerror tipo="General">
+		<es>El código de seguridad ingresado es incorrecto</es>
+		<en>The security code is entered incorrectly</en>
+		<po>El código de seguridad ingresado es incorrecto</po>
+	</captchaerror>
+	<camposobligatorios tipo="General">
+		<es>campos obligatorios</es>
+		<en>mandatory fields</en>
+		<po>campos obligatorios</po>
+	</camposobligatorios>
+	<enviar tipo="abm">
+		<es>Enviar</es>
+		<en>Send</en>
+		<po>Enviar</po>
+	</enviar>
+	
+	<gracias tipo="General">
+		<es>Gracias</es>
+		<en>Thank you</en>
+		<po>Gracias</po>
+	</gracias>
+	<porelegir tipo="General">
+		<es>por elegir</es>
+		<en>for choosing</en>
+		<po>por elegir</po>
+	</porelegir>
+	<nospondremosencontactoconustedalabrevedad tipo="General">
+		<es>Nos pondremos en contacto a la brevedad</es>
+		<en>We will contact you shortly</en>
+		<po>Nos pondremos en contacto a la brevedad</po>
+	</nospondremosencontactoconustedalabrevedad>
+	<contactoweb tipo="abm">
+		<es>Contacto Web</es>
+		<en>Web Contact</en>
+		<po>Contacto Web</po>
+	</contactoweb>
+	
+	<datossolicitante tipo="abm">
+		<es>Datos del Solicitante</es>
+		<en>Applicant data</en>
+		<po>Datos do Solicitante</po>
+	</datossolicitante>
+	<nombreyapellido tipo="abm">
+		<es>Nombre y Apellido</es>
+		<en>Name and Last name</en>
+		<po>Nombre y Apellido</po>
+	</nombreyapellido>
+	<vuelodesde tipo="General">
+		<es>Vuelo desde</es>
+		<en>Flight from</en>
+		<po>Vuelo desde</po>
+	</vuelodesde>
+	<alojamientoen tipo="General">
+		<es>Alojamiento en</es>
+		<en>Stay in</en>
+		<po>Alojamiento en</po>
+	</alojamientoen>
+	<disponibilidaden tipo="General">
+		<es>Disponibilidad en</es>
+		<en>Disponibilidad en</en>
+		<po>Disponibilidad en</po>
+	</disponibilidaden>
+	
+	<desdeel tipo="General">
+		<es>Desde el</es>
+		<en>From</en>
+		<po>A partir de</po>
+	</desdeel>
+	<disponibilidadenla tipo="General">
+		<es>Disponibilidad en la</es>
+		<en>Disponibilidad en la</en>
+		<po>Disponibilidad en la</po>
+	</disponibilidadenla>
+	<viajando tipo="General">
+		<es>Viajando</es>
+		<en>Trip</en>
+		<po>Viajando</po>
+	</viajando>
+	<al tipo="General">
+		<es>al</es>
+		<en>to</en>
+		<po>al</po>
+	</al>
+	<del tipo="General">
+		<es>del</es>
+		<en>from</en>
+		<po>del</po>
+	</del>
+	<de tipo="General">
+		<es>de</es>
+		<en>of</en>
+		<po>de</po>
+	</de>
+	<en tipo="General">
+		<es>en</es>
+		<en>in</en>
+		<po>en</po>
+	</en>	
+	
+	<aguardeuninstanteestamosbuscandolosmejoresprecios tipo="General">
+		<es>Aguardá un instante, estamos buscando los mejores precios</es>
+		<en>Wait a moment, we are searching for the best prices</en>
+		<po>Aguardá un instante, estamos buscando los mejores precios</po>
+	</aguardeuninstanteestamosbuscandolosmejoresprecios>
+
+	<busqueda tipo="General">
+		<es>Búsqueda</es>
+		<en>Search</en>
+		<po>Búsqueda</po>
+	</busqueda>
+	
+	<nuevabusqueda tipo="General">
+		<es>Nueva Búsqueda</es>
+		<en>New Search</en>
+		<po>Nueva Búsqueda</po>
+	</nuevabusqueda>
+		
+	<menorprecio tipo="General">
+		<es>Menor precio</es>
+		<en>Lower price</en>
+		<po>Menor precio</po>
+	</menorprecio>	
+	<mayorprecio tipo="General">
+		<es>Mayor precio</es>
+		<en>Higher price</en>
+		<po>Mayor precio</po>
+	</mayorprecio>	
+	<ordenarpor tipo="General">
+		<es>Ordenar por</es>
+		<en>Order by</en>
+		<po>Ordenar por</po>
+	</ordenarpor>
+	<pornocheporhabitacion tipo="General">
+		<es>por noche por habitación</es>
+		<en>per room per night</en>
+		<po>por noche por habitación</po>
+	</pornocheporhabitacion>
+	<promnocheporhabitacion tipo="General">
+		<es>prom/noche - s/imp.</es>
+		<en>prom/noche - s/imp.</en>
+		<po>prom/noche - s/imp.</po>
+	</promnocheporhabitacion>
+	<seleccionar tipo="General">
+		<es>Seleccionar</es>
+		<en>Select</en>
+		<po>Seleccionar</po>
+	</seleccionar>
+	
+	<mostrarhabitaciones tipo="General">
+		<es>mostrar habitaciones</es>
+		<en>show available rooms</en>
+		<po>mostrar habitaciones</po>
+	</mostrarhabitaciones>
+	<ocultarhabitaciones tipo="General">
+		<es>ocultar habitaciones</es>
+		<en>hide available rooms</en>
+		<po>ocultar habitaciones</po>
+	</ocultarhabitaciones>
+	<vueloida tipo="General">
+		<es>Vuelo Ida</es>
+		<en>Flight</en>
+		<po>Vuelo Ida</po>
+	</vueloida>
+	<comparar tipo="General">
+		<es>Comparar</es>
+		<en>Compare</en>
+		<po>Comparar</po>
+	</comparar>
+	<yvuelta tipo="General">
+		<es>y vuelta</es>
+		<en>y vuelta</en>
+		<pt>y vuelta</pt>
+	</yvuelta>
+	
+	<vueloidayvuelta tipo="General">
+		<es>Vuelo Ida y vuelta</es>
+		<en>Round trip</en>
+		<pt>Vuelo Ida y vuelta</pt>
+	</vueloidayvuelta>
+	
+	<disponible tipo="General">
+		<es>disponible</es>
+		<en>available</en>
+		<po>disponible</po>
+	</disponible>
+	<arequerir tipo="General">
+		<es>a requerir</es>
+		<en>a requerir</en>
+		<po>a requerir</po>
+	</arequerir>
+	<detalle tipo="General">
+		<es>detalle</es>
+		<en>detail</en>
+		<po>detalle</po>
+	</detalle>
+	<verprecio tipo="General">
+		<es>ver precio</es>
+		<en>show price</en>
+		<po>ver precio</po>
+	</verprecio>
+	<ocultarprecio tipo="General">
+		<es>ocultar precio</es>
+		<en>hide price</en>
+		<po>ocultar precio</po>
+	</ocultarprecio>
+	<totalhabitacion tipo="General">
+		<es>Total Habitación</es>
+		<en>Room Total</en>
+		<po>Total Habitación</po>
+	</totalhabitacion>
+	<preciototaldelaestadia tipo="General">
+		<es>precio total de la estadía</es>
+		<en>total price of the stay</en>
+		<po>precio total de la estadía</po>
+	</preciototaldelaestadia>
+	<total tipo="abm">
+		<es>Total</es>
+		<en>Total</en>
+		<po>Total</po>
+	</total>
+	
+	<facilidadesdelhotel tipo="abm">
+		<es>Facilidades del Hotel</es>
+		<en>Building Facilities</en>
+		<po>Facilidades del Hotel</po>
+	</facilidadesdelhotel>
+	<tipodehotel tipo="abm">
+		<es>Tipo de hotel</es>
+		<en>Hotel Type</en>
+		<po>Tipo de hotel</po>
+	</tipodehotel>
+	<tarjetasdecredito tipo="abm">
+		<es>Tarjetas de Credito</es>
+		<en>Credit Cards</en>
+		<po>Tarjetas de Credito</po>
+	</tarjetasdecredito>
+	<cercanias tipo="abm">
+		<es>Cercanias</es>
+		<en>Nearby Points</en>
+		<po>Cercanias</po>
+	</cercanias>
+	<playa tipo="abm">
+		<es>Playa</es>
+		<en>Beach</en>
+		<po>Playa</po>
+	</playa>
+	<facilidadesdelashabitaciones tipo="abm">
+		<es>Facilidades de las Habitaciones</es>
+		<en>Rooms Facilities</en>
+		<po>Facilidades de las Habitaciones</po>
+	</facilidadesdelashabitaciones>
+	<servicios tipo="abm">
+		<es>Servicios</es>
+		<en>Services</en>
+		<po>Servicios</po>
+	</servicios>
+	<comidas tipo="abm">
+		<es>Comidas</es>
+		<en>Meals</en>
+		<po>Comidas</po>
+	</comidas>}
+	<recreacion tipo="abm">
+		<es>Recreación</es>
+		<en>Sports</en>
+		<po>Recreación</po>
+	</recreacion>
+	<galeriadeimagenes tipo="abm">
+		<es>Galería de imagenes</es>
+		<en>Image gallery</en>
+		<po>Galeria de imagenes</po>
+	</galeriadeimagenes>
+	<galeria tipo="abm">
+		<es>Galería</es>
+		<en>Gallery</en>
+		<po>Galeria</po>
+	</galeria>
+	<dobleclicenlaimagenparaampliar tipo="abm">
+		<es>doble clic en la imagen para ampliar</es>
+		<en>double click image to zoom</en>
+		<po>doble clic en la imagen para ampliar</po>
+	</dobleclicenlaimagenparaampliar>
+		
+	<clickparaampliar tipo="abm">
+		<es>click para ampliar</es>
+		<en>click to zoom</en>
+		<po>clique para ampliar</po>
+	</clickparaampliar>
+	
+	<volver tipo="abm">
+		<es>Volver</es>
+		<en>Back</en>
+		<po>Volver</po>
+	</volver>
+	
+	<ubicacionenmapa tipo="abm">
+		<es>Ubicación en mapa</es>
+		<en>Location</en>
+		<po>Ubicación en mapa</po>
+	</ubicacionenmapa>
+	<vermasresultados tipo="abm">
+		<es>ver más resultados</es>
+		<en>more results</en>
+		<po>ver más resultados</po>
+	</vermasresultados>
+	
+	<vuelosencontrados tipo="abm">
+		<es>Vuelos encontrados</es>
+		<en>Flights found</en>
+		<po>Vuelos encontrados</po>
+	</vuelosencontrados>
+	
+	<fechasflexibles tipo="abm">
+		<es>fechas flexibles</es>
+		<en>flexible dates</en>
+		<po>datas flexíveis</po>
+	</fechasflexibles>
+
+	<vuelosfiltrados tipo="abm">
+		<es>Vuelos filtrados</es>
+		<en>Filtered Flights</en>
+		<po>Vuelos filtrados</po>
+	</vuelosfiltrados>	
+	<contraerinformacion tipo="abm">
+		<es>contraer informacion</es>
+		<en>hide info</en>
+		<po>contraer informacion</po>
+	</contraerinformacion>
+	<masinformacion tipo="abm">
+		<es>más información</es>
+		<en>more info</en>
+		<po>más informacion</po>
+	</masinformacion>
+	<vuelocompartidoconotraaerolinea tipo="abm">
+		<es>vuelo compartido con otra aerolínea</es>
+		<en>shared flight with another airline</en>
+		<po>vuelo compartido con otra aerolínea</po>
+	</vuelocompartidoconotraaerolinea>
+	<suseleccion tipo="abm">
+		<es>tu selección</es>
+		<en>Your choice</en>
+		<po>tu selección</po>
+	</suseleccion>
+	<resetear tipo="abm">
+		<es>Resetear</es>
+		<en>Reset</en>
+		<po>Resetear</po>
+	</resetear>
+	<filtros tipo="abm">
+		<es>Filtros</es>
+		<en>Filters</en>
+		<po>Filtros</po>
+	</filtros>
+	<masbarato tipo="abm">
+		<es>Más barato</es>
+		<en>Lowest price</en>
+		<po>Más barato</po>
+	</masbarato>
+	<mascaro tipo="abm">
+		<es>Más caro</es>
+		<en>Higher price</en>
+		<po>Mais caro</po>
+	</mascaro>
+	<nodisponible tipo="abm">
+		<es>No disponible</es>
+		<en>Not available</en>
+		<po>Não disponível</po>
+	</nodisponible>
+	<seleccionefechassalidas tipo="abm">
+		<es>Seleccione las fechas de salida y regreso</es>
+		<en>Select the dates of departure and return</en>
+		<po>Selecione as datas de partida e retorno</po>
+	</seleccionefechassalidas>
+	<tarifamaseconomica tipo="abm">
+		<es>Tarifa más económica de tu búsqueda</es>
+		<en>Lowest fare from search</en>
+		<po>O mais barato a partir de pesquisa</po>
+	</tarifamaseconomica>	
+
+	<nosehanencontrado tipo="abm">
+		<es>No se han encontrado</es>
+		<en>No se han encontrado</en>
+		<po>No se han encontrado</po>
+	</nosehanencontrado>
+	<conlosrequerimientossolicitados tipo="abm">
+		<es>con los requerimientos solicitados</es>
+		<en>con los requerimientos solicitados</en>
+		<po>con los requerimientos solicitados</po>
+	</conlosrequerimientossolicitados>
+	<siquerespodesmodificartubusquedaorealizarunanueva tipo="abm">
+		<es>Si queres, podes modificar tu búsqueda, o realizar una nueva</es>
+		<en>Si queres, podes modificar tu búsqueda, o realizar una nueva</en>
+		<po>Si queres, podes modificar tu búsqueda, o realizar una nueva</po>
+	</siquerespodesmodificartubusquedaorealizarunanueva>	
+	
+	<vuelodirecto tipo="abm">
+		<es>Vuelo directo</es>
+		<en>Direct Fly</en>
+		<po>Vuelo directo</po>
+	</vuelodirecto>
+	
+	<escalas tipo="abm">
+		<es>Escalas</es>
+		<en>Stops</en>
+		<po>Escalas</po>
+	</escalas>
+	
+	<duraciondelvuelo tipo="abm">
+		<es>Duración del vuelo</es>
+		<en>Flight duration</en>
+		<po>Duración del vuelo</po>
+	</duraciondelvuelo>
+	
+	<duracion tipo="abm">
+		<es>Duración</es>
+		<en>Flight duration</en>
+		<po>Duracion</po>
+	</duracion>
+	
+	<hora tipo="abm">
+		<es>hora</es>
+		<en>hour</en>
+		<po>hora</po>
+	</hora>
+	<horas tipo="abm">
+		<es>horas</es>
+		<en>hours</en>
+		<po>horas</po>
+	</horas>
+	<minuto tipo="abm">
+		<es>minuto</es>
+		<en>minute</en>
+		<po>minuto</po>
+	</minuto>
+	<minutos tipo="abm">
+		<es>minutos</es>
+		<en>minutes</en>
+		<po>minutos</po>
+	</minutos>
+	<sale tipo="abm">
+		<es>sale</es>
+		<en>departure</en>
+		<po>sale</po>
+	</sale>
+	<llega tipo="abm">
+		<es>llega</es>
+		<en>arrival</en>
+		<po>llega</po>
+	</llega>
+	<avion tipo="abm">
+		<es>Avión</es>
+		<en>Airplane</en>
+		<po>Avión</po>
+	</avion>
+	<ndevuelo tipo="abm">
+		<es>N° de vuelo</es>
+		<en>Flight N°</en>
+		<po>N° de vuelo</po>
+	</ndevuelo>
+	<disponibles tipo="abm">
+		<es>Disponibles</es>
+		<en>Availables</en>
+		<po>Disponibles</po>
+	</disponibles>
+	<impuestosytasas tipo="abm">
+		<es>Impuestos y Tasas</es>
+		<en>Taxes and Fees</en>
+		<po>Impuestos y Tasas</po>
+	</impuestosytasas>
+	<impytasas tipo="abm">
+		<es>Imp. y Tasas</es>
+		<en>Taxes and Fees</en>
+		<po>Imp. y Tasas</po>
+	</impytasas>
+	<feeemision tipo="abm">
+		<es>Fee emisión</es>
+		<en>Emission Fee</en>
+		<po>Fee emissão</po>
+	</feeemision>
+	<ultimolugar tipo="abm">
+		<es>Último lugar</es>
+		<en>Last seat</en>
+		<po>Último lugar</po>
+	</ultimolugar>
+	<ultimos tipo="abm">
+		<es>Últimos</es>
+		<en>Last</en>
+		<po>Últimos</po>
+	</ultimos>
+	<lugares tipo="abm">
+		<es>lugares</es>
+		<en>seats</en>
+		<po>lugares</po>
+	</lugares>
+	<reglas tipo="abm">
+		<es>Reglas</es>
+		<en>Rules</en>
+		<po>Reglas</po>
+	</reglas>
+	<reglasdelatarifa tipo="abm">
+		<es>reglas de la tarifa</es>
+		<en>flight rules</en>
+		<po>reglas de la tarifa</po>
+	</reglasdelatarifa>
+	<enviarpor tipo="abm">
+		<es>Enviar por</es>
+		<en>Send by</en>
+		<po>Enviar por</po>
+	</enviarpor>
+	<imprimir tipo="abm">
+		<es>Imprimir</es>
+		<en>Print</en>
+		<po>Imprimir</po>
+	</imprimir>
+	<descargarenpdf tipo="abm">
+		<es>Descargar en PDF</es>
+		<en>Download PDF</en>
+		<po>Descargar en PDF</po>
+	</descargarenpdf>	
+	<verenmapa tipo="abm">
+		<es>Ver en Mapa</es>
+		<en>Show on map</en>
+		<po>Ver en Mapa</po>
+	</verenmapa>
+	<textoreglastarifas tipo="abm">
+		<es>Una vez emitido el pasaje estará sujeto a cargos adicionales por cambio de fecha, ruta o vuelo, algunos de ellos no permiten ningún cambio o no tienen devolución, en todos los casos le sugerimos consultar antes de tu compra para que las restricciones tarifarias se adecuen al propósito de tu viaje.[br][br]
+			Los precios de los pasajes estan sujetos a modificaciones de precio hasta el momento de la emisión de los mismos.</es>
+		<en>Once issued the ticket will be subject to additional charges for change of date, route or flight, some of them do not allow any changes or can not be returned, in all cases we suggest you consult before purchase tariff restrictions to fit the purpose of your trip. [br] [br]
+			The fares are subject to price changes until the issuance thereof.</en>
+		<po>Una vez emitido el pasaje estará sujeto a cargos adicionales por cambio de fecha, ruta o vuelo, algunos de ellos no permiten ningún cambio o no tienen devolución, en todos los casos le sugerimos consultar antes de tu compra para que las restricciones tarifarias se adecuen al propósito de tu viaje.[br][br]
+			Los precios de los pasajes estan sujetos a modificaciones de precio hasta el momento de la emisión de los mismos.</po>
+	</textoreglastarifas>
+	<noseencontraronreglasparalatarifa tipo="abm">
+		<es>No se encontraron reglas para la tarifa</es>
+		<en>No rules found</en>
+		<po>No se encontraron reglas para la tarifa</po>
+	</noseencontraronreglasparalatarifa>
+	<nosehaconseguidorealizarlareserva tipo="abm">
+		<es>No se ha conseguido realizar la reserva</es>
+		<en>No se ha conseguido realizar la reserva</en>
+		<po>No se ha conseguido realizar la reserva</po>
+	</nosehaconseguidorealizarlareserva>
+	<porfavorintentelomastarde tipo="abm">
+		<es>Por favor intentelo más tarde</es>
+		<en>Please try again later</en>
+		<po>Por favor intentelo más tarde</po>
+	</porfavorintentelomastarde>
+	<ingreselosdatosdecadapasajero tipo="abm">
+		<es>Ingrese los datos de cada pasajero</es>
+		<en>Enter the data for each passenger</en>
+		<po>Ingrese los datos de cada pasajero</po>
+	</ingreselosdatosdecadapasajero>
+	<favordeescribirlosnombresdelaspersonasqueviajantalcomoapareceenelpasaporte tipo="abm">
+		<es>Favor de escribir los nombres de las personas que viajan tal como aparecen en el pasaporte</es>
+		<en>Please list the names of passengers as it appears on identity card</en>
+		<po>Favor de escribir los nombres de las personas que viajan tal como aparecen en el pasaporte</po>
+	</favordeescribirlosnombresdelaspersonasqueviajantalcomoapareceenelpasaporte>
+	
+	<documento tipo="abm">
+		<es>Documento</es>
+		<en>Identity card</en>
+		<po>Documento</po>
+	</documento>
+	
+	<pasajerofrecuente tipo="abm">
+		<es>Pasajero frecuente</es>
+		<en>Frequent flyer</en>
+		<po>Pasajero frecuente</po>
+	</pasajerofrecuente>
+	
+	<numerodeprograma tipo="abm">
+		<es>Número de Programa</es>
+		<en>Number of program</en>
+		<po>Número de Programa</po>
+	</numerodeprograma>
+	<aceptolosterminosycondiciones tipo="abm">
+		<es>Acepto los términos y condiciones</es>
+		<en>I understand and agree with booking terms and conditions</en>
+		<po>Acepto los términos y condiciones</po>
+	</aceptolosterminosycondiciones>
+	
+	<verterminos tipo="abm">
+		<es>ver terminos</es>
+		<en>view terms and conditions</en>
+		<po>ver terminos</po>
+	</verterminos>
+	<comprar tipo="abm">
+		<es>Comprar</es>
+		<en>Book</en>
+		<po>Comprar</po>
+	</comprar>
+	<reserva tipo="abm">
+		<es>reserva</es>
+		<en>booking</en>
+		<po>reserva</po>
+	</reserva>
+	<terminos tipo="abm">
+		<es>Términos</es>
+		<en>Terms</en>
+		<po>Términos</po>
+	</terminos>
+	<ycondiciones tipo="abm">
+		<es>y condiciones</es>
+		<en>and conditions</en>
+		<po>y condiciones</po>
+	</ycondiciones>
+	<debeaceptarlosterminosycondiciones tipo="abm">
+		<es>Debe aceptar los terminos y condiciones</es>
+		<en>You must accept the terms and conditions</en>
+		<po>Debe aceptar los terminos y condiciones</po>
+	</debeaceptarlosterminosycondiciones>
+	<refinarbusqueda tipo="abm">
+		<es>Refinar Busqueda</es>
+		<en>Refine Search</en>
+		<po>Refinar Busqueda</po>
+	</refinarbusqueda>
+	<ordenarportipo tipo="abm">
+		<es>Ordenar por</es>
+		<en>Order by</en>
+		<po>Ordem por</po>
+	</ordenarportipo>
+	<resetearfiltros tipo="abm">
+		<es>Resetear filtros</es>
+		<en>Reset filters</en>
+		<po>Resetear filtros</po>
+	</resetearfiltros>
+	<horadesalida tipo="abm">
+		<es>Hora de salida</es>
+		<en>Departure time</en>
+		<po>Hora de salida</po>
+	</horadesalida>
+	<horaderegreso tipo="abm">
+		<es>Hora de regreso</es>
+		<en>Return time</en>
+		<po>Hora de regreso</po>
+	</horaderegreso>
+	<precios tipo="abm">
+		<es>Precios</es>
+		<en>Prices</en>
+		<po>Precios</po>
+	</precios>
+	<preferenciahoraria tipo="abm">
+		<es>Preferencia Horaria</es>
+		<en>Time preference</en>
+		<po>Preferencia Horaria</po>
+	</preferenciahoraria>
+	<asunto tipo="abm">
+		<es>Asunto</es>
+		<en>Subject</en>
+		<po>Asunto</po>
+	</asunto>
+	<sunombre tipo="abm">
+		<es>tu nombre</es>
+		<en>Your name</en>
+		<po>tu nombre</po>
+	</sunombre>
+	<suemail tipo="abm">
+		<es>tu e-mail</es>
+		<en>Your e-mail</en>
+		<po>tu e-mail</po>
+	</suemail>
+	<destinatario tipo="abm">
+		<es>Destinatario</es>
+		<en>Receiver</en>
+		<po>Destinatario</po>
+	</destinatario>
+	<emailseparadospor tipo="abm">
+		<es>e-mails separados por</es>
+		<en>e-mails separated by</en>
+		<po>e-mails separados por</po>
+	</emailseparadospor>
+	<comentarioadicional tipo="abm">
+		<es>Comentario adicional</es>
+		<en>Additional comment</en>
+		<po>Comentários adicionais</po>
+	</comentarioadicional>
+		
+	
+	<comentarioadicional tipo="abm">
+		<es>Comentario adicional</es>
+		<en>Additional comment</en>
+		<po>Comentario adicional</po>
+	</comentarioadicional>
+	<opcional tipo="abm">
+		<es>opcional</es>
+		<en>optional</en>
+		<po>opcional</po>
+	</opcional>
+	<recibirunacopia tipo="abm">
+		<es>Recibir una copia</es>
+		<en>Receive a copy</en>
+		<po>Recibir una copia</po>
+	</recibirunacopia>
+	<porfavorintentelomastardeDisculpelasmolestiasocasionadas tipo="abm">
+		<es>Por favor inténtelo más tarde.[br]Disculpe las molestias ocasionadas</es>
+		<en>Please try again later. [br]Sorry for the inconvenience</en>
+		<po>Por favor inténtelo más tarde.[br]Disculpe las molestias ocasionadas</po>
+	</porfavorintentelomastardeDisculpelasmolestiasocasionadas>
+	
+	<mododeimpresion tipo="abm">
+		<es>Modo de impresion</es>
+		<en>Print mode</en>
+		<po>Modo de impresion</po>
+	</mododeimpresion>
+	
+	<seleccionelaopcion tipo="abm">
+		<es>Seleccione la opción</es>
+		<en>Select the option</en>
+		<po>Seleccione la opción</po>
+	</seleccionelaopcion>
+
+	<seleccioneelidiomadelguia tipo="abm">
+		<es>Seleccione el idioma del guia</es>
+		<en>Select the language guide</en>
+		<po>Selecione a língua do guia</po>
+	</seleccioneelidiomadelguia>
+		
+	<conimagenes tipo="abm">
+		<es>con imágenes</es>
+		<en>images included</en>
+		<po>con imagenes</po>
+	</conimagenes>
+	<solotexto tipo="abm">
+		<es>solo texto</es>
+		<en>no images</en>
+		<po>solo texto</po>
+	</solotexto>
+	<formatodelpdf tipo="abm">
+		<es>Formato del PDF</es>
+		<en>PDF Details</en>
+		<po>Formato del PDF</po>
+	</formatodelpdf>
+	<descargar tipo="abm">
+		<es>Descargar</es>
+		<en>Download</en>
+		<po>Descargar</po>
+	</descargar>
+	<seleccioneelregimen tipo="abm">
+		<es>seleccione el régimen</es>
+		<en>select room type</en>
+		<po>seleccione el régimen</po>
+	</seleccioneelregimen>
+	<regimen tipo="abm">
+		<es>Régimen</es>
+		<en>Regime</en>
+		<po>Regime</po>
+	</regimen>
+	<puedecompararhasta tipo="abm">
+		<es>Puede comparar hasta</es>
+		<en>You can compare up to</en>
+		<po>Puede comparar hasta</po>
+	</puedecompararhasta>
+	<hotelescomomaximo tipo="abm">
+		<es>Hoteles como máximo</es>
+		<en>Hotels max</en>
+		<po>Hoteles como máximo</po>
+	</hotelescomomaximo>
+	<compararahora tipo="abm">
+		<es>Comparar ahora</es>
+		<en>Compare now</en>
+		<po>Comparar ahora</po>
+	</compararahora>
+	<compararlos tipo="abm">
+		<es>Comparar los</es>
+		<en>Compare the</en>
+		<po>Comparar los</po>
+	</compararlos>
+	<hotelesseleccionados tipo="abm">
+		<es>hoteles seleccionados</es>
+		<en>selected hotels</en>
+		<po>hoteles seleccionados</po>
+	</hotelesseleccionados>
+	<comparador tipo="abm">
+		<es>comparador</es>
+		<en>comparison</en>
+		<po>comparador</po>
+	</comparador>
+	<comparadorde tipo="abm">
+		<es>Comparador de</es>
+		<en>Compare </en>
+		<po>Comparador de</po>
+	</comparadorde>
+	<eliminardelacomparacion tipo="abm">
+		<es>Eliminar de la comparacion</es>
+		<en>Remove from comparison </en>
+		<po>Eliminar de la comparacion</po>
+	</eliminardelacomparacion>
+	<seleccionarhabitaciones tipo="abm">
+		<es>Seleccionar habitaciones</es>
+		<en>Select rooms</en>
+		<po>Seleccionar habitaciones</po>
+	</seleccionarhabitaciones>
+	<lahabitacionnoestadisponiblenosepuederealizarlareserva tipo="abm">
+		<es>La habitación no esta disponible. No se puede realizar la reserva.</es>
+		<en>The room is not available. Can not make the reservation.</en>
+		<po>La habitación no esta disponible. No se puede realizar la reserva.</po>
+	</lahabitacionnoestadisponiblenosepuederealizarlareserva>
+	
+	<lahabitacionhamodificadosuprecioporlotantonosepuederealizarlareserva tipo="abm">
+		<es>La habitación ha modificado tu precio, por lo tanto no se puede realizar la reserva.</es>
+		<en>The room has changed their price, therefore you can not make the reservation.</en>
+		<po>La habitación ha modificado tu precio, por lo tanto no se puede realizar la reserva.</po>
+	</lahabitacionhamodificadosuprecioporlotantonosepuederealizarlareserva>
+	<informacion tipo="abm">
+		<es>Información</es>
+		<en>Essential Information</en>
+		<po>Información</po>
+	</informacion>
+	<validodesdeel tipo="abm">
+		<es>Válido desde el</es>
+		<en>Valid from</en>
+		<po>Válido desde el</po>
+	</validodesdeel>
+	<habitacionesseleccionadas tipo="abm">
+		<es>Habitaciones seleccionadas</es>
+		<en>Selected rooms</en>
+		<po>Habitaciones seleccionadas</po>
+	</habitacionesseleccionadas>
+	<base tipo="abm">
+		<es>Base</es>
+		<en>Accommodation</en>
+		<po>Base</po>
+	</base>
+	<preciototalpor tipo="abm">
+		<es>precio total por</es>
+		<en>total price per</en>
+		<po>precio total por</po>
+	</preciototalpor>
+	<preciototal tipo="abm">
+		<es>precio total</es>
+		<en>total price</en>
+		<po>precio total</po>
+	</preciototal>
+	
+	<habitacionareservarpara tipo="abm">
+		<es>Habitacion a reservar para</es>
+		<en>Room for</en>
+		<po>Habitacion a reservar para</po>
+	</habitacionareservarpara>
+	<adultosy tipo="abm">
+		<es>Adultos y</es>
+		<en>Adults and</en>
+		<po>Adultos y</po>
+	</adultosy>	
+	<adultoy tipo="abm">
+		<es>Adulto y</es>
+		<en>Adult and</en>
+		<po>Adulto y</po>
+	</adultoy>
+	<costodecancelacion tipo="abm">
+		<es>Costo de Cancelacion</es>
+		<en>Cancellation Policy</en>
+		<po>Costo de Cancelacion</po>
+	</costodecancelacion>
+	
+	<textopoliticas1 tipo="abm">
+		<es>El vencimiento sin gastos es 24 hs antes de la entrada de los pasajeros.</es>
+		<en>Cancellation without charges expires 24 hours before arrival of the passengers.</en>
+		<po>El vencimiento sin gastos es 24 hs antes de la entrada de los pasajeros.</po>
+	</textopoliticas1>
+	<textopoliticas2 tipo="abm">
+		<es>Por favor notar esta dentro de la política en caso de cancelación que aplican 100% de cargo-penalidad.[br]</es>
+		<en>Por favor notar esta dentro de la política en caso de cancelación que aplican 100% de cargo-penalidad.[br]</en>
+		<po>Por favor notar esta dentro de la política en caso de cancelación que aplican 100% de cargo-penalidad.[br]</po>
+	</textopoliticas2>
+	
+	<sincostodecancelacionhasta tipo="abm">
+		<es>Sin costo de cancelación hasta</es>
+		<en>No cancellation cost up to</en>
+		<po>Sin costo de cancelación hasta</po>
+	</sincostodecancelacionhasta>
+	
+	<diasantesdelcheckin tipo="abm">
+		<es>dia/s antes del checkin</es>
+		<en>day/s before checkin</en>
+		<po>dia/s antes del checkin</po>
+	</diasantesdelcheckin>
+	
+	<textobook1 tipo="abm">
+		<es>No se puede realizar la reserva, ya que la misma posee costo de cancelación.[br]Si desea que nosotros lo contactemos envie el siguiente formulario.</es>
+		<en>You can not make a reservation, since it has cancellation fee.[br]If you want us to contact you submit the form below.</en>
+		<po>No se puede realizar la reserva, ya que la misma posee costo de cancelación.[br]Si desea que nosotros lo contactemos envie el siguiente formulario.</po>
+	</textobook1>
+	<textobook2 tipo="abm">
+		<es>No se puede realizar la reserva, ya que Ud. no esta logueado en nuestro sistema.[br]Si desea que nosotros lo contactemos envie el siguiente formulario.</es>
+		<en>You can not make a reservation, because you are not logged into our system.[br]If you want us to contact you submit the form below.</en>
+		<po></po>
+	</textobook2>
+	<comentarios tipo="abm">
+		<es>Comentarios</es>
+		<en>Comments</en>
+		<po>Comentarios</po>
+	</comentarios>
+	<fechalimitedecancelacion tipo="abm">
+		<es>Fecha limite de cancelación</es>
+		<en>Cancellation Deadline</en>
+		<po>Fecha limite de cancelación</po>
+	</fechalimitedecancelacion>
+	<titulardelareserva tipo="abm">
+		<es>Titular de la reserva</es>
+		<en>Reservation holder</en>
+		<po>Titular de la reserva</po>
+	</titulardelareserva>
+	
+	<resultadoreserva tipo="abm">
+		<es>Resultado Reserva</es>
+		<en>Result Book</en>
+		<po>Resultado Livro</po>
+	</resultadoreserva>
+	<reservaarequerir tipo="abm">
+		<es>Reserva a requerir</es>
+		<en>Reservation request</en>
+		<po>Pedido de reserva</po>
+	</reservaarequerir>
+	<reservaconfirmada tipo="abm">
+		<es>Reserva confirmada</es>
+		<en>Reservation confirmed</en>
+		<po>Reserva confirmada</po>
+	</reservaconfirmada>
+	<nuevareserva tipo="abm">
+		<es>Nueva Reserva</es>
+		<en>New Book</en>
+		<po>Novo Livro</po>
+	</nuevareserva>
+
+	<muchasgraciasporsusolicitud tipo="abm">
+		<es>Muchas gracias por tu solicitud de reserva.[br]Recibirás un email con la confirmación de dicha reserva.[br]</es>
+		<en>Thank you very much for your booking request.[br]You will receive an email confirmation of the booking.[br]</en>
+		<po>Muito obrigado para o seu pedido de reserva.[br]Você receberá um email de confirmação da reserva.[br]</po>
+	</muchasgraciasporsusolicitud>
+
+	<muchasgraciasporsusolicitudtexto tipo="abm">
+		<es>La misma ha sido confirmada y tendrás un plazo de expiración de 24 horas, para la cancelación del pago.</es>
+		<en>The same has been confirmed and will expire within 24 hours to cancel the payment.</en>
+		<po>O mesmo foi confirmado e irá expirar dentro de 24 horas para cancelar o pagamento.</po>
+	</muchasgraciasporsusolicitudtexto>
+
+	<muchasgraciasporsureservafdp1 tipo="abm">
+		<es>Muchas gracias por tu solicitud de reserva.[br]Recibirás una confirmación en tu dirección de correo electrónico. En caso de no haber recibido dicha confirmación, verificá tu bandeja de correo no deseado o comunicate con nosotros.</es>
+		<en>Thank you very much for your booking request.[br]You will receive a confirmation in your email. If you have not received such confirmation, check your spam or contact us email box.</en>
+		<po>Muito obrigado para o seu pedido de reserva.[br]Você receberá uma confirmação em seu e-mail. Se você não recebeu essa confirmação, verifique sua caixa de spam ou entre em contato conosco e-mail caixa.</po>
+	</muchasgraciasporsureservafdp1>
+
+	<muchasgraciasporsureservafdp2 tipo="abm">
+		<es>Muchas gracias por tu solicitud de reserva.[br]Recibirás una confirmación en tu dirección de correo electrónico. En caso de no haber recibido dicha confirmación, verificá tu bandeja de correo no deseado o comunicate con nosotros.[br]La reserva ha sido confirmada y se encuentra en proceso de autorización del banco emisor de la tarjeta de crédito. Dependiendo de la entidad financiera, la emisión del boleto electrónico podría tomar entre 5 a 30 minutos y será enviada de forma automática a tu dirección de correo electrónico[br][strong]En caso de no recibir el boleto electrónico en el tiempo establecido[/strong], comunicate con nosotros.</es>
+		<en>Thank you very much for your booking request.[br]You will receive a confirmation in your email. If you have not received such confirmation, check your junk email box or contact us.[br]The reservation has been confirmed and is in the process of authorization from the issuing bank of the credit card. Depending on the financial institution issuing the electronic ticket could take between 5 to 30 minutes and will be sent automatically to your email[br][strong]Failure to receive the e-ticket at the set time[/strong], please contact us.</en>
+		<po>Muito obrigado para o seu pedido de reserva.[br]Você receberá uma confirmação em seu e-mail. Se você não recebeu essa confirmação, verifique a sua caixa de e-mails indesejados ou contacte-nos.[br]A reserva foi confirmada e está em processo de autorização do banco emissor do cartão de crédito. Dependendo da instituição financeira que emite o bilhete eletrônico pode demorar entre 5 a 30 minutos e será enviada automaticamente para o seu e-mail[br]Fracasso [strong]para receber o e-ticket em conjunto o tempo[/strong], por favor, entre em contato conosco.</po>
+	</muchasgraciasporsureservafdp2>
+
+	<muchasgraciasporsureservafdp3 tipo="abm">
+		<es>Muchas gracias por tu solicitud de reserva.[br]Recibirás una confirmación en tu dirección de correo electrónico. En caso de no haber recibido dicha confirmación, verificá tu bandeja de correo no deseado o comunicate con nosotros.[br]La reserva ha sido confirmada y se encuentra pendiente de pago para la emisión del boleto electrónico. Si el pago no es realizado el mismo día de la confirmación, comunicate con nosotros para actualizar el precio.[br][strong]Por favor no olvides enviar tu comprobante de transferencia o depósito a la siguiente dirección de correo electrónico:[/strong]</es>
+		<en>Thank you very much for your booking request.[br]You will receive a confirmation in your email. If you have not received such confirmation, check your junk email box or contact us.[br]The reservation has been confirmed and is awaiting payment for the issuance of the electronic ticket. If payment is not made ​​on the day of the confirmation, please contact us to update the price.[br][strong]Please do not forget to send your proof of transfer or deposit to the following email address:[/strong]</en>
+		<po>Muito obrigado para o seu pedido de reserva.[br]Você receberá uma confirmação em seu e-mail. Se você não recebeu essa confirmação, verifique a sua caixa de e-mails indesejados ou contacte-nos.[br]A reserva foi confirmada e está aguardando o pagamento para a emissão do bilhete eletrônico. Se o pagamento não é feito no dia da confirmação, por favor entre em contato conosco para atualizar o preço.[br][strong]Por favor, não se esqueça de enviar seu comprovante de transferência ou depósito para o seguinte e-mail:[/strong]</po>
+	</muchasgraciasporsureservafdp3>
+
+
+	<errortransaccion tipo="abm">
+		<es>Error en la transacción</es>
+		<en>Transaction failed</en>
+		<po>Falha na transação</po>
+	</errortransaccion>
+	<errortransacciontexto tipo="abm">
+		<es>tu transacción no pudo ser concretada. Por favor inténtalo  nuevamente.[br]Si el error persiste, comunícate con nosotros via chat o a tuviajeaunclick@jetmar.com.uy Muchas gracias.</es>
+		<en>Your transaction could not be materialized. Check the data and try again.[br]If the error persists, contact our operators.</en>
+		<po>Sua transação não poderia ser materializado. Verifique os dados e tente novamente.[br]Se o erro persistir, entre em contato com nossos operadores.</po>
+	</errortransacciontexto>	
+
+	<nosepudorealizar tipo="abm">
+		<es>No se pudo realizar la reserva</es>
+		<en>Failed booking</en>
+		<po>Falha de reserva</po>
+	</nosepudorealizar>
+	
+	<volveralhome tipo="abm">
+		<es>Volver al home</es>
+		<en>Back to home</en>
+		<po>Voltar à página inicial</po>
+	</volveralhome>
+		
+	<lerecordamosqueantesderealizarlacompraconsidereloscostosdecancelaciondelamisma tipo="abm">
+		<es>Le recordamos, que antes de realizar la Compra, considere los costos de cancelación de la misma</es>
+		<en>Please notice cancellation charges before making the booking</en>
+		<po>Le recordamos, que antes de realizar la Compra, considere los costos de cancelación de la misma</po>
+	</lerecordamosqueantesderealizarlacompraconsidereloscostosdecancelaciondelamisma>
+	
+	<hotelesencontrados tipo="abm">
+		<es>Hoteles encontrados</es>
+		<en>Hotels found</en>
+		<po>Hoteles encontrados</po>
+	</hotelesencontrados>
+	<hotelesfiltrados tipo="abm">
+		<es>Hoteles filtrados</es>
+		<en>Filtered Hotels</en>
+		<po>Hoteles filtrados</po>
+	</hotelesfiltrados>
+	<nombredelhotel tipo="abm">
+		<es>Nombre del hotel</es>
+		<en>Hotel name</en>
+		<po>Nombre del hotel</po>
+	</nombredelhotel>
+	<seleccionelashabitaciones tipo="abm">
+		<es>Seleccione las Habitaciones</es>
+		<en>Select the Rooms</en>
+		<po>Seleccione las Habitaciones</po>
+	</seleccionelashabitaciones>
+	<localizarhotelesenelmapa tipo="abm">
+		<es>Localizar hoteles en el mapa</es>
+		<en>Show hotels on the map</en>
+		<po>Localizar hoteles en el mapa</po>
+	</localizarhotelesenelmapa>
+	<reducirmapa tipo="abm">
+		<es>Reducir mapa</es>
+		<en>Minimize map</en>
+		<po>Reducir mapa</po>
+	</reducirmapa>
+	
+	<hoteleslocalizados tipo="abm">
+		<es>hoteles localizados</es>
+		<en>hoteles found</en>
+		<po>hoteles localizados</po>
+	</hoteleslocalizados>
+	
+	<losentimosstreetviewnoestadisponibleparaestaubicacion tipo="abm">
+		<es>Lo sentimos, Street View no esta disponible para esta ubicación.</es>
+		<en>We are Sorry. Street View is not available for this location.</en>
+		<po>Lo sentimos, Street View no esta disponible para esta ubicación.</po>
+	</losentimosstreetviewnoestadisponibleparaestaubicacion>
+	<hotelesconelnombre tipo="abm">
+		<es>Hoteles con el nombre</es>
+		<en>Hotels named</en>
+		<po>Hoteles con el nombre</po>
+	</hotelesconelnombre>
+	<preciominimode tipo="abm">
+		<es>Precio mínimo de</es>
+		<en>Minimum price of</en>
+		<po>Precio mínimo de</po>
+	</preciominimode>
+	<preciomaximode tipo="abm">
+		<es>Precio máximo de</es>
+		<en>Maximum price of</en>
+		<po>Precio máximo de</po>
+	</preciomaximode>	
+	<totaldepasajeros tipo="abm">
+		<es>Total de Pasajeros</es>
+		<en>Total Pax</en>
+		<po>Total de Pasajeros</po>
+	</totaldepasajeros>
+	<ustedestaahorrando tipo="abm">
+		<es>Estas ahorrando</es>
+		<en>You are saving</en>
+		<po>Usted esta ahorrando</po>
+	</ustedestaahorrando>
+	<vermasopcionesdevuelo tipo="abm">
+		<es>Ver más opciones de vuelo</es>
+		<en>See more flight options</en>
+		<po>Ver más opciones de vuelo</po>
+	</vermasopcionesdevuelo>
+	<preciovuelo tipo="abm">
+		<es>Precio Vuelo</es>
+		<en>Flight Price</en>
+		<po>Precio Vuelo</po>
+	</preciovuelo>
+	<pagina tipo="abm">
+		<es>Página</es>
+		<en>Page</en>
+		<po>Pagina</po>
+	</pagina>
+	<ustedyaseencuentrasuscripto tipo="abm">
+		<es>Ya te encuentras suscripto</es>
+		<en>You are already subscribed</en>
+		<po>Usted ya se encuentra suscripto</po>
+	</ustedyaseencuentrasuscripto>
+	<sususcripcionseharealizadocorrectamente tipo="abm">
+		<es>tu suscripción se ha realizado correctamente</es>
+		<en>Your subscription was successful</en>
+		<po>tu suscripción se ha realizado correctamente</po>
+	</sususcripcionseharealizadocorrectamente>
+	<graciasporelegirnos tipo="abm">
+		<es>Gracias por elegirnos</es>
+		<en>Thank you for choosing us</en>
+		<po>Gracias por elegirnos</po>
+	</graciasporelegirnos>
+	<aguardeuninstante tipo="abm">
+		<es>aguardá un instante</es>
+		<en>wait a moment</en>
+		<po>aguardá un instante</po>
+	</aguardeuninstante>
+	<suscribiendoloalnews tipo="abm">
+		<es>Suscribiéndolo al News</es>
+		<en>performing the subscription to our Newsletter</en>
+		<po>Suscribiéndolo al News</po>
+	</suscribiendoloalnews>
+	<comodidades tipo="abm">
+		<es>Comodidades</es>
+		<en>Amenities</en>
+		<po>Comodidades</po>
+	</comodidades>
+	<facilidades tipo="abm">
+		<es>Facilidades</es>
+		<en>Facilities</en>
+		<po>Facilidades</po>
+	</facilidades>
+	<abierto24 tipo="abm">
+		<es>Abierto las 24 horas del día, los 7 días de la semana</es>
+		<en>open 24 hours a day, 7 days a week</en>
+		<po>Aberto 24 horas por dia, 7 dias por semana</po>
+	</abierto24>
+
+	<subusqueda tipo="abm">
+		<es>Tu búsqueda</es>
+		<en>Your search</en>
+		<po>Sua busca</po>
+	</subusqueda>
+	
+	<enviarpormail tipo="abm">
+		<es>Enviar por e-mail</es>
+		<en>Send by e-mail</en>
+		<po>Enviar por e-mail</po>
+	</enviarpormail>
+	<envioenproceso tipo="abm">
+		<es>Envio en proceso</es>
+		<en>Shipping in process</en>
+		<po>O envio em processo</po>
+	</envioenproceso>
+	<falloenvio tipo="abm">
+		<es>Falló el envio</es>
+		<en>Failed sending</en>
+		<po>Falhou o envio</po>
+	</falloenvio>
+
+	<aguardeporfavor tipo="abm">
+		<es>Aguardá por favor</es>
+		<en>Please Wait</en>
+		<po>Espere por favor</po>
+	</aguardeporfavor>	
+	<webcheckin tipo="abm">
+		<es>Web CheckIn</es>
+		<en>Web CheckIn</en>
+		<po>Web CheckIn</po>
+	</webcheckin>
+	
+	<categoria tipo="abm">
+		<es>Categoría</es>
+		<en>Category</en>
+		<po>Categoria</po>
+	</categoria>
+	<promociones tipo="abm">
+		<es>Promociones</es>
+		<en>Promotions</en>
+		<po>Promoções</po>
+	</promociones>
+	<solohotelesconoferta tipo="abm">
+		<es>Solo hoteles con oferta</es>
+		<en>Only hotels offer</en>
+		<po>Apenas hotéis oferecem</po>
+	</solohotelesconoferta>
+
+	<paginaanterior tipo="abm">
+		<es>página anterior</es>
+		<en>previous page</en>
+		<po>página anterior</po>
+	</paginaanterior>
+	<paginasiguiente tipo="abm">
+		<es>página siguiente</es>
+		<en>next page</en>
+		<po>próxima página</po>
+	</paginasiguiente>
+	
+	<otrasalternativas tipo="abm">
+		<es>Otras alternativas</es>
+		<en>Other alternatives</en>
+		<po>Outro alternativas</po>
+	</otrasalternativas>	
+		
+	<chequeodereserva tipo="abm">
+		<es>Chequeo de reserva</es>
+		<en>Manage Booking</en>
+		<po>Chequeo de reserva</po>
+	</chequeodereserva>	
+	
+	<textoerrorchequeoreserva tipo="abm">
+		<es>Verifica que el Código de reserva y Apellido del titular ingresados sean los correctos.</es>
+		<en>Verify that the booking code and holder's last name entered are correct.</en>
+		<po>Verifica que el Código de reserva y Apellido del titular ingresados sean los correctos.</po>
+	</textoerrorchequeoreserva>	
+		
+	<textochequeoreserva1 tipo="abm">
+		<es>Si deseas ver el itinerario y/o estado de tu reserva.[br]Ingresa los siguientes datos</es>
+		<en>To view the itinerary or status of your reservation.[br]Enter the following data</en>
+		<po>Si deseas ver el itinerario y/o estado de tu reserva.[br]Ingresa los siguientes datos</po>
+	</textochequeoreserva1>
+		
+	<codigodereserva tipo="abm">
+		<es>Codigo de reserva</es>
+		<en>Booking Code</en>
+		<po>Codigo de reserva</po>
+	</codigodereserva>
+	<apellidodeltitular tipo="abm">
+		<es>Apellidos del titular</es>
+		<en>Holder's Last Name</en>
+		<po>Apellidos del titular</po>
+	</apellidodeltitular>
+	<cerrar tipo="abm">
+		<es>Cerrar</es>
+		<en>Close</en>
+		<po>Cerrar</po>
+	</cerrar>
+	<consultar tipo="abm">
+		<es>Consultar</es>
+		<en>Check booking</en>
+		<po>Consultar</po>
+	</consultar>
+	<accionesdisponibles tipo="abm">
+		<es>Acciones Disponibles</es>
+		<en>Available options</en>
+		<po>Acciones Disponibles</po>
+	</accionesdisponibles>
+	<enviarporemail tipo="abm">
+		<es>Enviar por email</es>
+		<en>Send by email</en>
+		<po>Enviar por email</po>
+	</enviarporemail>
+	<descargarenformatopdf tipo="abm">
+		<es>Descargar en formato PDF</es>
+		<en>Download in PDF format</en>
+		<po>Descargar en formato PDF</po>
+	</descargarenformatopdf>
+	
+	<cancelar tipo="abm">
+		<es>Cancelar</es>
+		<en>Cancel</en>
+		<po>Cancelar</po>
+	</cancelar>
+	
+	<salir tipo="abm">
+		<es>Salir</es>
+		<en>Exit</en>
+		<po>Salir</po>
+	</salir>
+	<generadoeldia tipo="abm">
+		<es>generado el día</es>
+		<en>created on </en>
+		<po>generado el día</po>
+	</generadoeldia>
+	
+	<terminosycondiciones tipo="abm">
+		<es>Términos y condiciones</es>
+		<en>Terms and conditions</en>
+		<po>Terminos y condiciones</po>
+	</terminosycondiciones>
+	
+	<suscribiteanuestronewsletter tipo="abm">
+		<es>Suscribite a nuestro Newsletter</es>
+		<en>Subscribe to our Newsletter</en>
+		<po>Suscribite a nuestro Newsletter</po>
+	</suscribiteanuestronewsletter>
+	
+	<formulariocontacto tipo="abm">
+		<es>Formulario de Contacto</es>
+		<en>Contact Form</en>
+		<po>Formulário de Contacto</po>
+	</formulariocontacto>
+
+	<formulariotrabajeconnosotros tipo="abm">
+		<es>Formulario trabaje con nosotros</es>
+		<en>Form work with us</en>
+		<po>Formulário de trabalho com a gente</po>
+	</formulariotrabajeconnosotros>
+
+	<ingresesuemail tipo="abm">
+		<es>Ingrese el e-mail</es>
+		<en>Enter e-mail</en>
+		<po>Digite o e-mail</po>
+	</ingresesuemail>
+	
+	<formatodeemailincorrecto tipo="abm">
+		<es>Formato de e-mail incorrecto</es>
+		<en>Incorrect format e-mail</en>
+		<po>Formato incorreto e-mail</po>
+	</formatodeemailincorrecto>	
+		
+	<textowebcheckin1 tipo="abm">
+		<es>El web check in online es un sistema a través del cual podés imprimir la tarjeta de embarque de tu vuelo antes del momento de partida.</es>
+		<en>The self check-in online is a system that can print the boarding pass prior to your flight departure time.</en>
+		<po>El auto check-in online es un sistema a través del cual podes imprimir la tarjeta de embarque de tu vuelo antes del momento de partida.</po>
+	</textowebcheckin1>
+	<textowebcheckin2 tipo="abm">
+		<es>De este modo</es>
+		<en>Thereby</en>
+		<po>De este modo</po>
+	</textowebcheckin2>
+	<textowebcheckin3 tipo="abm">
+		<es>Evitá las colas en el aeropuerto</es>
+		<en>Avoid the lines at the airport</en>
+		<po>Evitá las colas en el aeropuerto</po>
+	</textowebcheckin3>
+	<textowebcheckin4 tipo="abm">
+		<es>Podés elegir tu asiento</es>
+		<en>You can choose your seat</en>
+		<po>Podés elegir tu asiento</po>
+	</textowebcheckin4>
+	<textowebcheckin5 tipo="abm">
+		<es>Para hacer web check in online el billete tiene que ser electrónico y deberás facilitar el localizador de la línea aérea con la que volarás.[br]
+			Lo habitual es que puedas hacerlo desde 48 a 24 horas antes de la salida de tu vuelo hasta 2 horas antes, pero cada aerolinea ofrece sus plazos.[br]
+			Abajo mostramos las aerolíneas que ofrecen este servicio, informate en sus webs sobre sus plazos y realizá el web check in on-line</es>
+		<en>To auto check in online the ticket has to be electronic and should provide locator airline that will fly.[br]
+			Typically, you can do so from 48 to 24 hours before their flights up to 2 hours before, but each airline offers its deadlines.[br]
+			Below we show the airlines that offer this service on their websites inform on their terms and do self check-in on-line</en>
+		<po>Para hacer auto check-in online el billete tiene que ser electrónico y deberá facilitar el localizador de la línea aérea con la que volará.[br]
+			Lo habitual es que pueda hacerlo desde 48 a 24 horas antes de la salida de tu vuelo hasta 2 horas antes, pero cada aerolinea ofrece sus plazos.[br]
+			Abajo mostramos las aerolíneas que ofrecen este servicio, informate en sus webs sobre sus plazos y realizá el auto check-in on-line</po>
+	</textowebcheckin5>
+	<textowebcheckin6 tipo="abm">
+		<es>Compañías Aéreas - Click en la que corresponda para hacer el web check-in</es>
+		<en>Airlines - Click on the corresponding to the web check-in</en>
+		<po>Compañías Aéreas - Click en la que corresponda para hacer el web check-in</po>
+	</textowebcheckin6>
+	
+	<nosehaconseguidocancelarlareserva tipo="abm">
+		<es>No se ha conseguido cancelar la reserva</es>
+		<en>Cancel error</en>
+		<po>No se ha conseguido cancelar la reserva</po>
+	</nosehaconseguidocancelarlareserva>
+	
+	<procesofinalizado tipo="abm">
+		<es>Proceso finalizado</es>
+		<en>Process completed</en>
+		<po>Proceso finalizado</po>
+	</procesofinalizado>
+	
+	<cancelacionexitosa tipo="abm">
+		<es>Cancelación exitosa</es>
+		<en>Successful cancellation</en>
+		<po>Cancelación exitosa</po>
+	</cancelacionexitosa>
+	
+	<cancelandoreserva tipo="abm">
+		<es>Cancelando la reserva</es>
+		<en>Cancelling the reservation</en>
+		<po>Cancelando la reserva</po>
+	</cancelandoreserva>
+	
+	<cancelarreserva tipo="abm">
+		<es>¿Esta seguro que desea cancelar esta reserva?</es>
+		<en>Cancel booking?</en>
+		<po>¿Esta seguro que desea cancelar esta reserva?</po>
+	</cancelarreserva>	
+	
+	<estamosrealizandolareservadel tipo="abm">
+		<es>Estamos realizando la reserva del</es>
+		<en>We are making the reservation for the </en>
+		<po>Estamos realizando la reserva del</po>
+	</estamosrealizandolareservadel>
+	
+	<pasaportevence tipo="abm">
+		<es>Fecha Vencimiento Documento</es>
+		<en>Passport Expiry Date</en>
+		<po>Pasaporte Vence</po>
+	</pasaportevence>
+	
+	<nacionalidad tipo="abm">
+		<es>Nacionalidad</es>
+		<en>Nationality</en>
+		<po>Nacionalidad</po>
+	</nacionalidad>
+	
+	<specialrequest tipo="abm">
+		<es>Requerimiento especial</es>
+		<en>Special Request such as meal or seat request</en>
+		<po>Requerimiento especial</po>
+	</specialrequest>
+	
+	<paquetes tipo="abm">
+		<es>Paquetes</es>
+		<en>Packages</en>
+		<po>Paquetes</po>
+	</paquetes>	
+	
+	<paquete tipo="abm">
+		<es>Paquete</es>
+		<en>Package</en>
+		<po>Paquete</po>
+	</paquete>	
+	
+	<seleccionelaciudad tipo="abm">
+		<es>Seleccione la ciudad</es>
+		<en>Select the city</en>
+		<po>Seleccione la ciudad</po>
+	</seleccionelaciudad>	
+	
+	<fechadeviaje tipo="abm">
+		<es>Fecha de viaje</es>
+		<en>Trip Date</en>
+		<po>Fecha de viaje</po>
+	</fechadeviaje>	
+	
+	
+	<masofertasdevuelosa tipo="abm">
+		<es>Mas ofertas de vuelos a</es>
+		<en>More special offers flying</en>
+		<po>Mas ofertas de vuelos a</po>
+	</masofertasdevuelosa>
+	
+	<especial tipo="abm">
+		<es>especial</es>
+		<en>special</en>
+		<po>especial</po>
+	</especial>
+	
+	<oferta tipo="abm">
+		<es>oferta</es>
+		<en>offer</en>
+		<po>oferta</po>
+	</oferta>
+	
+	<mejorprecio tipo="abm">
+		<es>mejor precio</es>
+		<en>best price</en>
+		<po>mejor precio</po>
+	</mejorprecio>
+	
+	<nuevo tipo="abm">
+		<es>nuevo</es>
+		<en>new</en>
+		<po>nuevo</po>
+	</nuevo>
+	
+	<otrasciudadesquerecorre tipo="abm">
+		<es>Otras ciudades que recorre</es>
+		<en>Other cities included in the package</en>
+		<po>Otras ciudades que recorre</po>
+	</otrasciudadesquerecorre>
+	
+	<cantidad tipo="abm">
+		<es>Cantidad</es>
+		<en>Quantity</en>
+		<po>Cantidad</po>
+	</cantidad>
+	
+	<anos tipo="abm">
+		<es>años</es>
+		<en>years</en>
+		<po>años</po>
+	</anos>
+	
+	<nosepuedereservarelpaquete tipo="abm">
+		<es>No se puede reservar el paquete</es>
+		<en>You can not book the package</en>
+		<po>No se puede reservar el paquete</po>
+	</nosepuedereservarelpaquete>
+	
+	<vermasopciones tipo="abm">
+		<es>ver opciones</es>
+		<en>see options</en>
+		<po>ver opciones</po>
+	</vermasopciones>
+	
+	<ocultarmasopciones tipo="abm">
+		<es>ocultar opciones</es>
+		<en>see options</en>
+		<po>ocultar opciones</po>
+	</ocultarmasopciones>
+	
+	<periodo tipo="abm">
+		<es>Periodo</es>
+		<en>Dates</en>
+		<po>Periodo</po>
+	</periodo>
+	
+	<entreel tipo="abm">
+		<es>entre el</es>
+		<en>between</en>
+		<po>entre el</po>
+	</entreel>
+	
+	<yel tipo="abm">
+		<es>y el</es>
+		<en>and</en>
+		<po>y el</po>
+	</yel>
+	
+	<todaslasciudades tipo="abm">
+		<es>Todas las ciudades</es>
+		<en>All cities</en>
+		<po>Todas las ciudades</po>
+	</todaslasciudades>
+	
+	<paquetesresultados tipo="abm">
+		<es>Paquetes Resultados</es>
+		<en>Packages Results</en>
+		<po>Paquetes Resultados</po>
+	</paquetesresultados>
+	
+	<paquetesencontrados tipo="abm">
+		<es>Paquetes encontrados</es>
+		<en>Packages found</en>
+		<po>Paquetes encontrados</po>
+	</paquetesencontrados>
+	
+	<paquetesfiltrados tipo="abm">
+		<es>Paquetes filtrados</es>
+		<en>Packages found</en>
+		<po>Paquetes filtrados</po>
+	</paquetesfiltrados>
+	
+	<nombredelpaquete tipo="abm">
+		<es>Nombre del paquete</es>
+		<en>Package name</en>
+		<po>Nombre del paquete</po>
+	</nombredelpaquete>
+	
+	<paquetesconelnombre tipo="abm">
+		<es>Paquetes con el nombre</es>
+		<en>Packages named</en>
+		<po>Paquetes con el nombre</po>
+	</paquetesconelnombre>
+	
+	<itinerario tipo="abm">
+		<es>Itinerario</es>
+		<en>Itinerary</en>
+		<po>Itinerario</po>
+	</itinerario>
+	<dia tipo="abm">
+		<es>Día</es>
+		<en>Day</en>
+		<po>Día</po>
+	</dia>
+	<actividad tipo="abm">
+		<es>Actividad</es>
+		<en>Sightseeing</en>
+		<po>Actividad</po>
+	</actividad>
+	<politicademenores tipo="abm">
+		<es>Política de menores</es>
+		<en>Child Policy</en>
+		<po>Política de menores</po>
+	</politicademenores>
+	
+	<salidas tipo="abm">
+		<es>Salidas</es>
+		<en>Departures</en>
+		<po>Salidas</po>
+	</salidas>
+	
+	<alojamiento tipo="abm">
+		<es>Alojamiento</es>
+		<en>Accommodation</en>
+		<po>Alojamiento</po>
+	</alojamiento>
+	
+	<excursiones tipo="abm">
+		<es>Excursiones</es>
+		<en>Tours</en>
+		<po>Excursiones</po>
+	</excursiones>
+	
+	<transportes tipo="abm">
+		<es>Transportes</es>
+		<en>Transportation</en>
+		<po>Transportes</po>
+	</transportes>
+	
+	<condiciones tipo="abm">
+		<es>Condiciones</es>
+		<en>Terms and conditions</en>
+		<po>Condiciones</po>
+	</condiciones>
+	
+	<notas tipo="abm">
+		<es>Notas</es>
+		<en>Notes</en>
+		<po>Notas</po>
+	</notas>
+	
+	<porfavorconsidereque tipo="abm">
+		<es>Por favor considere que</es>
+		<en>Please note</en>
+		<po>Por favor considere que</po>
+	</porfavorconsidereque>
+	
+	<solicitudpremio tipo="abm">
+		<es>Solicitud de Premio</es>
+		<en>Solicitud de Premio</en>
+		<po>Solicitud de Premio</po>
+	</solicitudpremio>
+	
+	<retiraen tipo="abm">
+		<es>Retira en</es>
+		<en>Retira en</en>
+		<po>Retira en</po>
+	</retiraen>
+	
+	<premiosolicitado tipo="abm">
+		<es>Premio solicitado</es>
+		<en>Premio solicitado</en>
+		<po>Premio solicitado</po>
+	</premiosolicitado>
+	
+	<pq_dp_1 tipo="abm">
+		<es>Precio en base a acomodación individual</es>
+		<en>Price based on single accommodation</en>
+		<po>Precio en base a acomodación individual</po>
+	</pq_dp_1>	
+	<pq_dp_2 tipo="abm">
+		<es>Precio en base a acomodación doble</es>
+		<en>Price based on double accommodation</en>
+		<po>Precio en base a acomodación doble</po>
+	</pq_dp_2>
+	<pq_dp_3 tipo="abm">
+		<es>Precio en base a acomodación Triple</es>
+		<en>Price based on triple accommodation</en>
+		<po>Precio en base a acomodación Triple</po>
+	</pq_dp_3>
+	<pq_dp_4 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos.</es>
+		<en>Price based on double occupancy. [br] Price for children sharing with 2 adults applies. [Br] Request reservation as 2 adults.</en>
+		<po>Precio en base a acomodación doble.[br]Precio de niños de aplica compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos.</po>
+	</pq_dp_4>
+	<pq_dp_5 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</es>
+		<en>Price based on double occupancy. [br] Price for children applies when sharing with 2 adults.</en>
+		<po>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</po>
+	</pq_dp_5>
+	<pq_dp_6 tipo="abm">
+		<es>Precio en base a acomodación Triple.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</es>
+		<en>Price based on Triple accommodation. [br] Price for children applies when sharing with 2 adults.</en>
+		<po>Precio en base a acomodación Triple.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</po>
+	</pq_dp_6>
+	<pq_dp_7 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos y 1 niño.</es>
+		<en>Price based on double occupancy. [br] Price for children sharing with 2 adults applies. [br] Request reservation as 2 adults and 1 child.</en>
+		<po>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos y 1 niño.</po>
+	</pq_dp_7>
+	<pq_dp_8 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</es>
+		<en>Price based on double occupancy. [br] Price for children applies when sharing with 2 adults.</en>
+		<po>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo habitación con 2 adultos.</po>
+	</pq_dp_8>
+	<pq_dp_9 tipo="abm">
+		<es>Precio en base a acomodación de 2 camas dobles (full size).[br]Máxima Ocupación es de 4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</es>
+		<en>Price based on accommodation of 2 double beds (full size). [br] Maximum occupancy is 4 guests. A 5th according to availability and rollaways are allowed extra charge. [br] Price Children (2-11 years) sharing room applied with minimum 2 adults.</en>
+		<po>Precio en base a acomodación de 2 camas dobles (full size).[br]Máxima Ocupación es de 4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</po>
+	</pq_dp_9>
+	<pq_dp_10 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Precio de niños compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos y 2 niños.</es>
+		<en>Price based on double occupancy. [br] Price for children sharing with 2 adults applies. [br] Request reservation as 2 adults and 2 children.</en>
+		<po>Precio en base a acomodación doble.[br]Precio de niños aplica compartiendo con 2 adultos.[br]Solicite la reserva como 2 adultos y 2 niños.</po>
+	</pq_dp_10>
+	<pq_dp_11 tipo="abm">
+		<es>Precio en base a acomodación doble.[br]Máxima Ocupación es de 4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</es>
+		<en>Price based on double occupancy. [br] Maximum occupancy is 4 guests. A 5th according to availability and rollaways are allowed extra charge. [br] Price Children (2-11 years) sharing room applied with minimum 2 adults.</en>
+		<po>Precio en base a acomodación doble.[br]Máxima Ocupación es de 4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</po>
+	</pq_dp_11>
+	<pq_dp_12 tipo="abm">
+		<es>Precio en base a acomodación de 2 camas dobles (full size).</es>
+		<en>Price based on accommodation of 2 double beds (full size).</en>
+		<po>Precio en base a acomodación de 2 camas dobles (full size).</po>
+	</pq_dp_12>
+	<pq_dp_13 tipo="abm">
+		<es>Precio en base a acomodación de 2 camas dobles (full size).[br]Máxima Ocupación es de  4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</es>
+		<en>Price based on accommodation of 2 double beds (full size). [br] Maximum occupancy is 4 guests. A 5th according to availability and rollaways are allowed extra charge. [br] Price Children (2-11 years) sharing room applied with minimum 2 adults.</en>
+		<po>Precio en base a acomodación de 2 camas dobles (full size).[br]Máxima Ocupación es de  4 pasajeros. Se permite un 5to de acuerdo a disponibilidad de rollaways y cargo adicional.[br]Precio de niños de 2 a 11 anos aplica compartiendo habitación con mínimo 2 adultos.</po>
+	</pq_dp_13>
+	<pq_dp_14 tipo="abm">
+		<es>No puede realizar esta compra.</es>
+		<en>You can not make this purchase</en>
+		<po>No puede realizar esta compra.</po>
+	</pq_dp_14>
+	
+	<salidaseleccionada tipo="abm">
+		<es>Salida seleccionada</es>
+		<en>Departure selected</en>
+		<po>Salida seleccionada</po>
+	</salidaseleccionada>
+	
+	<esteestupaquete tipo="abm">
+		<es>Este es tu Paquete</es>
+		<en>This is your Package</en>
+		<po>Este es tu Paquete</po>
+	</esteestupaquete>
+	
+	<preciototaldelpaquete tipo="abm">
+		<es>Precio total del paquete</es>
+		<en>Package total price</en>
+		<po>Precio total del paquete</po>
+	</preciototaldelpaquete>
+		
+	<cantidaddepasajerosadultos tipo="abm">
+		<es>Cantidad de Pasajeros Adultos</es>
+		<en>Number of adult passengers</en>
+		<po>Cantidad de Pasajeros Adultos</po>
+	</cantidaddepasajerosadultos>
+	
+	
+	<cantidaddepasajerosmenores tipo="abm">
+		<es>Cantidad de Pasajeros Menores</es>
+		<en>Number of child passengers</en>
+		<po>Cantidad de Pasajeros Menores</po>
+	</cantidaddepasajerosmenores>
+	
+	
+	<lareservaquedaraarequerir tipo="abm">
+		<es>La reserva quedara a requerir</es>
+		<en>The booking will remain on request</en>
+		<po>La reserva quedara a requerir</po>
+	</lareservaquedaraarequerir>
+	
+	<misreservas tipo="abm">
+		<es>Mis Reservas</es>
+		<en>My reservations</en>
+		<po>Minhas reservas</po>
+	</misreservas>
+	<cerrarsesion tipo="abm">
+		<es>Cerrar Sesión</es>
+		<en>LogOut</en>
+		<po>Sair</po>
+	</cerrarsesion>	
+	
+	<pendientehastaqueseefectueelpagoenunodeloslocales tipo="abm">
+		<es>Pendiente hasta que se efectue el pago en uno de los locales</es>
+		<en>Pendiente hasta que se efectue el pago en uno de los locales></en>
+		<po>Pendiente hasta que se efectue el pago en uno de los locales</po>
+	</pendientehastaqueseefectueelpagoenunodeloslocales>	
+	<pendientehastaqueseefectueelpagoatravesdetransferenciabancaria tipo="abm">
+		<es>Pendiente hasta que se efectue el pago a través de transferencia bancaria</es>
+		<en>Pendiente hasta que se efectue el pago a través de transferencia bancaria</en>
+		<po>Pendiente hasta que se efectue el pago a través de transferencia bancaria</po>
+	</pendientehastaqueseefectueelpagoatravesdetransferenciabancaria>	
+	<pendientehastaqueunasesorprocesesucompra tipo="abm">
+		<es>Pendiente hasta que un asesor procese su compra</es>
+		<en>Pendiente hasta que un asesor procese su compra</en>
+		<po>Pendiente hasta que un asesor procese su compra</po>
+	</pendientehastaqueunasesorprocesesucompra>	
+	<pendientehastaqueseefectueelpagoenredpagos tipo="abm">
+		<es>Pendiente hasta que se efectue el pago en red pagos</es>
+		<en>Pendiente hasta que se efectue el pago en red pagos</en>
+		<po>Pendiente hasta que se efectue el pago en red pagos</po>
+	</pendientehastaqueseefectueelpagoenredpagos>		
+	
+	
+	
+	<cantidadhabitaciones tipo="abm">
+		<es>Cantidad de habitaciones</es>
+		<en>Cantidad de habitaciones</en>
+		<po>Cantidad de habitaciones</po>
+	</cantidadhabitaciones>
+	
+	<salidagarantizada tipo="abm">
+		<es>Salida Garantizada</es>
+		<en>Salida Garantizada</en>
+		<po>Salida Garantizada</po>
+	</salidagarantizada>
+	
+	<fichaventa tipo="abm">
+		<es>Ficha Venta</es>
+		<en>Ficha Venta</en>
+		<po>Ficha Venta</po>
+	</fichaventa>
+	
+	<variasciudades tipo="abm">
+		<es>Varias ciudades</es>
+		<en>Varias ciudades</en>
+		<po>Varias ciudades</po>
+	</variasciudades>
+	
+	<textonombresiguales tipo="abm">
+		<es>Si hay dos pasajeros viajando que tienen el mismo nombre, por favor identificar  a cada uno con primer y segundo nombre y primer y segundo apellido para que el sistema no lo tome como una misma persona. Muchas gracias.</es>
+		<en>Si hay dos pasajeros viajando que tienen el mismo nombre, por favor identificar  a cada uno con primer y segundo nombre y primer y segundo apellido para que el sistema no lo tome como una misma persona. Muchas gracias.</en>
+		<po>Si hay dos pasajeros viajando que tienen el mismo nombre, por favor identificar  a cada uno con primer y segundo nombre y primer y segundo apellido para que el sistema no lo tome como una misma persona. Muchas gracias.</po>
+	</textonombresiguales>
+	
+	
+	<nuevacompra tipo="abm">
+		<es>Nueva Compra</es>
+		<en>New purchase</en>
+		<po>Nueva Compra</po>
+	</nuevacompra>
+	
+	<hola tipo="abm">
+		<es>Hola</es>
+		<en>Hi</en>
+		<po>Hola</po>
+	</hola>
+	
+	<muchasgraciasportucompra tipo="abm">
+		<es>Muchas gracias por tu compra</es>
+		<en>Thanks for your purchase</en>
+		<po>Muchas gracias por tu compra</po>
+	</muchasgraciasportucompra>
+	
+	<estossontusdatospersonales tipo="abm">
+		<es>Estos son tus datos personales</es>
+		<en>This is your personal information</en>
+		<po>Estos son tus datos personales</po>
+	</estossontusdatospersonales>
+	
+	
+	<detallesdetucompra tipo="abm">
+		<es>Detalles de tu compra</es>
+		<en>Purchase details</en>
+		<po>Detalles de tu compra</po>
+	</detallesdetucompra>
+	
+	<codigo tipo="abm">
+		<es>Código</es>
+		<en>Purchase Code</en>
+		<po>Código</po>
+	</codigo>
+	
+	<producto tipo="abm">
+		<es>Producto</es>
+		<en>Product</en>
+		<po>Producto</po>
+	</producto>
+	
+	<recuerda tipo="abm">
+		<es>Recuerda</es>
+		<en>Remember</en>
+		<po>Recuerda</po>
+	</recuerda>
+	
+	<textotrecuerda tipo="abm">
+		<es>, si tienes algún problema con tu compra o alguna duda, puedes contactarnos por las siguientes vías</es>
+		<en>, to contact us please use the following information</en>
+		<po>, si tienes algún problema con tu compra o alguna duda, puedes contactarnos por las siguientes vías</po>
+	</textotrecuerda>
+	
+	
+</Diccionario>

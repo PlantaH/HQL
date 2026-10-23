@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portero Eléctrico Digital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .intercom-plate {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid #334155;
+    }
+    .metal-button {
+      background: linear-gradient(145deg, #334155, #1e293b);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      transition: all 0.15s ease;
+    }
+    .metal-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    }
+    .speaker-grille {
+      background-image: radial-gradient(#475569 20%, transparent 20%);
+      background-size: 8px 8px;
+    }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4 flex justify-center items-start text-slate-100">
+
+  <div class="max-w-md w-full intercom-plate rounded-3xl p-6 relative flex flex-col gap-6">
+    
+    <!-- Encabezado y Altavoz -->
+    <div class="flex flex-col items-center gap-3 border-b border-slate-700/60 pb-5">
+      <div class="w-full flex justify-between items-center px-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">En Línea</span>
+        </div>
+        <!--<button id="btnConfig" class="text-slate-400 hover:text-slate-200 transition-colors p-2 rounded-lg hover:bg-slate-800" title="Configurar Departamentos">
+          <i class="fa-solid fa-gear text-lg"></i>
+        </button>-->
+      </div>
+
+      <!-- Altavoz Ficticio estilo Portero -->
+      <div class="w-32 h-10 speaker-grille rounded-xl border border-slate-700/80 my-1"></div>
+
+      <h1 class="text-2xl font-black text-slate-100 tracking-wide uppercase text-center flex items-center gap-2">
+        <i class="fa-solid fa-building text-sky-400"></i> Portero Digital
+      </h1>
+      <p class="text-xs text-slate-400 text-center">Seleccione un departamento para tocar el timbre</p>
+    </div>
+
+    <!-- Controles de Filtro -->
+    <div class="flex flex-col gap-3">
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por piso, depto o apellido..." 
+               class="w-full bg-slate-900/80 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+      </div>
+
+      <div id="floorChips" class="flex gap-2 overflow-x-auto pb-1 scrollbar-none text-xs">
+        <!-- Chips de pisos generados por JS -->
+      </div>
+    </div>
+
+    <!-- Listado de Timbres -->
+    <div id="deptoList" class="grid grid-cols-1 gap-3 max-h-[50vh] overflow-y-auto pr-1">
+      <!-- Generado dinámicamente -->
+    </div>
+
+    <!-- Pie de página informativo -->
+    <div class="text-center border-t border-slate-700/60 pt-4 text-[11px] text-slate-500">
+      Acceso para residentes • Envíos y Visitas
+    </div>
+  </div>
+
+  <!-- Modal para Enviar Mensaje por WhatsApp -->
+  <div id="modalRingtone" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-slate-700 w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4 text-slate-200">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bell text-sky-400 animate-bounce"></i>
+          <h2 id="modalDeptoTitle" class="font-bold text-lg text-white">Depto ---</h2>
+        </div>
+        <button id="btnCloseModal" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <p class="text-xs text-slate-400">Timbre activado con éxito. Seleccione el motivo de su visita:</p>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-slate-300">Mensaje rápido:</label>
+        <select id="selectQuickMsg" class="bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+          <option value="¡Hola! 👋 Estoy abajo en la puerta esperando. ¿Podrías abrirme por favor? 🚪✨">🔔 Estoy abajo en la puerta</option>
+          <option value="¡Hola! 📦 Te traje un paquete / delivery. ¿Podrías recibirlo o bajar un segundo? 🛵💨">📦 Delivery / Paquete</option>
+          <option value="¡Hola! ✉️ Tengo correspondencia o una carta para entregar. 📬">✉️ Correo / Carta</option>
+          <option value="¡Hola! 🤝 Ya llegué para nuestra cita programada. ⏰">🤝 Visita programada</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-slate-300">Su Nombre (opcional):</label>
+        <input type="text" id="inputVisitorName" placeholder="Ej: Juan Pérez" class="bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button id="btnCancelModal" class="flex-1 py-2.5 rounded-xl border border-slate-600 text-xs text-slate-300 hover:bg-slate-700 transition-colors">
+          Cancelar
+        </button>
+        <button id="btnSendWhatsapp" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30">
+          <i class="fa-brands fa-whatsapp text-base"></i> Enviar WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Advertencia: No Molestar / Fuera de Horario -->
+  <div id="modalDND" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-amber-500/40 w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4 text-slate-200">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <div class="flex items-center gap-2 text-amber-400">
+          <i class="fa-solid fa-moon text-lg"></i>
+          <h2 id="modalDNDTitle" class="font-bold text-lg text-white">Hora de No Molestar</h2>
+        </div>
+        <button id="btnCloseDND" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3 text-xs text-amber-200/90 leading-relaxed">
+        <p id="modalDNDMessage">Este departamento se encuentra fuera de su horario de atención.</p>
+      </div>
+
+      <p class="text-xs text-slate-400">Si se trata de algo importante o urgente, puedes enviarle un mensaje por WhatsApp de todas formas:</p>
+
+      <div class="flex gap-2 pt-1">
+        <button id="btnCancelDND" class="flex-1 py-2.5 rounded-xl border border-slate-600 text-xs text-slate-300 hover:bg-slate-700 transition-colors">
+          Entendido
+        </button>
+        <button id="btnForceWhatsapp" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition-colors flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-900/30">
+          <i class="fa-brands fa-whatsapp text-sm"></i> Avisar igual
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Panel de Configuración -->
+  <div id="modalConfig" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-slate-700 w-full max-w-md rounded-2xl p-5 flex flex-col gap-4 text-slate-200 max-h-[90vh]">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <h2 class="font-bold text-lg text-white flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-sky-400"></i> Admin de Timbres
+        </h2>
+        <button id="btnCloseConfig" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Formulario para agregar / editar -->
+      <form id="formDepto" class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/60 flex flex-col gap-3">
+        <input type="hidden" id="editIndex" value="-1">
+        
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[11px] font-semibold text-slate-400">Piso</label>
+            <input type="text" id="inputPiso" placeholder="Ej: 1" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="text-[11px] font-semibold text-slate-400">Depto</label>
+            <input type="text" id="inputDepto" placeholder="Ej: A" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-slate-400">Nombre / Apellido Residente</label>
+          <input type="text" id="inputNombre" placeholder="Ej: Familia Gómez" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-slate-400">WhatsApp (Cod. País + Área + Nº)</label>
+          <input type="tel" id="inputPhone" placeholder="Ej: 5491112345678" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+        </div>
+
+        <!-- Horarios de Timbre -->
+        <div class="border-t border-slate-800 pt-2 flex flex-col gap-2">
+          <label class="text-[11px] font-semibold text-slate-400 flex items-center justify-between">
+            <span>Rango Horario de Atención</span>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="chkDND24" class="rounded border-slate-700 bg-slate-900 text-sky-500 focus:ring-0">
+              <span class="text-[10px] text-amber-400 font-normal">Bloquear 24hs</span>
+            </label>
+          </label>
+          
+          <div id="timeInputsContainer" class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-slate-500">Desde:</span>
+              <input type="time" id="inputStartTime" value="08:00" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-500">Hasta:</span>
+              <input type="time" id="inputEndTime" value="22:00" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-1">
+          <button type="button" id="btnResetForm" class="hidden flex-1 py-2 rounded-lg bg-slate-700 text-xs text-slate-200">Cancelar Edición</button>
+          <button type="submit" id="btnSaveDepto" class="flex-1 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-bold text-white transition-colors">
+            Guardar Departamento
+          </button>
+        </div>
+      </form>
+
+      <!-- Lista Configurable -->
+      <div id="configDeptoList" class="flex flex-col gap-2 overflow-y-auto max-h-48 pr-1">
+        <!-- Renderizado dinámico -->
+      </div>
+
+      <div class="border-t border-slate-700 pt-3 flex justify-between">
+        <button id="btnRestoreDefault" class="text-xs text-slate-400 hover:text-rose-400 transition-colors">
+          Restablecer por defecto
+        </button>
+        <button id="btnDoneConfig" class="px-4 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs text-white">
+          Listo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Datos por defecto si no existe localStorage
+    const defaultDeptos = [
+      { piso: "1", depto: "A", nombre: "Cintia", phone: "5491159053325", startTime: "08:00", endTime: "12:00", dnd24: false },
+      { piso: "1", depto: "B", nombre: "Hernan", phone: "5491169309425", startTime: "09:00", endTime: "20:00", dnd24: false },
+      { piso: "2", depto: "A", nombre: "NHZ", phone: "5491136028247", startTime: "10:00", endTime: "18:00", dnd24: false } 
+    ];
+
+    let deptos = JSON.parse(localStorage.getItem('intercom_deptos')) || defaultDeptos;
+    let selectedDepto = null;
+    let activeFloorFilter = 'ALL';
+
+    // Generador de Tono de Timbre con Web Audio API
+    function playChimeSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        
+        const now = ctx.currentTime;
+        
+        // Primera nota (Ding)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(659.25, now); // E5
+        gain1.gain.setValueAtTime(0.3, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+        
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 1.2);
+
+        // Segunda nota (Dong)
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(523.25, now + 0.3); // C5
+        gain2.gain.setValueAtTime(0.35, now + 0.3);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+        
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.3);
+        osc2.stop(now + 1.8);
+      } catch (e) {
+        console.log("Audio de timbre no disponible", e);
+      }
+    }
+
+    // Comprobación de horario de atención
+    function isWithinTimeWindow(startTime, endTime, dnd24) {
+      if (dnd24) return false;
+      if (!startTime || !endTime) return true;
+
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      const [startH, startM] = startTime.split(':').map(Number);
+      const [endH, endM] = endTime.split(':').map(Number);
+
+      const startTotal = startH * 60 + startM;
+      const endTotal = endH * 60 + endM;
+
+      if (startTotal <= endTotal) {
+        return currentMinutes >= startTotal && currentMinutes <= endTotal;
+      } else {
+        return currentMinutes >= startTotal || currentMinutes <= endTotal;
+      }
+    }
+
+    // Renderizar Chips de Filtro por Piso
+    function renderFloorChips() {
+      const container = document.getElementById('floorChips');
+      const floors = Array.from(new Set(deptos.map(d => d.piso))).sort((a,b) => a.localeCompare(b, undefined, {numeric: true}));
+
+      let html = `
+        <button onclick="setFloorFilter('ALL')" class="px-3 py-1 rounded-full whitespace-nowrap transition-colors ${activeFloorFilter === 'ALL' ? 'bg-sky-600 text-white font-semibold' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}">
+          Todos
+        </button>
+      `;
+
+      floors.forEach(floor => {
+        html += `
+          <button onclick="setFloorFilter('${floor}')" class="px-3 py-1 rounded-full whitespace-nowrap transition-colors ${activeFloorFilter === floor ? 'bg-sky-600 text-white font-semibold' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}">
+            Piso ${floor}
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function setFloorFilter(floor) {
+      activeFloorFilter = floor;
+      renderFloorChips();
+      renderDeptos();
+    }
+
+    // Renderizar departamentos en el portero
+    function renderDeptos() {
+      const list = document.getElementById('deptoList');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = deptos.filter(d => {
+        const matchesFloor = activeFloorFilter === 'ALL' || d.piso === activeFloorFilter;
+        const matchesSearch = d.piso.toLowerCase().includes(search) || 
+                              d.depto.toLowerCase().includes(search) || 
+                              (d.nombre && d.nombre.toLowerCase().includes(search));
+        return matchesFloor && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="text-center py-8 text-slate-500 text-xs">
+            No se encontraron departamentos.
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map((d) => {
+        const index = deptos.indexOf(d);
+        const isOpen = isWithinTimeWindow(d.startTime, d.endTime, d.dnd24);
+
+        return `
+          <div onclick="handleDeptoClick(${index})" 
+               class="metal-button p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between cursor-pointer group hover:border-sky-500/60 transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex flex-col items-center justify-center text-sky-400 group-hover:text-sky-300 font-bold leading-none shadow-inner">
+                <span class="text-[10px] text-slate-400 uppercase">PISO</span>
+                <span class="text-sm">${d.piso}${d.depto}</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-semibold text-slate-200 group-hover:text-white">
+                  ${d.nombre ? d.nombre : 'Departamento ' + d.piso + d.depto}
+                </span>
+                <div class="flex items-center gap-1.5 text-[11px] mt-0.5">
+                  ${d.dnd24 ? `
+                    <span class="text-amber-400/90 flex items-center gap-1 font-medium">
+                      <i class="fa-solid fa-moon text-[10px]"></i> No molestar 24hs
+                    </span>
+                  ` : `
+                    <span class="${isOpen ? 'text-emerald-400/80' : 'text-amber-400/80'} flex items-center gap-1">
+                      <i class="fa-regular fa-clock text-[10px]"></i> ${d.startTime || '08:00'} - ${d.endTime || '20:00'}
+                    </span>
+                  `}
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              ${!isOpen ? `
+                <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                  No molestar
+                </span>
+              ` : ''}
+              <div class="w-9 h-9 rounded-full bg-sky-500/10 group-hover:bg-sky-500 group-hover:text-white text-sky-400 flex items-center justify-center transition-all shadow-sm">
+                <i class="fa-solid fa-bell text-sm"></i>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Acción de presionar un timbre
+    function handleDeptoClick(index) {
+      selectedDepto = deptos[index];
+      const isOpen = isWithinTimeWindow(selectedDepto.startTime, selectedDepto.endTime, selectedDepto.dnd24);
+
+      if (isOpen) {
+        playChimeSound();
+        document.getElementById('modalDeptoTitle').innerText = `Depto ${selectedDepto.piso}${selectedDepto.depto} ${selectedDepto.nombre ? '(' + selectedDepto.nombre + ')' : ''}`;
+        document.getElementById('modalRingtone').classList.remove('hidden');
+        document.getElementById('modalRingtone').classList.add('flex');
+      } else {
+        const msg = selectedDepto.dnd24 
+          ? `El depto ${selectedDepto.piso}${selectedDepto.depto} se encuentra activado en modo "No Molestar" durante todo el día.` 
+          : `El depto ${selectedDepto.piso}${selectedDepto.depto} sólo recibe visitas en el horario de ${selectedDepto.startTime || '08:00'} a ${selectedDepto.endTime || '20:00'}.`;
+        
+        document.getElementById('modalDNDMessage').innerText = msg;
+        document.getElementById('modalDND').classList.remove('hidden');
+        document.getElementById('modalDND').classList.add('flex');
+      }
+    }
+
+    // Abrir enlace de WhatsApp con formato amigable y moderno
+    function triggerWhatsappRedirect(isUrgent = false) {
+      if (!selectedDepto) return;
+      
+      const quickMsg = document.getElementById('selectQuickMsg').value;
+      const visitorName = document.getElementById('inputVisitorName').value.trim();
+      
+      let text = `🏢 *AVISO DE PORTERO DIGITAL*\n`;
+      text += `📍 *Destino:* Depto ${selectedDepto.piso}${selectedDepto.depto} ${selectedDepto.nombre ? '(' + selectedDepto.nombre + ')' : ''}\n`;
+      
+      if (isUrgent) {
+        text += `⚠️ *ESTADO:* Aviso urgente fuera de horario\n`;
+      }
+      
+      text += `----------------------------------\n`;
+      text += `${quickMsg}\n`;
+      
+      if (visitorName) {
+        text += `👤 *Visitante:* ${visitorName}\n`;
+      }
+      
+      text += `----------------------------------\n`;
+      text += `_Enviado automáticamente desde el portero digital._`;
+
+      const cleanPhone = selectedDepto.phone.replace(/[^0-9]/g, '');
+      const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    // Renderizar lista en panel de administración
+    function renderConfigList() {
+      const list = document.getElementById('configDeptoList');
+      if (deptos.length === 0) {
+        list.innerHTML = '<div class="text-slate-500 text-xs text-center py-2">Sin departamentos guardados</div>';
+        return;
+      }
+
+      list.innerHTML = deptos.map((d, index) => `
+        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-700/80 flex justify-between items-center text-xs">
+          <div>
+            <span class="font-bold text-sky-400">Piso ${d.piso}${d.depto}</span> 
+            <span class="text-slate-300">${d.nombre ? '- ' + d.nombre : ''}</span>
+            <div class="text-[10px] text-slate-500 flex items-center gap-2">
+              <span><i class="fa-brands fa-whatsapp"></i> ${d.phone}</span>
+              <span><i class="fa-regular fa-clock"></i> ${d.dnd24 ? 'No molestar' : (d.startTime || '08:00') + '-' + (d.endTime || '20:00')}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="editDepto(${index})" class="p-1.5 text-slate-400 hover:text-sky-400"><i class="fa-solid fa-pen"></i></button>
+            <button onclick="deleteDepto(${index})" class="p-1.5 text-slate-400 hover:text-rose-400"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function editDepto(index) {
+      const d = deptos[index];
+      document.getElementById('editIndex').value = index;
+      document.getElementById('inputPiso').value = d.piso;
+      document.getElementById('inputDepto').value = d.depto;
+      document.getElementById('inputNombre').value = d.nombre || '';
+      document.getElementById('inputPhone').value = d.phone;
+      document.getElementById('inputStartTime').value = d.startTime || '08:00';
+      document.getElementById('inputEndTime').value = d.endTime || '20:00';
+      document.getElementById('chkDND24').checked = !!d.dnd24;
+
+      document.getElementById('btnSaveDepto').innerText = 'Actualizar Departamento';
+      document.getElementById('btnResetForm').classList.remove('hidden');
+    }
+
+    function resetDeptoForm() {
+      document.getElementById('editIndex').value = '-1';
+      document.getElementById('formDepto').reset();
+      document.getElementById('inputStartTime').value = '08:00';
+      document.getElementById('inputEndTime').value = '22:00';
+      document.getElementById('btnSaveDepto').innerText = 'Guardar Departamento';
+      document.getElementById('btnResetForm').classList.add('hidden');
+    }
+
+    function deleteDepto(index) {
+      if (confirm('¿Desea eliminar este departamento?')) {
+        deptos.splice(index, 1);
+        saveAndReload();
+      }
+    }
+
+    function saveAndReload() {
+      localStorage.setItem('intercom_deptos', JSON.stringify(deptos));
+      renderFloorChips();
+      renderDeptos();
+      renderConfigList();
+    }
+
+    // Inicializaciones y Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFloorChips();
+      renderDeptos();
+
+      // Buscador
+      document.getElementById('searchInput').addEventListener('input', renderDeptos);
+
+      // Modal de WhatsApp
+      document.getElementById('btnCloseModal').addEventListener('click', () => {
+        document.getElementById('modalRingtone').classList.add('hidden');
+      });
+      document.getElementById('btnCancelModal').addEventListener('click', () => {
+        document.getElementById('modalRingtone').classList.add('hidden');
+      });
+      document.getElementById('btnSendWhatsapp').addEventListener('click', () => {
+        triggerWhatsappRedirect(false);
+        document.getElementById('modalRingtone').classList.add('hidden');
+      });
+
+      // Modal de No Molestar / Fuera de Horario
+      document.getElementById('btnCloseDND').addEventListener('click', () => {
+        document.getElementById('modalDND').classList.add('hidden');
+      });
+      document.getElementById('btnCancelDND').addEventListener('click', () => {
+        document.getElementById('modalDND').classList.add('hidden');
+      });
+      document.getElementById('btnForceWhatsapp').addEventListener('click', () => {
+        triggerWhatsappRedirect(true);
+        document.getElementById('modalDND').classList.add('hidden');
+      });
+
+      // Modal Configuración
+      document.getElementById('btnConfig').addEventListener('click', () => {
+        resetDeptoForm();
+        renderConfigList();
+        document.getElementById('modalConfig').classList.remove('hidden');
+        document.getElementById('modalConfig').classList.add('flex');
+      });
+      document.getElementById('btnCloseConfig').addEventListener('click', () => {
+        document.getElementById('modalConfig').classList.add('hidden');
+      });
+      document.getElementById('btnDoneConfig').addEventListener('click', () => {
+        document.getElementById('modalConfig').classList.add('hidden');
+      });
+
+      document.getElementById('btnResetForm').addEventListener('click', resetDeptoForm);
+
+      // Formulario Guardar / Editar
+      document.getElementById('formDepto').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const editIdx = parseInt(document.getElementById('editIndex').value);
+        
+        const newDepto = {
+          piso: document.getElementById('inputPiso').value.trim(),
+          depto: document.getElementById('inputDepto').value.trim().toUpperCase(),
+          nombre: document.getElementById('inputNombre').value.trim(),
+          phone: document.getElementById('inputPhone').value.trim(),
+          startTime: document.getElementById('inputStartTime').value,
+          endTime: document.getElementById('inputEndTime').value,
+          dnd24: document.getElementById('chkDND24').checked
+        };
+
+        if (editIdx >= 0) {
+          deptos[editIdx] = newDepto;
+        } else {
+          deptos.push(newDepto);
+        }
+
+        saveAndReload();
+        resetDeptoForm();
+      });
+
+      // Restablecer valores iniciales
+      document.getElementById('btnRestoreDefault').addEventListener('click', () => {
+        if (confirm('¿Desea restablecer el listado de departamentos por defecto?')) {
+          deptos = [...defaultDeptos];
+          saveAndReload();
+          resetDeptoForm();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

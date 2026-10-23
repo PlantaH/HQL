@@ -1,0 +1,94 @@
+.map--ad-imglink {
+    margin: 0 0 30px 0;
+    display: block;
+    position: relative;
+  }
+  
+  .map--ad-imglink a {
+    width: 202px;
+    height: 122px;
+    margin: 0 0 30px 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+  }
+  
+  .map--ad-imglink-latlong {
+    display: inline-block;
+    margin: 0 0 0 20px;
+  }
+  
+  .map--ad-imglink-latlong span {
+    display: block;
+  }
+  
+  .map--ad-search-mapwindow {
+    width: 100%;
+    height: 450px;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #E4E4E4;
+    ;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .map--ad-search-bar {
+    padding: 3px;
+    margin: 0 0 18px 0;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+  }
+  
+  .map--ad-search-bar input {
+    border: 0;
+    box-shadow: none;
+  }
+  
+  .map--ad-search-bar button {
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+  }
+  
+  .map--ad-search-bar button:hover,
+  .map--ad-search-bar button:active,
+  .map--ad-search-bar button.active {
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    background-color: transparent;
+    cursor: default;
+    color: #666666;
+  }
+  
+  .map--ad-search-bar .glyphicon-search {
+    font-size: 23px;
+  }
+  
+  #gmapsModal #preloader {
+    background: rgba(255, 255, 255, .7);
+    z-index: 9;
+  }
+  
+  .map--ad-search-mapwindow-tootip span {
+    display: block;
+  }
+  
+  .map--ad-search-mapwindow-tootip div small {
+    display: block;
+    margin: 8px 0 0 0;
+    font-style: italic;
+  }
+  
+  /*select gmap*/
+  .pac-container {
+    z-index: 99999;
+  }

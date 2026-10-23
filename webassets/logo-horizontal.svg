@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" width="168" height="40" role="img" aria-label="HQL">
+  <rect width="40" height="40" rx="7" fill="#0F1B2B"/>
+  <path d="M9 29 L18 13 L31 21" fill="none" stroke="#FF7A1A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="9" cy="29" r="3" fill="#FF7A1A"/>
+  <circle cx="31" cy="21" r="3" fill="#FF7A1A"/>
+  <circle cx="18" cy="13" r="2.4" fill="#7FA9C9"/>
+  <text x="52" y="27" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="22" font-weight="600" letter-spacing="1" fill="#0F1B2B">HQL</text>
+</svg>

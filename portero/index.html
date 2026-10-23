@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portero Eléctrico Digital con Videollamada</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- PeerJS para videollamadas WebRTC gratuitas punto a punto -->
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <style>
+    body { background-color: #0f172a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .intercom-plate {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid #334155;
+    }
+    .metal-button {
+      background: linear-gradient(145deg, #334155, #1e293b);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      transition: all 0.15s ease;
+    }
+    .metal-button:active { transform: translateY(2px); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5); }
+    .speaker-grille {
+      background-image: radial-gradient(#475569 20%, transparent 20%);
+      background-size: 8px 8px;
+    }
+    video { object-fit: cover; }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4 flex justify-center items-start text-slate-100">
+
+  <!-- VISTA 1: INTERFAZ DE PORTERO DEL EDIFICIO -->
+  <div id="intercomApp" class="max-w-md w-full intercom-plate rounded-3xl p-6 relative flex flex-col gap-6">
+    
+    <!-- Encabezado y Altavoz -->
+    <div class="flex flex-col items-center gap-3 border-b border-slate-700/60 pb-5">
+      <div class="w-full flex justify-between items-center px-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">En Línea</span>
+        </div>
+        <button id="btnConfig" class="text-slate-400 hover:text-slate-200 transition-colors p-2 rounded-lg hover:bg-slate-800" title="Configurar Departamentos">
+          <i class="fa-solid fa-gear text-lg"></i>
+        </button>
+      </div>
+
+      <div class="w-32 h-10 speaker-grille rounded-xl border border-slate-700/80 my-1"></div>
+
+      <h1 class="text-2xl font-black text-slate-100 tracking-wide uppercase text-center flex items-center gap-2">
+        <i class="fa-solid fa-video text-sky-400"></i> Portero Digital
+      </h1>
+      <p class="text-xs text-slate-400 text-center">Seleccione un departamento para iniciar videollamada</p>
+    </div>
+
+    <!-- Buscador y Filtros -->
+    <div class="flex flex-col gap-3">
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por piso, depto o apellido..." 
+               class="w-full bg-slate-900/80 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+      </div>
+
+      <div id="floorChips" class="flex gap-2 overflow-x-auto pb-1 scrollbar-none text-xs"></div>
+    </div>
+
+    <!-- Listado de Timbres -->
+    <div id="deptoList" class="grid grid-cols-1 gap-3 max-h-[50vh] overflow-y-auto pr-1"></div>
+
+    <div class="text-center border-t border-slate-700/60 pt-4 text-[11px] text-slate-500">
+      Videollamadas en tiempo real sin instalaciones
+    </div>
+  </div>
+
+  <!-- VISTA 2: PANTALLA DE RESIDENTE (Se abre desde WhatsApp) -->
+  <div id="residentApp" class="hidden max-w-md w-full intercom-plate rounded-3xl p-6 flex flex-col gap-5 text-center">
+    <div class="flex flex-col items-center gap-2">
+      <div class="w-16 h-16 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center text-2xl animate-pulse">
+        <i class="fa-solid fa-building"></i>
+      </div>
+      <h2 id="residentDeptoTitle" class="text-xl font-bold text-white">Depto ---</h2>
+      <p class="text-xs text-slate-400">Tocaron el timbre en la puerta del edificio</p>
+    </div>
+
+    <!-- Pantalla de Video del Residente -->
+    <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-slate-700 shadow-inner flex items-center justify-center">
+      <!-- Video Remoto (Visitante) -->
+      <video id="residentRemoteVideo" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+      <!-- Video Local (Residente) -->
+      <video id="residentLocalVideo" autoplay playsinline muted class="absolute bottom-2 right-2 w-24 h-18 bg-slate-800 rounded-lg border border-slate-600 hidden object-cover z-20"></video>
+      
+      <div id="residentCallStatus" class="flex flex-col items-center gap-2 p-4 text-slate-400">
+        <i class="fa-solid fa-bell text-3xl animate-bounce text-emerald-400"></i>
+        <span id="residentStatusText" class="text-xs font-semibold text-slate-200">Presione "Atender" para iniciar el video</span>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button id="btnRejectCall" class="flex-1 py-3 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+        <i class="fa-solid fa-phone-slash"></i> Rechazar
+      </button>
+      <button id="btnAnswerCall" class="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors shadow-lg shadow-emerald-900/40">
+        <i class="fa-solid fa-video"></i> Atender
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DE VIDEOLLAMADA EN EL PORTERO (VISITANTE) -->
+  <div id="modalVideoCall" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-slate-700 w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4 text-slate-200">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose-500 animate-ping"></span>
+          <h2 id="modalCallTitle" class="font-bold text-base text-white">Llamando...</h2>
+        </div>
+        <button id="btnCloseCall" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <!-- Pantalla de Video Visitante -->
+      <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden border border-slate-700 shadow-inner flex items-center justify-center">
+        <!-- Video Remoto (Residente) -->
+        <video id="visitorRemoteVideo" autoplay playsinline class="w-full h-full object-cover hidden z-10"></video>
+        <!-- Video Local (Visitante) -->
+        <video id="visitorLocalVideo" autoplay playsinline muted class="w-full h-full object-cover"></video>
+        
+        <div id="visitorOverlayStatus" class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-2 p-4 text-center z-20">
+          <i class="fa-solid fa-spinner fa-spin text-2xl text-sky-400"></i>
+          <span id="visitorStatusText" class="text-xs text-slate-200 font-medium">Pulsa el botón de WhatsApp para notificar al residente</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <button id="btnOpenWhatsappNotice" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+          <i class="fa-brands fa-whatsapp text-base"></i> Enviar aviso por WhatsApp
+        </button>
+        <button id="btnEndVisitorCall" class="w-full py-2.5 rounded-xl bg-rose-600/80 hover:bg-rose-600 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+          <i class="fa-solid fa-phone-slash"></i> Finalizar Llamada
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Advertencia: No Molestar -->
+  <div id="modalDND" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-amber-500/40 w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4 text-slate-200">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <div class="flex items-center gap-2 text-amber-400">
+          <i class="fa-solid fa-moon text-lg"></i>
+          <h2 class="font-bold text-lg text-white">Hora de No Molestar</h2>
+        </div>
+        <button id="btnCloseDND" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-3 text-xs text-amber-200/90 leading-relaxed">
+        <p id="modalDNDMessage">Este departamento se encuentra fuera de su horario de atención.</p>
+      </div>
+
+      <div class="flex gap-2 pt-1">
+        <button id="btnCancelDND" class="flex-1 py-2.5 rounded-xl border border-slate-600 text-xs text-slate-300 hover:bg-slate-700">Entendido</button>
+        <button id="btnForceCall" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white flex items-center justify-center gap-1.5">
+          <i class="fa-brands fa-whatsapp"></i> Avisar igual
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Panel de Configuración -->
+  <div id="modalConfig" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-800 border border-slate-700 w-full max-w-md rounded-2xl p-5 flex flex-col gap-4 text-slate-200 max-h-[90vh]">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+        <h2 class="font-bold text-lg text-white flex items-center gap-2"><i class="fa-solid fa-sliders text-sky-400"></i> Admin de Timbres</h2>
+        <button id="btnCloseConfig" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="formDepto" class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/60 flex flex-col gap-3">
+        <input type="hidden" id="editIndex" value="-1">
+        
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[11px] font-semibold text-slate-400">Piso</label>
+            <input type="text" id="inputPiso" placeholder="Ej: 1" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="text-[11px] font-semibold text-slate-400">Depto</label>
+            <input type="text" id="inputDepto" placeholder="Ej: A" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-slate-400">Nombre / Apellido Residente</label>
+          <input type="text" id="inputNombre" placeholder="Ej: Familia Gómez" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-slate-400">WhatsApp (Cod. País + Área + Nº)</label>
+          <input type="tel" id="inputPhone" placeholder="Ej: 5491112345678" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+        </div>
+
+        <div class="border-t border-slate-800 pt-2 flex flex-col gap-2">
+          <label class="text-[11px] font-semibold text-slate-400 flex items-center justify-between">
+            <span>Rango Horario de Atención</span>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="chkDND24" class="rounded border-slate-700 bg-slate-900 text-sky-500 focus:ring-0">
+              <span class="text-[10px] text-amber-400 font-normal">Bloquear 24hs</span>
+            </label>
+          </label>
+          
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <span class="text-[10px] text-slate-500">Desde:</span>
+              <input type="time" id="inputStartTime" value="08:00" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 text-xs text-slate-200">
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-500">Hasta:</span>
+              <input type="time" id="inputEndTime" value="22:00" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-1.5 text-xs text-slate-200">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-1">
+          <button type="button" id="btnResetForm" class="hidden flex-1 py-2 rounded-lg bg-slate-700 text-xs text-slate-200">Cancelar Edición</button>
+          <button type="submit" id="btnSaveDepto" class="flex-1 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-bold text-white">Guardar Departamento</button>
+        </div>
+      </form>
+
+      <div id="configDeptoList" class="flex flex-col gap-2 overflow-y-auto max-h-48 pr-1"></div>
+
+      <div class="border-t border-slate-700 pt-3 flex justify-between">
+        <button id="btnRestoreDefault" class="text-xs text-slate-400 hover:text-rose-400">Restablecer por defecto</button>
+        <button id="btnDoneConfig" class="px-4 py-1.5 rounded-lg bg-slate-700 text-xs text-white">Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaultDeptos = [
+      { piso: "1", depto: "A", nombre: "hernan", phone: "5491169309425", startTime: "08:00", endTime: "21:00", dnd24: false },
+      { piso: "1", depto: "B", nombre: "Martínez", phone: "5491112345678", startTime: "09:00", endTime: "20:00", dnd24: false },
+      { piso: "2", depto: "A", nombre: "López", phone: "5491112345678", startTime: "10:00", endTime: "18:00", dnd24: false }
+    ];
+
+    let deptos = JSON.parse(localStorage.getItem('intercom_deptos')) || defaultDeptos;
+    let selectedDepto = null;
+    let activeFloorFilter = 'ALL';
+
+    let peer = null;
+    let localStream = null;
+    let activeCall = null;
+    let visitorPeerId = null;
+
+    const peerConfig = {
+      config: {
+        iceServers: [
+          { urls: 'stun:stun.l.google.com:19302' },
+          { urls: 'stun:stun1.l.google.com:19302' },
+          { urls: 'stun:stun2.l.google.com:19302' }
+        ]
+      }
+    };
+
+    function playChimeSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const now = ctx.currentTime;
+        
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(659.25, now);
+        gain1.gain.setValueAtTime(0.3, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+        osc1.connect(gain1); gain1.connect(ctx.destination);
+        osc1.start(now); osc1.stop(now + 1.2);
+
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(523.25, now + 0.3);
+        gain2.gain.setValueAtTime(0.35, now + 0.3);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
+        osc2.connect(gain2); gain2.connect(ctx.destination);
+        osc2.start(now + 0.3); osc2.stop(now + 1.8);
+      } catch (e) {}
+    }
+
+    function isWithinTimeWindow(startTime, endTime, dnd24) {
+      if (dnd24) return false;
+      if (!startTime || !endTime) return true;
+      const now = new Date();
+      const current = now.getHours() * 60 + now.getMinutes();
+      const [sh, sm] = startTime.split(':').map(Number);
+      const [eh, em] = endTime.split(':').map(Number);
+      const st = sh * 60 + sm, et = eh * 60 + em;
+      return st <= et ? (current >= st && current <= et) : (current >= st || current <= et);
+    }
+
+    function getDeptoPeerId(piso, depto) {
+      const cleanPiso = String(piso).trim().toLowerCase();
+      const cleanDepto = String(depto).trim().toLowerCase();
+      return `portero-piso-${cleanPiso}-depto-${cleanDepto}`;
+    }
+
+    // MODO RESIDENTE
+    function checkResidentMode() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const callTarget = urlParams.get('call');
+      const callerId = urlParams.get('caller');
+
+      if (callTarget) {
+        document.getElementById('intercomApp').classList.add('hidden');
+        document.getElementById('residentApp').classList.remove('hidden');
+        document.getElementById('residentDeptoTitle').innerText = `Depto ${callTarget.toUpperCase()}`;
+
+        const match = callTarget.match(/^(\d+)([a-zA-Z]+)$/);
+        let residentPeerId = match ? getDeptoPeerId(match[1], match[2]) : `portero-depto-${callTarget.toLowerCase()}`;
+
+        peer = new Peer(residentPeerId, peerConfig);
+
+        peer.on('open', () => {
+          document.getElementById('residentStatusText').innerText = "Presione 'Atender' para conectar video";
+        });
+
+        peer.on('call', (incomingCall) => {
+          activeCall = incomingCall;
+          playChimeSound();
+          setupIncomingCallHandlers(incomingCall);
+        });
+
+        document.getElementById('btnAnswerCall').addEventListener('click', async () => {
+          document.getElementById('residentStatusText').innerText = "Conectando cámaras...";
+
+          try {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            
+            const residentLocalVideo = document.getElementById('residentLocalVideo');
+            residentLocalVideo.srcObject = localStream;
+            residentLocalVideo.play();
+            residentLocalVideo.classList.remove('hidden');
+
+            if (activeCall) {
+              activeCall.answer(localStream);
+            } else if (callerId) {
+              const call = peer.call(callerId, localStream);
+              activeCall = call;
+              setupIncomingCallHandlers(call);
+            }
+          } catch (err) {
+            alert("Error al acceder a la cámara: " + err.message);
+          }
+        });
+
+        document.getElementById('btnRejectCall').addEventListener('click', () => {
+          if (activeCall) activeCall.close();
+          if (localStream) localStream.getTracks().forEach(t => t.stop());
+          window.close();
+        });
+      }
+    }
+
+    function setupIncomingCallHandlers(call) {
+      call.on('stream', (remoteStream) => {
+        const remoteVideo = document.getElementById('residentRemoteVideo');
+        remoteVideo.srcObject = remoteStream;
+        remoteVideo.play();
+        remoteVideo.classList.remove('hidden');
+        document.getElementById('residentCallStatus').classList.add('hidden');
+      });
+    }
+
+    // MODO PORTERO (VISITANTE)
+    async function startVisitorVideoCall(deptoObj) {
+      playChimeSound();
+      const targetPeerId = getDeptoPeerId(deptoObj.piso, deptoObj.depto);
+
+      document.getElementById('modalCallTitle').innerText = `Depto ${deptoObj.piso}${deptoObj.depto}`;
+      document.getElementById('modalVideoCall').classList.remove('hidden');
+      document.getElementById('modalVideoCall').classList.add('flex');
+
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        const visitorLocalVideo = document.getElementById('visitorLocalVideo');
+        visitorLocalVideo.srcObject = localStream;
+        visitorLocalVideo.play();
+
+        if (!peer) {
+          visitorPeerId = 'visitor-' + Math.random().toString(36).substr(2, 9);
+          peer = new Peer(visitorPeerId, peerConfig);
+        }
+
+        peer.on('call', (incomingCall) => {
+          activeCall = incomingCall;
+          incomingCall.answer(localStream);
+          incomingCall.on('stream', (remoteStream) => {
+            attachVisitorRemoteStream(remoteStream);
+          });
+        });
+
+        peer.on('open', () => makeCall(targetPeerId));
+        if (peer.id) makeCall(targetPeerId);
+
+      } catch (e) {
+        document.getElementById('visitorStatusText').innerText = "No se pudo encender la cámara frontal.";
+      }
+    }
+
+    function makeCall(targetPeerId) {
+      const call = peer.call(targetPeerId, localStream);
+      activeCall = call;
+
+      call.on('stream', (remoteStream) => {
+        attachVisitorRemoteStream(remoteStream);
+      });
+    }
+
+    function attachVisitorRemoteStream(remoteStream) {
+      const remoteVideo = document.getElementById('visitorRemoteVideo');
+      remoteVideo.srcObject = remoteStream;
+      remoteVideo.play();
+      remoteVideo.classList.remove('hidden');
+      document.getElementById('visitorOverlayStatus').classList.add('hidden');
+    }
+
+    function openWhatsappVideoCallLink(isUrgent = false) {
+      if (!selectedDepto) return;
+      const cleanPhone = selectedDepto.phone.replace(/[^0-9]/g, '');
+      const currentUrl = window.location.href.split('?')[0];
+      const callerParam = visitorPeerId ? `&caller=${visitorPeerId}` : '';
+      const callUrl = `${currentUrl}?call=${selectedDepto.piso}${selectedDepto.depto}${callerParam}`;
+
+      let msg = `📹 *VIDEOLLAMADA DESDE EL PORTERO*\n`;
+      msg += `📍 *Destino:* Depto ${selectedDepto.piso}${selectedDepto.depto}\n`;
+      if (isUrgent) msg += `⚠️ *Aviso urgente fuera de horario*\n`;
+      msg += `----------------------------------\n`;
+      msg += `Tocaron el timbre en la entrada. Haz clic para atender por video:\n`;
+      msg += `👉 ${callUrl}\n`;
+      msg += `----------------------------------\n`;
+      msg += `_Atención directa desde el celular._`;
+
+      window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function renderFloorChips() {
+      const container = document.getElementById('floorChips');
+      const floors = Array.from(new Set(deptos.map(d => d.piso))).sort((a,b) => a.localeCompare(b, undefined, {numeric: true}));
+
+      let html = `<button onclick="setFloorFilter('ALL')" class="px-3 py-1 rounded-full ${activeFloorFilter === 'ALL' ? 'bg-sky-600 text-white font-semibold' : 'bg-slate-800 text-slate-400'}">Todos</button>`;
+      floors.forEach(f => {
+        html += `<button onclick="setFloorFilter('${f}')" class="px-3 py-1 rounded-full ${activeFloorFilter === f ? 'bg-sky-600 text-white font-semibold' : 'bg-slate-800 text-slate-400'}">Piso ${f}</button>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function setFloorFilter(floor) {
+      activeFloorFilter = floor;
+      renderFloorChips();
+      renderDeptos();
+    }
+
+    function renderDeptos() {
+      const list = document.getElementById('deptoList');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = deptos.filter(d => {
+        const matchesFloor = activeFloorFilter === 'ALL' || d.piso === activeFloorFilter;
+        const matchesSearch = d.piso.toLowerCase().includes(search) || d.depto.toLowerCase().includes(search) || (d.nombre && d.nombre.toLowerCase().includes(search));
+        return matchesFloor && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs">No se encontraron departamentos.</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map((d) => {
+        const index = deptos.indexOf(d);
+        const isOpen = isWithinTimeWindow(d.startTime, d.endTime, d.dnd24);
+
+        return `
+          <div onclick="handleDeptoClick(${index})" class="metal-button p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between cursor-pointer group hover:border-sky-500/60 transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex flex-col items-center justify-center text-sky-400 font-bold leading-none">
+                <span class="text-[10px] text-slate-400">PISO</span>
+                <span class="text-sm">${d.piso}${d.depto}</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-semibold text-slate-200 group-hover:text-white">${d.nombre ? d.nombre : 'Departamento ' + d.piso + d.depto}</span>
+                <span class="${isOpen ? 'text-emerald-400/80' : 'text-amber-400/80'} text-[11px]">
+                  <i class="fa-regular fa-clock text-[10px]"></i> ${d.dnd24 ? 'No molestar' : (d.startTime||'08:00') + ' - ' + (d.endTime||'20:00')}
+                </span>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-full bg-sky-500/10 group-hover:bg-sky-500 group-hover:text-white text-sky-400 flex items-center justify-center">
+              <i class="fa-solid fa-video text-sm"></i>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleDeptoClick(index) {
+      selectedDepto = deptos[index];
+      const isOpen = isWithinTimeWindow(selectedDepto.startTime, selectedDepto.endTime, selectedDepto.dnd24);
+
+      if (isOpen) {
+        startVisitorVideoCall(selectedDepto);
+      } else {
+        document.getElementById('modalDNDMessage').innerText = `El depto ${selectedDepto.piso}${selectedDepto.depto} se encuentra fuera del horario de atención.`;
+        document.getElementById('modalDND').classList.remove('hidden');
+        document.getElementById('modalDND').classList.add('flex');
+      }
+    }
+
+    function endVisitorCall() {
+      if (localStream) localStream.getTracks().forEach(track => track.stop());
+      if (activeCall) activeCall.close();
+      document.getElementById('modalVideoCall').classList.add('hidden');
+      document.getElementById('visitorOverlayStatus').classList.remove('hidden');
+      document.getElementById('visitorRemoteVideo').classList.add('hidden');
+      document.getElementById('visitorLocalVideo').classList.remove('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkResidentMode();
+      renderFloorChips();
+      renderDeptos();
+
+      document.getElementById('searchInput').addEventListener('input', renderDeptos);
+      document.getElementById('btnOpenWhatsappNotice').addEventListener('click', () => openWhatsappVideoCallLink(false));
+      document.getElementById('btnEndVisitorCall').addEventListener('click', endVisitorCall);
+      document.getElementById('btnCloseCall').addEventListener('click', endVisitorCall);
+
+      document.getElementById('btnCloseDND').addEventListener('click', () => document.getElementById('modalDND').classList.add('hidden'));
+      document.getElementById('btnCancelDND').addEventListener('click', () => document.getElementById('modalDND').classList.add('hidden'));
+      document.getElementById('btnForceCall').addEventListener('click', () => {
+        document.getElementById('modalDND').classList.add('hidden');
+        startVisitorVideoCall(selectedDepto);
+        openWhatsappVideoCallLink(true);
+      });
+
+      document.getElementById('btnConfig').addEventListener('click', () => {
+        document.getElementById('modalConfig').classList.remove('hidden');
+        document.getElementById('modalConfig').classList.add('flex');
+      });
+      document.getElementById('btnCloseConfig').addEventListener('click', () => document.getElementById('modalConfig').classList.add('hidden'));
+      document.getElementById('btnDoneConfig').addEventListener('click', () => document.getElementById('modalConfig').classList.add('hidden'));
+    });
+  </script>
+</body>
+</html>

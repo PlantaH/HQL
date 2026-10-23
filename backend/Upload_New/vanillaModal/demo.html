@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WHIM Classics & Supercars</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="vanillaModal.css">
+
+  </head>
+  <body>
+ 
+	<section class="demo">
+		<div class="demo__card">
+			<h2 class="demo__title">Click a button to trigger the modal</h2>
+			<button data-modal-trigger="sample-modal" class="demo__btn demo__btn--secondary">Sample Modal</button>
+			<button data-modal-trigger="sample-modal2" class="demo__btn demo__btn--secondary">Sample Modal 2</a>
+			<button data-modal-trigger="sample-modal3" class="demo__btn demo__btn--secondary">Full Screen Modal</button>
+		</div>
+	</section>
+	
+	<!-- Sample Modal -->
+	<div class="modal" data-modal-name="sample-modal">
+		<div class="modal__dialog">
+			<button class="modal__close" data-modal-dismiss>×</button>
+			<header class="modal__header">
+				<h3 class="modal__title">How does it work?</h3>
+			</header>
+			<div class="modal__content">
+				<p>Create a modal with a data attribute to name your modal e.g data-modal-name="modal-name". Then to trigger it via click from an element, simply add a this attribute data-modal-trigger="modal-name"</p>
+				<p>Dismissing modals, just add an attribute data-modal-dimiss to any element you want to use to dismiss the modal</p>
+				<p>To trigger a modal dynamically, run the ff: showModal('modal-name')</p>
+				<p>To hide the modal, just need to run: hideModal();</p>
+			</div>
+			<footer class="modal__footer">
+				<button  data-modal-dismiss class="demo__btn">Dismiss</button>
+			</footer>
+		</div>
+	</div>
+	
+	<!-- Sample Modal 2 -->
+	<div class="modal" data-modal-name="sample-modal2" data-modal-dismiss>
+		<div class="modal__dialog">
+			<header class="modal__header">
+				<h3 class="modal__title">Clicking the background will dismiss the modal</h3>
+			</header>
+			<div class="modal__content">
+				<p>Simply add the data attribute "data-modal-dismiss" in the parent in order to do so</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Full Screen Modal -->
+	<div class="modal modal--fullscreen" data-modal-name="sample-modal3">
+		<div class="modal__dialog">
+			<button class="modal__close" data-modal-dismiss>×</button>
+			<div class="modal__content">
+				<p>Add modifier modal--fullscreen in modal class</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias officiis voluptatum cumque suscipit, ea impedit laudantium explicabo veritatis magnam aliquid ad, eaque nemo quas laborum harum assumenda! Ea fugiat atque quo, hic voluptas enim quod natus. Reprehenderit quaerat beatae nisi expedita suscipit amet, eaque, vel consequatur dolor iste odit numquam aspernatur illo dicta facilis tempore aliquid deserunt temporibus facere ut. Provident, quam tempora accusantium vero asperiores accusamus impedit ratione repellat. Saepe ad, ab exercitationem porro deserunt ipsum iste laborum veritatis veniam ducimus neque ex harum quod adipisci, reprehenderit hic, dicta explicabo iusto excepturi. Pariatur unde dolores officia numquam, totam, quas.</p>
+			</div>
+		</div>
+	</div>
+	
+
+  	<script src="vanillaModal.js"></script>
+    
+  </body>
+</html>

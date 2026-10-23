@@ -1,0 +1,54 @@
+
+
+.typeahead.dropdown-menu {
+  margin: 0 0 12px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+  .typeahead.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    white-space: nowrap;
+  }
+    .typeahead.dropdown-menu>li.active>a {
+      cursor: pointer;
+      color: #fff;
+      background-color: #063053;
+    }
+    .typeahead.dropdown-menu>li>a:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: #063053;
+    }
+  .typeahead.dropdown-menu>li>span.error {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: rgb(233, 10, 10);
+    white-space: nowrap;
+  }
+  .typeahead.dropdown-menu>li>span.no-result {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: rgb(233, 10, 10);
+    white-space: nowrap;
+  }
+  .typeahead.typeahead-loading {
+    background-image: url(ac-ajax.gif);
+    background-position: center right;
+    background-repeat: no-repeat;
+  }

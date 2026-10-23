@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Rutina de Gimnasio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        .smooth-scroll {
+            -webkit-overflow-scrolling: touch;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .print-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col font-sans antialiased bg-slate-950 selection:bg-brand-500 selection:text-slate-950 pb-16 lg:pb-0">
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-40 backdrop-blur-lg bg-slate-950/90 border-b border-slate-800/80 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-brand-500/10 rounded-xl text-brand-400 border border-brand-500/20 shrink-0">
+                    <i data-lucide="dumbbell" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white flex items-center gap-1.5">
+                        FitForge <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30">PRO</span>
+                    </h1>
+                    <p class="text-[11px] text-slate-400 hidden sm:block">Generador y Creador de Rutinas de Gimnasio</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="window.print()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors border border-slate-700">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Imprimir / PDF</span>
+                </button>
+                <button onclick="resetRoutine()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold transition-colors border border-red-500/20">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Reiniciar</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- LEFT PANEL: Exercise Catalog -->
+        <section class="lg:col-span-7 flex flex-col gap-4 no-print order-2 lg:order-1">
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800/80 shadow-xl">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-5 h-5 text-brand-400 shrink-0"></i>
+                            Catálogo de Ejercicios
+                        </h2>
+                        <p class="text-xs text-slate-400">Selecciona ejercicios para añadirlos a tu plan diario</p>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="space-y-3">
+                    <div class="relative">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="search-input" placeholder="Buscar por nombre o palabra clave..." 
+                               oninput="filterExercises()"
+                               class="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="overflow-x-auto smooth-scroll -mx-1 px-1 py-1">
+                        <div id="category-pills" class="flex items-center gap-2 min-w-max">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercises Catalog List -->
+            <div id="exercise-catalog" class="space-y-6 overflow-y-auto max-h-[620px] pr-1 smooth-scroll">
+                <!-- Injected by JS -->
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: Routine Builder -->
+        <section class="lg:col-span-5 flex flex-col gap-4 order-1 lg:order-2">
+            
+            <!-- Day Selector -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800/80 shadow-xl no-print">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 sm:w-5 sm:h-5 text-brand-400"></i>
+                        Plan Semanal
+                    </h2>
+                    <span id="total-exercises-badge" class="text-xs bg-slate-800 text-slate-300 font-semibold px-2.5 py-1 rounded-full border border-slate-700">
+                        0 ejercicios
+                    </span>
+                </div>
+
+                <!-- Days Tabs -->
+                <div class="grid grid-cols-7 gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800" id="days-tabs">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Active Day List -->
+            <div class="flex-1 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 shadow-xl min-h-[380px] flex flex-col">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <span id="active-day-title" class="font-extrabold text-base sm:text-lg text-brand-400">Lunes</span>
+                        <span id="active-day-count" class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full border border-slate-700">0 ítems</span>
+                    </div>
+                    <button onclick="clearCurrentDay()" class="text-xs text-slate-400 hover:text-red-400 transition-colors flex items-center gap-1">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        <span>Vaciar día</span>
+                    </button>
+                </div>
+
+                <div id="routine-list" class="space-y-3 flex-1 overflow-y-auto max-h-[500px] pr-1 smooth-scroll">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Export / Backup Card -->
+            <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800/80 flex items-center justify-between no-print">
+                <div class="text-xs">
+                    <p class="font-semibold text-slate-200">Sincronizado</p>
+                    <p class="text-[11px] text-slate-400">Guardado automático en tu navegador</p>
+                </div>
+                <button onclick="exportRoutineJSON()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    Exportar JSON
+                </button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- PRINT VIEW OVERLAY -->
+    <div class="hidden print-only p-8">
+        <div class="text-center mb-6 border-b pb-4">
+            <h1 class="text-3xl font-extrabold text-slate-900">Mi Rutina de Gimnasio</h1>
+            <p class="text-slate-600">Planificación Semanal Personalizada</p>
+        </div>
+        <div id="print-routine-container" class="grid grid-cols-2 gap-6">
+            <!-- Printable content generated dynamically -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-out bg-slate-800 text-white px-4 py-3 rounded-xl border border-slate-700 shadow-2xl flex items-center gap-3">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400"></i>
+        <span id="toast-message" class="text-xs sm:text-sm font-medium">Notificación</span>
+    </div>
+
+    <script>
+        // SVG Fallback for exercises when internet images fail
+        const getSvgFallback = (title, iconName) => {
+            const encodedTitle = encodeURIComponent(title);
+            return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220" fill="%230f172a"><rect width="400" height="220" fill="%230f172a"/><circle cx="200" cy="90" r="40" fill="%231e293b"/><path d="M180 90 L220 90 M200 70 L200 110" stroke="%2322c55e" stroke-width="6" stroke-linecap="round"/><text x="50%" y="165" font-family="sans-serif" font-size="16" font-weight="bold" fill="%23f8fafc" text-anchor="middle">${encodedTitle}</text></svg>`;
+        };
+
+        // Complete database of exercises
+        const EXERCISES_DATABASE = [
+            // PECHO
+            {
+                id: 'p1',
+                name: 'Press de Banca Plano con Barra',
+                category: 'Pecho',
+                description: 'Ejercicio básico para ganar masa muscular y fuerza en el pectoral mayor. Mantén la espalda neutra y codos a 45°.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'p2',
+                name: 'Press Inclinado con Mancuernas',
+                category: 'Pecho',
+                description: 'Enfocado en la porción superior del pectoral. Inclinación del banco ideal entre 30° y 45°.',
+                image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'p3',
+                name: 'Aperturas en Polea Alta (Crossover)',
+                category: 'Pecho',
+                description: 'Permite tensión constante en todo el recorrido. Cruza ligeramente las manos al final para máxima contracción.',
+                image: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'p4',
+                name: 'Flexiones de Pecho (Push-ups)',
+                category: 'Pecho',
+                description: 'Clásico ejercicio de autocarga. Trabaja pecho, hombros y estabilizadores del core.',
+                image: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'p5',
+                name: 'Fondos en Paralelas para Pecho',
+                category: 'Pecho',
+                description: 'Inclina el torso hacia adelante para enfatizar el trabajo en la parte inferior del pecho y tríceps.',
+                image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&auto=format&fit=crop&q=80'
+            },
+
+            // ESPALDA
+            {
+                id: 'e1',
+                name: 'Dominadas con Agarre Prono',
+                category: 'Espalda',
+                description: 'Ejercicio estrella para amplitud dorsal. Eleva el pecho hacia la barra controlando la bajada.',
+                image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'e2',
+                name: 'Remo con Barra Horizontal',
+                category: 'Espalda',
+                description: 'Desarrolla el grosor de la espalda. Mantén la columna firme y lleva la barra hacia la zona del ombligo.',
+                image: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'e3',
+                name: 'Jalón al Pecho en Polea Alta',
+                category: 'Espalda',
+                description: 'Alternativa excelente a las dominadas. Tracciona la barra retrayendo las escápulas.',
+                image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'e4',
+                name: 'Remo Unilateral con Mancuerna',
+                category: 'Espalda',
+                description: 'Permite un gran rango de movimiento y corregir descompensaciones entre ambos lados del dorsal.',
+                image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'e5',
+                name: 'Peso Muerto Convencional',
+                category: 'Espalda',
+                description: 'Movimiento compuesto masivo que activa toda la cadena posterior, erectores espinales y glúteos.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=80'
+            },
+
+            // PIERNAS
+            {
+                id: 'pier1',
+                name: 'Sentadilla Trasera con Barra',
+                category: 'Piernas',
+                description: 'El pilar para el desarrollo global de piernas. Desciende rompiendo el paralelo con la cadera.',
+                image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'pier2',
+                name: 'Prensa de Piernas Inclina',
+                category: 'Piernas',
+                description: 'Excelente para mover cargas altas enfocado en cuádriceps sin sobrecargar la zona lumbar.',
+                image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'pier3',
+                name: 'Peso Muerto Rumano',
+                category: 'Piernas',
+                description: 'Bisagra de cadera con rodillas casi fijas. Máxima activación de isquiotibiales y glúteos.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'pier4',
+                name: 'Zancadas Búlgaras con Mancuernas',
+                category: 'Piernas',
+                description: 'Con el pie posterior elevado en banco, desciende la cadera para un trabajo unilateral intenso.',
+                image: 'https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'pier5',
+                name: 'Hip Thrust para Glúteos',
+                category: 'Piernas',
+                description: 'Apoyando la espalda en banco, extiende la cadera hacia el techo apretando los glúteos.',
+                image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=500&auto=format&fit=crop&q=80'
+            },
+
+            // HOMBROS
+            {
+                id: 'h1',
+                name: 'Press Militar de Pie con Barra',
+                category: 'Hombros',
+                description: 'Ejercicio de fuerza para hombros y estabilidad de zona media. Empuja la barra sobre la cabeza.',
+                image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'h2',
+                name: 'Elevaciones Laterales con Mancuernas',
+                category: 'Hombros',
+                description: 'Fundamental para conseguir anchura y deltoides laterales redondos. Eleva con ligero codo flexionado.',
+                image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'h3',
+                name: 'Face Pull en Polea con Cuerda',
+                category: 'Hombros',
+                description: 'Trabaja deltoides posterior, rotadores externos y salud postural del hombro.',
+                image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'h4',
+                name: 'Press Arnold Sentado',
+                category: 'Hombros',
+                description: 'Variante con rotación de muñeca que estimula las tres porciones del deltoides.',
+                image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&auto=format&fit=crop&q=80'
+            },
+
+            // BRAZOS
+            {
+                id: 'b1',
+                name: 'Curl de Bíceps con Barra Z',
+                category: 'Brazos',
+                description: 'Clásico para hipertrofia de bíceps. La barra EZ alivia la tensión articular en las muñecas.',
+                image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'b2',
+                name: 'Extensión de Tríceps en Polea Alta',
+                category: 'Brazos',
+                description: 'Aislamiento directo para tríceps. Manten los codos pegados a los costados del cuerpo.',
+                image: 'https://images.unsplash.com/photo-1530822847156-5df684618728?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'b3',
+                name: 'Curl Martillo con Mancuernas',
+                category: 'Brazos',
+                description: 'Agarre neutro enfocado en el músculo braquial y braquiorradial para antebrazos más gruesos.',
+                image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'b4',
+                name: 'Press Francés con Barra en Banco',
+                category: 'Brazos',
+                description: 'Aislamiento intenso de la cabeza larga y lateral del tríceps descendiendo hacia la frente.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=80'
+            },
+
+            // CORE
+            {
+                id: 'c1',
+                name: 'Plancha Isométrica (Plank)',
+                category: 'Core',
+                description: 'Fortalece la faja abdominal en bloque. Mantén glúteos e isquios activos sin arquear la zona lumbar.',
+                image: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'c2',
+                name: 'Elevación de Piernas Colgado',
+                category: 'Core',
+                description: 'Sujetándote de la barra, eleva las piernas con control activando la zona baja abdominal.',
+                image: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=500&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 'c3',
+                name: 'Rueda Abdominal (Ab Rollout)',
+                category: 'Core',
+                description: 'Ejercicio de anti-extensión avanzado para máxima tensión estructural del recto abdominal.',
+                image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&auto=format&fit=crop&q=80'
+            }
+        ];
+
+        const CATEGORY_META = {
+            'Pecho': { icon: '🏋️‍♂️', color: 'text-emerald-400' },
+            'Espalda': { icon: '🏋️‍♀️', color: 'text-blue-400' },
+            'Piernas': { icon: '🦵', color: 'text-purple-400' },
+            'Hombros': { icon: '🎯', color: 'text-amber-400' },
+            'Brazos': { icon: '💪', color: 'text-rose-400' },
+            'Core': { icon: '🧘', color: 'text-teal-400' }
+        };
+
+        const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+        const CATEGORIES = ['Todos', 'Pecho', 'Espalda', 'Piernas', 'Hombros', 'Brazos', 'Core'];
+
+        let activeDay = 'Lunes';
+        let activeCategory = 'Todos';
+        let searchQuery = '';
+        let expandedDescs = {}; // Track expanded descriptions
+
+        let routine = {};
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initRoutineState();
+            renderCategories();
+            renderDaysTabs();
+            renderExercises();
+            renderActiveDayRoutine();
+            updateTotalBadge();
+            lucide.createIcons();
+        });
+
+        function initRoutineState() {
+            const saved = localStorage.getItem('fitforge_routine_v2');
+            if (saved) {
+                try {
+                    routine = JSON.parse(saved);
+                } catch (e) {
+                    routine = {};
+                }
+            }
+            DAYS.forEach(day => {
+                if (!routine[day]) {
+                    routine[day] = [];
+                }
+            });
+        }
+
+        function saveRoutine() {
+            localStorage.setItem('fitforge_routine_v2', JSON.stringify(routine));
+            updateTotalBadge();
+            renderPrintView();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('category-pills');
+            container.innerHTML = CATEGORIES.map(cat => {
+                const isActive = cat === activeCategory;
+                const meta = CATEGORY_META[cat];
+                const prefix = meta ? meta.icon + ' ' : '';
+                return `
+                    <button onclick="setCategory('${cat}')" 
+                            class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                isActive 
+                                ? 'bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 ring-2 ring-brand-400' 
+                                : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
+                            }">
+                        <span>${prefix}${cat === 'Todos' ? 'Ver Todos' : cat}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategories();
+            renderExercises();
+        }
+
+        function filterExercises() {
+            const input = document.getElementById('search-input');
+            searchQuery = input.value.toLowerCase().trim();
+            renderExercises();
+        }
+
+        function toggleDesc(id) {
+            expandedDescs[id] = !expandedDescs[id];
+            renderExercises();
+        }
+
+        function renderExercises() {
+            const container = document.getElementById('exercise-catalog');
+
+            const filtered = EXERCISES_DATABASE.filter(ex => {
+                const matchesCat = activeCategory === 'Todos' || ex.category === activeCategory;
+                const matchesQuery = ex.name.toLowerCase().includes(searchQuery) || 
+                                     ex.description.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
+                        <i data-lucide="dumbbell" class="w-8 h-8 mx-auto mb-2 opacity-30"></i>
+                        <p class="text-xs sm:text-sm">No se encontraron ejercicios con este término.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            const renderCard = (ex) => {
+                const isExpanded = !!expandedDescs[ex.id];
+                const svgFallback = getSvgFallback(ex.name);
+
+                return `
+                    <div class="bg-slate-900/90 rounded-2xl border border-slate-800/90 overflow-hidden flex flex-col justify-between shadow-lg hover:border-slate-700 transition-all">
+                        <!-- Image Container with Aspect Ratio optimized for Mobile & Desktop -->
+                        <div class="relative w-full h-40 sm:h-44 bg-slate-950 overflow-hidden">
+                            <img src="${ex.image}" 
+                                 alt="${ex.name}"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='${svgFallback}';"
+                                 class="w-full h-full object-cover">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-950/85 text-brand-400 backdrop-blur-md border border-slate-800 shadow">
+                                ${CATEGORY_META[ex.category]?.icon || ''} ${ex.category}
+                            </span>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between gap-3">
+                            <div>
+                                <h4 class="font-bold text-sm sm:text-base text-slate-100 leading-snug">${ex.name}</h4>
+                                <div class="mt-1.5 text-xs text-slate-400 leading-relaxed">
+                                    <p class="${isExpanded ? '' : 'line-clamp-2'}">${ex.description}</p>
+                                    ${ex.description.length > 80 ? `
+                                        <button onclick="toggleDesc('${ex.id}')" class="text-[11px] text-brand-400 font-semibold hover:underline mt-1 inline-block">
+                                            ${isExpanded ? 'Ver menos' : 'Leer descripción completa...'}
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+
+                            <button onclick="addExerciseToActiveDay('${ex.id}')" 
+                                    class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-brand-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-slate-700 hover:border-brand-400 shadow-sm active:scale-98">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                <span>Añadir a ${activeDay}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // If "Todos" is selected, ALWAYS render section headers for each muscle group!
+            if (activeCategory === 'Todos') {
+                const categoriesInOrder = ['Pecho', 'Espalda', 'Piernas', 'Hombros', 'Brazos', 'Core'];
+                let htmlSections = '';
+
+                categoriesInOrder.forEach(cat => {
+                    const catExercises = filtered.filter(e => e.category === cat);
+                    if (catExercises.length > 0) {
+                        const meta = CATEGORY_META[cat];
+                        htmlSections += `
+                            <div class="space-y-3 mb-6">
+                                <!-- Group Header with explicit high-contrast styling -->
+                                <div class="flex items-center gap-2 pb-2 border-b border-slate-800 bg-slate-950/60 sticky top-0 z-10 py-1 backdrop-blur-sm">
+                                    <span class="text-xl sm:text-2xl">${meta.icon}</span>
+                                    <h3 class="text-lg sm:text-xl font-black text-white tracking-wide uppercase">${cat}</h3>
+                                    <span class="ml-auto text-xs font-bold bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full border border-slate-700">
+                                        ${catExercises.length} ${catExercises.length === 1 ? 'ejercicio' : 'ejercicios'}
+                                    </span>
+                                </div>
+
+                                <!-- Grid of exercises for this group -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                                    ${catExercises.map(renderCard).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = htmlSections;
+            } else {
+                // Specific single category grid
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        ${filtered.map(renderCard).join('')}
+                    </div>
+                `;
+            }
+
+            lucide.createIcons();
+        }
+
+        function renderDaysTabs() {
+            const container = document.getElementById('days-tabs');
+            container.innerHTML = DAYS.map(day => {
+                const isActive = day === activeDay;
+                const count = (routine[day] || []).length;
+                return `
+                    <button onclick="setActiveDay('${day}')" 
+                            class="flex flex-col items-center py-2 px-1 rounded-lg text-xs font-bold transition-all relative ${
+                                isActive 
+                                ? 'bg-brand-500 text-slate-950 shadow-md font-black' 
+                                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                            }">
+                        <span class="text-[11px] sm:text-xs">${day.substring(0, 3)}</span>
+                        ${count > 0 ? `<span class="w-1.5 h-1.5 rounded-full ${isActive ? 'bg-slate-950' : 'bg-brand-400'} mt-1"></span>` : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setActiveDay(day) {
+            activeDay = day;
+            document.getElementById('active-day-title').innerText = activeDay;
+            renderDaysTabs();
+            renderActiveDayRoutine();
+            renderExercises();
+        }
+
+        function addExerciseToActiveDay(exerciseId) {
+            const exData = EXERCISES_DATABASE.find(e => e.id === exerciseId);
+            if (!exData) return;
+
+            const newItem = {
+                instanceId: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+                exerciseId: exData.id,
+                sets: 3,
+                reps: '10-12',
+                weight: '15 kg'
+            };
+
+            routine[activeDay].push(newItem);
+            saveRoutine();
+            renderActiveDayRoutine();
+            renderDaysTabs();
+            showToast(`Agregado ${exData.name} a ${activeDay}`);
+        }
+
+        function removeExercise(instanceId) {
+            routine[activeDay] = routine[activeDay].filter(item => item.instanceId !== instanceId);
+            saveRoutine();
+            renderActiveDayRoutine();
+            renderDaysTabs();
+            showToast('Ejercicio eliminado');
+        }
+
+        function updateExerciseProp(instanceId, field, value) {
+            const item = routine[activeDay].find(i => i.instanceId === instanceId);
+            if (item) {
+                item[field] = value;
+                saveRoutine();
+            }
+        }
+
+        function moveExercise(instanceId, direction) {
+            const list = routine[activeDay];
+            const index = list.findIndex(i => i.instanceId === instanceId);
+            if (index === -1) return;
+
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= list.length) return;
+
+            const temp = list[index];
+            list[index] = list[newIndex];
+            list[newIndex] = temp;
+
+            saveRoutine();
+            renderActiveDayRoutine();
+        }
+
+        function clearCurrentDay() {
+            if (!routine[activeDay] || routine[activeDay].length === 0) return;
+            routine[activeDay] = [];
+            saveRoutine();
+            renderActiveDayRoutine();
+            renderDaysTabs();
+            showToast(`Día ${activeDay} vaciado`);
+        }
+
+        function resetRoutine() {
+            if (confirm('¿Deseas reiniciar toda la rutina semanal?')) {
+                DAYS.forEach(day => routine[day] = []);
+                saveRoutine();
+                renderActiveDayRoutine();
+                renderDaysTabs();
+                showToast('Rutina reiniciada');
+            }
+        }
+
+        function renderActiveDayRoutine() {
+            const container = document.getElementById('routine-list');
+            const items = routine[activeDay] || [];
+            
+            document.getElementById('active-day-count').innerText = `${items.length} ítems`;
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="h-60 flex flex-col items-center justify-center text-center p-5 border-2 border-dashed border-slate-800 rounded-2xl text-slate-500">
+                        <i data-lucide="plus-circle" class="w-8 h-8 mb-2 text-brand-500/50"></i>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-300">Día sin ejercicios asignados</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Presiona "Añadir a ${activeDay}" desde el catálogo.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = items.map((item, index) => {
+                const ex = EXERCISES_DATABASE.find(e => e.id === item.exerciseId) || {
+                    name: 'Ejercicio',
+                    category: 'General',
+                    image: ''
+                };
+
+                return `
+                    <div class="bg-slate-900 rounded-xl p-3 sm:p-3.5 border border-slate-800 shadow-md space-y-2.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-lg bg-brand-500/10 text-brand-400 border border-brand-500/20 text-xs font-black flex items-center justify-center shrink-0">
+                                    ${index + 1}
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-xs sm:text-sm text-slate-100 leading-tight">${ex.name}</h4>
+                                    <span class="text-[10px] text-slate-400">${ex.category}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-0.5">
+                                <button onclick="moveExercise('${item.instanceId}', -1)" ${index === 0 ? 'disabled class="opacity-20 cursor-not-allowed p-1 text-slate-500"' : 'class="p-1 hover:text-white text-slate-400"'}>
+                                    <i data-lucide="chevron-up" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="moveExercise('${item.instanceId}', 1)" ${index === items.length - 1 ? 'disabled class="opacity-20 cursor-not-allowed p-1 text-slate-500"' : 'class="p-1 hover:text-white text-slate-400"'}>
+                                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="removeExercise('${item.instanceId}')" class="p-1 text-slate-400 hover:text-red-400 transition-colors ml-1">
+                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Form Parameters -->
+                        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 mb-1">Series</label>
+                                <input type="number" min="1" max="20" value="${item.sets}" 
+                                       onchange="updateExerciseProp('${item.instanceId}', 'sets', parseInt(this.value) || 1)"
+                                       class="w-full px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-xs text-center font-semibold text-slate-100 focus:outline-none focus:border-brand-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 mb-1">Reps</label>
+                                <input type="text" value="${item.reps}" 
+                                       onchange="updateExerciseProp('${item.instanceId}', 'reps', this.value)"
+                                       placeholder="10-12"
+                                       class="w-full px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-xs text-center font-semibold text-slate-100 focus:outline-none focus:border-brand-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 mb-1">Carga (kg)</label>
+                                <input type="text" value="${item.weight || ''}" 
+                                       onchange="updateExerciseProp('${item.instanceId}', 'weight', this.value)"
+                                       placeholder="15 kg"
+                                       class="w-full px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg text-xs text-center font-semibold text-slate-100 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function updateTotalBadge() {
+            let total = 0;
+            DAYS.forEach(day => {
+                total += (routine[day] || []).length;
+            });
+            document.getElementById('total-exercises-badge').innerText = `${total} ejercicios`;
+        }
+
+        function exportRoutineJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(routine, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `rutina_gym_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('Archivo JSON descargado');
+        }
+
+        function renderPrintView() {
+            const container = document.getElementById('print-routine-container');
+            if (!container) return;
+
+            container.innerHTML = DAYS.map(day => {
+                const items = routine[day] || [];
+                if (items.length === 0) return '';
+
+                const listItemsHTML = items.map((item, idx) => {
+                    const ex = EXERCISES_DATABASE.find(e => e.id === item.exerciseId) || { name: 'Ejercicio' };
+                    return `
+                        <div class="py-1.5 border-b border-gray-200 flex justify-between items-center text-xs sm:text-sm">
+                            <span class="font-bold text-gray-800">${idx + 1}. ${ex.name}</span>
+                            <span class="text-xs text-gray-600 font-mono font-bold">
+                                ${item.sets} series × ${item.reps} reps ${item.weight ? `(${item.weight})` : ''}
+                            </span>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="print-card p-4 rounded-xl mb-4 border border-gray-300">
+                        <h3 class="font-bold text-base text-slate-900 border-b-2 border-slate-900 pb-1 mb-2">${day}</h3>
+                        <div>
+                            ${listItemsHTML}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2300);
+        }
+    </script>
+</body>
+</html>

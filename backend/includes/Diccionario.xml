@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Diccionario>
+		<nombre tipo="campos">
+		  <es>Nombre</es>
+		  <en>Name</en>
+		  <po>Nome</po>
+	  </nombre>
+  
+    <telefono tipo="campos">
+		  <es>Teléfono</es>
+		  <en>Telephone</en>
+		  <po>Telefone</po>
+	  </telefono>
+  
+    <mensaje tipo="campos">
+		  <es>Mensaje</es>
+		  <en>Comments</en>
+		  <po>Mensaje</po>
+	  </mensaje>
+  
+    <enviarmensaje tipo="campos">
+		  <es>Enviar mensaje</es>
+		  <en>Send message</en>
+		  <po>Enviar mensagem</po>
+	  </enviarmensaje>
+  
+    <formerror_nombrerequerido tipo="campos">
+		  <es>Por favor ingresa tu nombre y apellido</es>
+		  <en>Please enter your first and last name</en>
+		  <po>Por favor, digite seu primeiro e último nome</po>
+	  </formerror_nombrerequerido>	
+  
+    <formerror_nombreminimo tipo="campos">
+		  <es>El nombre debe tener al menos 3 caracteres</es>
+		  <en>The name must have at least 3 characters</en>
+		  <po>O nome deve ter pelo menos 3 caracteres</po>
+	  </formerror_nombreminimo>
+  
+    <formerror_telefonorequerido tipo="campos">
+		  <es>Por favor ingresa tu teléfono</es>
+		  <en>Please enter your phone number</en>
+		  <po>Por favor, digite seu telefone</po>
+	  </formerror_telefonorequerido>
+	  <formerror_telefonominimo tipo="campos">
+		  <es>El teléfono debe tener al menos 6 caracteres</es>
+		  <en>The name must have at least 6 characters</en>
+		  <po>The phone must have at least 6 characters</po>
+	  </formerror_telefonominimo>
+  
+    <formerror_emailrequerido tipo="campos">
+		  <es>Por favor ingresa tu dirección de e-mail</es>
+		  <en>Please enter your e-mail address</en>
+		  <po>Por favor insira o seu endereço de e-mail</po>
+	  </formerror_emailrequerido>
+	  <formerror_emailvalido tipo="campos">
+		  <es>Por favor ingrese un e-mail válido</es>
+		  <en>Please enter a valid e-mail</en>
+		  <po>Por favor insira um e-mail válido</po>
+	  </formerror_emailvalido>
+    <elemailnocoincideconlaconfirmacion tipo="campos">
+		  <es>El email no coincide con la confirmación</es>
+		  <en></en>
+		  <po></po>
+	  </elemailnocoincideconlaconfirmacion>
+    
+  
+    <formerror_contactoerror tipo="campos">
+		  <es>No se pudo enviar tu consulta, intentelo más tarde</es>
+		  <en>Your query could not be sent, try later</en>
+		  <po>Sua consulta não pôde ser enviada, tente mais tarde</po>
+	  </formerror_contactoerror>
+	  <formerror_contactook tipo="campos">
+		  <es>Gracias por contactarte con nosotros, te responderemos en breve!</es>
+		  <en>Thank you for contacting us, we will respond shortly!</en>
+		  <po>Obrigado por entrar em contato conosco, nós responderemos em breve!</po>
+	  </formerror_contactook>
+  
+    <mensajeacreditadinero tipo="default">
+		  <es>¡Acreditá dinero localmente[br]y pagá tus reservas del exterior!</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeacreditadinero>
+    
+    <como tipo="default">
+		  <es>¿Cómo?</es>
+		  <en></en>
+		  <po></po>
+	  </como>
+    
+    <mensajepagaservicios1 tipo="default">
+		  <es>PAGÁ SERVICIOS DE TERCEROS EN TU PAÍS</es>
+		  <en></en>
+		  <po></po>
+	  </mensajepagaservicios1>
+  
+    <mensajepagaservicios2 tipo="default">
+		  <es>TRANSFERINOS A NUESTRAS CUENTAS</es>
+		  <en></en>
+		  <po></po>
+	  </mensajepagaservicios2>
+    
+    <mensajepagaservicios3 tipo="default">
+		  <es>COMENZÁ A ABONAR TUS RESERVAS CON COSTOS MÍNIMOS!</es>
+		  <en></en>
+		  <po></po>
+	  </mensajepagaservicios3>
+    <registrate tipo="default">
+		  <es>REGISTRATE</es>
+		  <en></en>
+		  <po></po>
+	  </registrate>
+    <nuestrosservicios tipo="default">
+		  <es>Nuestros servicios</es>
+		  <en></en>
+		  <po></po>
+	  </nuestrosservicios>
+    <hotelreceptivo tipo="default">
+		  <es>Hotel / Receptivo</es>
+		  <en></en>
+		  <po></po>
+	  </hotelreceptivo>
+    <mensajehotelreceptivo tipo="default">
+		  <es>Podrás hacer un seguimiento de los pagos que deban realizarte tus clientes del exterior. Esos pagos se harán de manera local, por lo que el dinero se acreditará inmediatamente y, por el momento, sin costo para el receptor.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajehotelreceptivo>
+    <operador tipo="default">
+		  <es>Operador</es>
+		  <en></en>
+		  <po></po>
+	  </operador>
+    <mensajeoperador tipo="default">
+		  <es>Acreditá dinero pagando servicios de terceros en tu país. Úsalo para pagos a hoteles, o proveedores de servicios turísticos, en el exterior.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeoperador>
+  
+    <broker tipo="default">
+		  <es>Broker</es>
+		  <en></en>
+		  <po></po>
+	  </broker>
+    <mensajebroker tipo="default">
+		  <es>Podrás cobrar tus ventas evitando transferencias. Tus clientes pagan servicios de terceros localmente, ese dinero se transfiere a tu cuenta y con eso podrás pagar tus hoteles del exterior.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajebroker>
+    <costos tipo="default">
+		  <es>Costos</es>
+		  <en></en>
+		  <po></po>
+	  </costos>
+    <mensajecostos1 tipo="default">
+		  <es>Por pagos para terceros en el propio país acreditás un [strong]0,8%[/strong] adicional.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajecostos1>
+    <mensajecostos2 tipo="default">
+		  <es>Para requerimientos de pago en el exterior debitás [strong]1,6%[/strong] sobre el monto requerido.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajecostos2>
+    <mensajecostos3 tipo="default">
+		  <es>Para transferir dinero a cuentas propias se cobra el [strong]0,8%[/strong]. </es>
+		  <en></en>
+		  <po></po>
+	  </mensajecostos3>    
+    <sobrenosotros tipo="default">
+		  <es>Sobre nosotros</es>
+		  <en></en>
+		  <po></po>
+	  </sobrenosotros>  
+    <mensajesobrenosotros1 tipo="default">
+		  <es>Solipago SAS, luego de 13 años de experiencia en el mercado del turismo, lanza al mercado la nueva plataforma de pagos para la industria del turismo [strong][span class="color-red-page"]hotel[/span]ypago.com[/strong], que se suma al tradicional negocio de venta de hotelería vía integración XML.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajesobrenosotros1>
+    <mensajesobrenosotros2 tipo="default">
+		  <es>Nuestra principal virtud es el servicio personalizado que ofrecemos a cada uno de nuestros clientes, atendiendo cuidadosa y detalladamente las diferentes necesidades para cada uno de los mercados que trabajamos.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajesobrenosotros2>
+    <mensajesobrenosotros3 tipo="default">
+		  <es>Entendimos que no solamente debemos tener una buena oferta hotelera, con tarifas competitivas y una excelente atención, sino que también podemos facilitarles a las empresas la etapa más complicada del proceso de contratación de servicios: el pago.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajesobrenosotros3>
+    <mensajesobrenosotros4 tipo="default">
+		  <es>Para eso diseñamos nuestra propia plataforma de pagos, con el objetivo de evitar transferencias internacionales y el uso de tarjetas de crédito, con todos los riesgos y costos que conllevan. La plataforma tiene la posibilidad de adaptarse a las necesidades de los diferentes actores que forman parte del proceso de contratación de servicios turísticos (operadores mayoristas, hoteles, agencias receptivas y emisivas, brokers hoteleros, entre otros), pero siempre logrando un mismo fin: facilitar el pago, ahorrando al mismo tiempo importantes sumas de dinero.</es>
+		  <en></en>
+		  <po></po>
+	  </mensajesobrenosotros4>
+    <contactanos tipo="default">
+		  <es>CONTÁCTANOS</es>
+		  <en></en>
+		  <po></po>
+	  </contactanos>
+    <otrasviasdecontacto tipo="default">
+		  <es>Otras vías de contacto</es>
+		  <en></en>
+		  <po></po>
+	  </otrasviasdecontacto>
+    <paiseshabilitados tipo="default">
+		  <es>Países habilitados</es>
+		  <en></en>
+		  <po></po>
+	  </paiseshabilitados>
+    <proximoslanzamientos tipo="default">
+		  <es>Próximos lanzamientos</es>
+		  <en></en>
+		  <po></po>
+	  </proximoslanzamientos>
+    <usodelaplataforma tipo="default">
+		  <es>Uso de la plataforma</es>
+		  <en></en>
+		  <po></po>
+	  </usodelaplataforma>
+    <terminosycondiciones tipo="default">
+		  <es>Términos y condiciones</es>
+		  <en></en>
+		  <po></po>
+	  </terminosycondiciones>
+    <todoslosderechosreservados tipo="footer">
+		  <es>Todos los derechos reservados</es>
+		  <en></en>
+		  <po></po>
+	  </todoslosderechosreservados>
+    <datosbancarios tipo="footer">
+		  <es>Datos bancarios</es>
+		  <en></en>
+		  <po></po>
+	  </datosbancarios>
+    <cerrar tipo="footer">
+		  <es>Cerrar</es>
+		  <en></en>
+		  <po></po>
+	  </cerrar>
+    <operadordeturismoyserviciosempresarios tipo="footer">
+		  <es>Operador de Turismo y Servicios Empresarios</es>
+		  <en></en>
+		  <po></po>
+	  </operadordeturismoyserviciosempresarios>
+    <legajo tipo="footer">
+		  <es>Legajo</es>
+		  <en></en>
+		  <po></po>
+	  </legajo>
+    <servicios tipo="header">
+		  <es>SERVICIOS</es>
+		  <en></en>
+		  <po></po>
+	  </servicios>
+    <costosheader tipo="header">
+		  <es>COSTOS</es>
+		  <en></en>
+		  <po></po>
+	  </costosheader>
+    <nosotros tipo="header">
+		  <es>NOSOTROS</es>
+		  <en></en>
+		  <po></po>
+	  </nosotros>
+    <contacto tipo="header">
+		  <es>CONTACTO</es>
+		  <en></en>
+		  <po></po>
+	  </contacto>
+    <registronuevo tipo="header">
+		  <es>Registro Nuevo</es>
+		  <en></en>
+		  <po></po>
+	  </registronuevo>
+    <operador tipo="header">
+		  <es>Operador</es>
+		  <en></en>
+		  <po></po>
+	  </operador>
+    <menu tipo="header">
+		  <es>Menú</es>
+		  <en></en>
+		  <po></po>
+	  </menu>
+    <iniciarsesion tipo="header">
+		  <es>iniciar sesión</es>
+		  <en></en>
+		  <po></po>
+	  </iniciarsesion>
+    <loginhoteles tipo="header">
+		  <es>Login Hoteles</es>
+		  <en></en>
+		  <po></po>
+	  </loginhoteles>  
+    <loginoperadores tipo="header">
+		  <es>Login Operadores</es>
+		  <en></en>
+		  <po></po>
+	  </loginoperadores>
+    <registratelogin tipo="header">
+		  <es>Registrate</es>
+		  <en></en>
+		  <po></po>
+	  </registratelogin>
+    <accesohoteles tipo="loginhoteles">
+		  <es>Acceso hoteles</es>
+		  <en></en>
+		  <po></po>
+	  </accesohoteles>
+    <mailejemplo tipo="loginhoteles">
+		  <es>e-mail@ejemplo.com.ar</es>
+		  <en></en>
+		  <po></po>
+	  </mailejemplo>
+    <contrasena tipo="loginhoteles">
+		  <es>contraseña</es>
+		  <en></en>
+		  <po></po>
+	  </contrasena>
+    <mostrarcontrasena tipo="loginhoteles">
+		  <es>Mostrar contraseña</es>
+		  <en></en>
+		  <po></po>
+	  </mostrarcontrasena>
+    <entrar tipo="loginhoteles">
+		  <es>entrar</es>
+		  <en></en>
+		  <po></po>
+	  </entrar>
+    <ocultarcontrasena tipo="loginhoteles">
+		  <es>Ocultar contraseña</es>
+		  <en></en>
+		  <po></po>
+	  </ocultarcontrasena>
+    <olvidastetusdatos tipo="loginhoteles">
+		  <es>¿Olvidaste tus datos?</es>
+		  <en></en>
+		  <po></po>
+	  </olvidastetusdatos>
+    <ingresarcomooperador tipo="loginhoteles">
+		  <es>Ingresar como [strong]operador[/strong]</es>
+		  <en></en>
+		  <po></po>
+	  </ingresarcomooperador>
+    
+    <mensajeloginhoteles1 tipo="loginhoteles">
+		  <es>¡Acreditá dinero localmente[br]y pagá tus reservas del exterior!</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeloginhoteles1>
+    <mensajeloginhoteles2 tipo="default">
+		  <es>PAGÁ SERVICIOS DE TERCEROS EN TU PAÍS</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeloginhoteles2>
+  
+    <mensajeloginhoteles3 tipo="default">
+		  <es>TRANSFERINOS A NUESTRAS CUENTAS</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeloginhoteles3>
+    <mensajeloginhoteles4 tipo="default">
+		  <es>COMENZÁ A ABONAR TUS RESERVAS CON COSTOS MÍNIMOS!</es>
+		  <en></en>
+		  <po></po>
+	  </mensajeloginhoteles4>
+  
+    <registratecomohotel tipo="default">
+		  <es>REGISTRATE como hotel</es>
+		  <en></en>
+		  <po></po>
+	  </registratecomohotel>
+  
+    <accesoagencias tipo="default">
+		  <es>Acceso agencias</es>
+		  <en></en>
+		  <po></po>
+	  </accesoagencias>
+  
+    <ingresarcomohotel tipo="loginhoteles">
+		  <es>Ingresar con [strong]cuenta de hotel[/strong]</es>
+		  <en></en>
+		  <po></po>
+	  </ingresarcomohotel>
+    <registratecomooperador tipo="default">
+		  <es>REGISTRATE como operador</es>
+		  <en></en>
+		  <po></po>
+	  </registratecomooperador>
+    
+    <nombredelaempresa tipo="Registro">
+		  <es>Nombre de la empresa</es>
+		  <en></en>
+		  <po></po>
+	  </nombredelaempresa>
+    
+    <elnombredelaempresa tipo="Registro">
+		  <es>el nombre de la empresa</es>
+		  <en></en>
+		  <po></po>
+	  </elnombredelaempresa>
+  
+    <elnombredelaempresaesrequerido tipo="Registro">
+		  <es>El nombre de la empresa es requerido</es>
+		  <en></en>
+		  <po></po>
+	  </elnombredelaempresaesrequerido>
+    <razonsocial tipo="Registro">
+		  <es>Razón Social</es>
+		  <en></en>
+		  <po></po>
+	  </razonsocial>
+    <larazonsocial tipo="Registro">
+		  <es>la razón social</es>
+		  <en></en>
+		  <po></po>
+	  </larazonsocial>
+    <larazonsocialesrequerida tipo="Registro">
+		  <es>La razón social es requerida</es>
+		  <en></en>
+		  <po></po>
+	  </larazonsocialesrequerida>
+    <pais tipo="Registro">
+		  <es>País</es>
+		  <en></en>
+		  <po></po>
+	  </pais>
+    <nombredecontacto tipo="Registro">
+		  <es>Nombre de contacto</es>
+		  <en></en>
+		  <po></po>
+	  </nombredecontacto>
+    <elnombredecontacto tipo="Registro">
+		  <es>el nombre de contacto</es>
+		  <en></en>
+		  <po></po>
+	  </elnombredecontacto>
+    <elnombredecontactoesrequerido tipo="Registro">
+		  <es>el nombre de contacto es requerido</es>
+		  <en></en>
+		  <po></po>
+	  </elnombredecontactoesrequerido>
+    <eltelefono tipo="Registro">
+		  <es>el teléfono</es>
+		  <en></en>
+		  <po></po>
+	  </eltelefono>
+    <eltelefonoesrequerido tipo="Registro">
+		<es>el teléfono es requerido</es>
+		<en></en>
+		<po></po>
+	</eltelefonoesrequerido>
+    <serviciodemensajeria tipo="Registro">
+		<es>Servicio de mensajería</es>
+		<en></en>
+		<po></po>
+	</serviciodemensajeria>
+    <elserviciodemensajeria tipo="Registro">
+		<es>el servicio de mensajería</es>
+		<en></en>
+		<po></po>
+	</elserviciodemensajeria>
+    <elserviciodemensajeriaesrequerido tipo="Registro">
+		<es>El servicio de mensajería es requerido</es>
+		<en></en>
+		<po></po>
+	 </elserviciodemensajeriaesrequerido>
+    <datosdeconexion tipo="Registro">
+	    <es>Datos de conexión</es>
+	    <en></en>
+	    <po></po>
+	</datosdeconexion>
+    <losdatosparaconectarpormensajeria tipo="Registro">
+		<es>los datos para conectar por mensajería</es>
+		<en></en>
+		<po></po>
+	</losdatosparaconectarpormensajeria>
+    <losdatosdeconexionsonrequeridos tipo="Registro">
+		<es>Los datos de conexión son requeridos</es>
+		<en></en>
+		<po></po>
+	</losdatosdeconexionsonrequeridos>
+    
+    
+    
+  
+  
+  
+    
+    
+  
+  
+   
+  
+    
+    
+    
+   
+    
+    
+  
+    
+  
+  
+
+	
+</Diccionario>

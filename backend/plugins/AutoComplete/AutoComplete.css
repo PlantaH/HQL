@@ -1,0 +1,63 @@
+div.autosuggest {
+	position: absolute;
+	background-image: url(img/puntero.gif);
+	background-position: top;
+	background-repeat: no-repeat;
+	padding: 10px 0 0 0;
+	z-index:300;
+}
+div.divscroll {
+	border:1px solid #dfdfdf;
+}
+div.autosuggest ul {
+	list-style: none;
+	margin: 0;
+	padding:4px 0;
+	background:#fff;
+	display:block;
+}
+div.autosuggest ul li {
+	list-style: none;
+	color: #555;/*texto*/
+	padding: 0;
+	margin: 0 4px;
+	text-align: left;
+	border-bottom:1px solid #ECEEF4;
+}
+div.autosuggest ul li a {
+	color: #555;/*texto*/
+	display: block;
+	text-decoration: none;
+	background-color: transparent;
+	padding: 0;
+	width: 100%;
+}
+/*Seleccion*/
+div.autosuggest ul li a:hover
+div.autosuggest ul li.as_highlight a:hover,
+div.autosuggest ul li.as_highlight a {
+	color:#fff;
+	background-color:#8c8c8c;
+}
+/**/
+div.autosuggest ul li.as_warning {
+	font-weight: bold;
+	text-align: center;
+	color:#f90;/*sin resultados*/
+	border-bottom:none;
+}
+div.autosuggest ul em {
+	font-style: normal;
+	color:#379ABA;/*palabra filtrada*/
+}
+div.autosuggest ul li.as_highlight em { color:#ff9; }/*palabra filtrada : over*/
+div.autosuggest ul li a span small {
+	font-weight: normal;
+	color:#666;/*pais*/
+}
+div.autosuggest ul li.as_highlight a span small { color: #eee; }/*pais over*/
+div.autosuggest ul li a span {
+	display: block;
+	padding: 3px 6px;
+	font-weight: bold;
+}

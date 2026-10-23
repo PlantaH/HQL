@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mi Rutina de Gimnasio - PWA</title>
+    <!-- PWA Manifest & Meta Tags -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RutinaGym">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2964/2964514.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .collapsible-content { display: block !important; }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .transition-max-height { transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased pb-20 md:pb-6">
+
+    <!-- Banner Instalación PWA (Móvil) -->
+    <div id="pwa-install-banner" class="hidden no-print bg-indigo-600 text-white p-3 px-4 flex items-center justify-between shadow-lg sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <i data-lucide="download-cloud" class="w-6 h-6"></i>
+            <div>
+                <p class="font-bold text-sm">¡Instala la App!</p>
+                <p class="text-xs text-indigo-100">Accede sin conexión desde tu pantalla de inicio</p>
+            </div>
+        </div>
+        <button id="btn-install-app" class="bg-white text-indigo-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-indigo-50 transition">
+            Instalar
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-slate-800/90 border-b border-slate-700 sticky top-0 z-40 backdrop-blur-md no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-500/30">
+                    <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-white">Mi Rutina Gym</h1>
+                    <p class="text-xs text-slate-400">Creador Personalizado</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button onclick="exportRoutine()" class="p-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-200 transition text-xs flex items-center gap-1.5" title="Guardar copia JSON">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Exportar</span>
+                </button>
+                <button onclick="window.print()" class="p-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white transition text-xs flex items-center gap-1.5 shadow-md shadow-indigo-600/20" title="Imprimir o guardar PDF">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">PDF / Imprimir</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- SECCIÓN 1: CATÁLOGO DE EJERCICIOS (COLAPSABLE) -->
+        <section class="lg:col-span-7 flex flex-col space-y-4 no-print">
+            <div class="bg-slate-800 rounded-2xl border border-slate-700/60 shadow-xl overflow-hidden transition-all">
+                <!-- Encabezado de la Sección con Botón Colapsar -->
+                <div onclick="toggleSection('catalog-body', 'catalog-chevron')" class="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-700/30 transition select-none">
+                    <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-400">
+                        <i data-lucide="book-open" class="w-5 h-5"></i> Catálogo de Ejercicios
+                    </h2>
+                    <button class="p-1.5 rounded-lg bg-slate-700/50 text-slate-300 hover:bg-slate-700 transition">
+                        <i id="catalog-chevron" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-200"></i>
+                    </button>
+                </div>
+
+                <!-- Contenido Colapsable del Catálogo -->
+                <div id="catalog-body" class="p-4 pt-0 space-y-4 border-t border-slate-700/40">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3">
+                        <!-- Buscador -->
+                        <div class="relative w-full">
+                            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="search-input" oninput="renderExercises()" placeholder="Buscar ejercicio..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-1.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-200">
+                        </div>
+                    </div>
+
+                    <!-- Filtros por Grupo Muscular -->
+                    <div class="flex space-x-2 overflow-x-auto pb-2 hide-scrollbar" id="category-filters">
+                        <!-- Dinámico -->
+                    </div>
+
+                    <!-- Lista de Ejercicios -->
+                    <div id="exercise-list" class="space-y-4 max-h-[calc(100vh-320px)] overflow-y-auto pr-1">
+                        <!-- Se llena mediante JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PLAN SEMANAL (COLAPSABLE) -->
+        <section class="lg:col-span-5 flex flex-col space-y-4">
+            <div class="bg-slate-800 rounded-2xl border border-slate-700/60 shadow-xl overflow-hidden sticky top-20">
+                <!-- Encabezado del Plan Semanal con Botón Colapsar -->
+                <div onclick="toggleSection('plan-body', 'plan-chevron')" class="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-700/30 transition select-none">
+                    <div class="flex items-center gap-2">
+                        <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-400">
+                            <i data-lucide="calendar" class="w-5 h-5"></i> Plan Semanal
+                        </h2>
+                        <span id="exercise-count-badge" class="bg-indigo-950 text-indigo-300 text-xs px-2.5 py-0.5 rounded-full border border-indigo-800/50 font-medium">
+                            0 ejercicios
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="event.stopPropagation(); clearCurrentDay();" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 no-print mr-1">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Vaciar
+                        </button>
+                        <button class="p-1.5 rounded-lg bg-slate-700/50 text-slate-300 hover:bg-slate-700 transition">
+                            <i id="plan-chevron" data-lucide="chevron-up" class="w-5 h-5 transition-transform duration-200"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contenido Colapsable del Plan Semanal -->
+                <div id="plan-body" class="p-4 pt-0 border-t border-slate-700/40">
+                    <!-- Días de la Semana -->
+                    <div class="grid grid-cols-7 gap-1 bg-slate-900 p-1.5 rounded-xl border border-slate-700/50 my-3 no-print text-center">
+                        <button onclick="selectDay('Lunes')" id="day-btn-Lunes" class="py-2 text-xs font-semibold rounded-lg transition">Lun</button>
+                        <button onclick="selectDay('Martes')" id="day-btn-Martes" class="py-2 text-xs font-semibold rounded-lg transition">Mar</button>
+                        <button onclick="selectDay('Miércoles')" id="day-btn-Miércoles" class="py-2 text-xs font-semibold rounded-lg transition">Mié</button>
+                        <button onclick="selectDay('Jueves')" id="day-btn-Jueves" class="py-2 text-xs font-semibold rounded-lg transition">Jue</button>
+                        <button onclick="selectDay('Viernes')" id="day-btn-Viernes" class="py-2 text-xs font-semibold rounded-lg transition">Vie</button>
+                        <button onclick="selectDay('Sábado')" id="day-btn-Sábado" class="py-2 text-xs font-semibold rounded-lg transition">Sáb</button>
+                        <button onclick="selectDay('Domingo')" id="day-btn-Domingo" class="py-2 text-xs font-semibold rounded-lg transition">Dom</button>
+                    </div>
+
+                    <!-- Título Día Actual -->
+                    <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
+                        <h3 class="font-bold text-slate-200 text-md flex items-center gap-2" id="current-day-title">
+                            Rutina del Lunes
+                        </h3>
+                    </div>
+
+                    <!-- Ejercicios Asignados al Día -->
+                    <div id="routine-exercises-list" class="space-y-3 max-h-[calc(100vh-380px)] overflow-y-auto pr-1">
+                        <!-- Se llena con JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        // Registrar Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado con éxito', reg))
+                    .catch(err => console.log('Error registrando Service Worker', err));
+            });
+        }
+
+        // Manejo de Instalación PWA
+        let deferredPrompt;
+        const installBanner = document.getElementById('pwa-install-banner');
+        const installBtn = document.getElementById('btn-install-app');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.classList.remove('hidden');
+        });
+
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (!deferredPrompt) return;
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBanner.classList.add('hidden');
+                }
+                deferredPrompt = null;
+            });
+        }
+
+        // Función para Colapsar y Desplegar Secciones
+        function toggleSection(bodyId, chevronId) {
+            const body = document.getElementById(bodyId);
+            const chevron = document.getElementById(chevronId);
+            
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                chevron.classList.remove('rotate-180');
+            } else {
+                body.classList.add('hidden');
+                chevron.classList.add('rotate-180');
+            }
+        }
+
+        // Base de Datos de Ejercicios
+        const EXERCISES = [
+            { id: '1', name: 'Press de Banca Plano', category: 'Pecho', img: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80', desc: 'Acostado en banco plano, baja la barra al pecho con codos a 45° y empuja fuerte.' },
+            { id: '2', name: 'Press Inclinado con Mancuernas', category: 'Pecho', img: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80', desc: 'Banco inclinado a 30-45°. Enfocado en la porción superior del pectoral.' },
+            { id: '3', name: 'Aperturas en Polea Alta', category: 'Pecho', img: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80', desc: 'Excelente para tensión constante e hipertrofia del pectoral inferior y medio.' },
+            { id: '4', name: 'Flexiones de Brazo', category: 'Pecho', img: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=600&q=80', desc: 'Ejercicio calisténico para pectoral, tríceps y estabilización del core.' },
+            { id: '5', name: 'Dominadas Pronadas', category: 'Espalda', img: 'https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=600&q=80', desc: 'Agarre amplio. Desarrolla la amplitud del dorsal ancho y fuerza general.' },
+            { id: '6', name: 'Remo con Barra', category: 'Espalda', img: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=600&q=80', desc: 'Torso inclinado a 45°. Lleva la barra a la parte baja del abdomen marcando retracción.' },
+            { id: '7', name: 'Jalón al Pecho', category: 'Espalda', img: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80', desc: 'En máquina de polea alta, tracciona hacia el pecho manteniendo la espalda recta.' },
+            { id: '8', name: 'Sentadilla Trasera', category: 'Piernas', img: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80', desc: 'Barra sobre el trapecio. Baja rompiendo el paralelo manteniendo rodillas alineadas.' },
+            { id: '9', name: 'Prensa de Piernas 45°', category: 'Piernas', img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80', desc: 'Empuje controlado focalizado en cuádriceps y glúteos sin descolgar la cadera.' },
+            { id: '10', name: 'Peso Muerto Rumano', category: 'Piernas', img: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80', desc: 'Enfocado en isquiotibiales y glúteos con bisagra de cadera y rodillas semi-flectadas.' },
+            { id: '11', name: 'Press Militar con Barra', category: 'Hombros', img: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80', desc: 'Empuje vertical estricto sobre la cabeza para desarrollo del deltoides anterior.' },
+            { id: '12', name: 'Elevaciones Laterales', category: 'Hombros', img: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80', desc: 'Aislamiento lateral con mancuernas para conseguir anchura de hombros.' },
+            { id: '13', name: 'Curl de Bíceps con Barra', category: 'Brazos', img: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80', desc: 'Aislamiento de bíceps con codos pegados al cuerpo sin balanceos.' },
+            { id: '14', name: 'Extensiones de Tríceps Polea', category: 'Brazos', img: 'https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?auto=format&fit=crop&w=600&q=80', desc: 'Empuje hacia abajo aislando la cabeza lateral y medial del tríceps.' },
+            { id: '15', name: 'Plancha Abdominal', category: 'Core', img: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?auto=format&fit=crop&w=600&q=80', desc: 'Ejercicio isométrico fundamental para fortalecer el abdomen y la zona lumbar.' }
+        ];
+
+        const CATEGORIES = ['Todos', 'Pecho', 'Espalda', 'Piernas', 'Hombros', 'Brazos', 'Core'];
+        let activeCategory = 'Todos';
+        let activeDay = 'Lunes';
+        
+        // Estado de Rutinas por Día
+        let userRoutine = JSON.parse(localStorage.getItem('gym_pwa_routine')) || {
+            'Lunes': [], 'Martes': [], 'Miércoles': [], 'Jueves': [], 'Viernes': [], 'Sábado': [], 'Domingo': []
+        };
+
+        // Guardar
+        function saveRoutine() {
+            localStorage.setItem('gym_pwa_routine', JSON.stringify(userRoutine));
+            renderRoutine();
+        }
+
+        // Render Filtros
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = CATEGORIES.map(cat => `
+                <button onclick="setCategory('${cat}')" class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition ${activeCategory === cat ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-900/80 text-slate-400 hover:bg-slate-700'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategoryFilters();
+            renderExercises();
+        }
+
+        // Render Lista de Ejercicios
+        function renderExercises() {
+            const container = document.getElementById('exercise-list');
+            const search = document.getElementById('search-input').value.toLowerCase();
+
+            let filtered = EXERCISES.filter(ex => 
+                (activeCategory === 'Todos' || ex.category === activeCategory) &&
+                (ex.name.toLowerCase().includes(search) || ex.desc.toLowerCase().includes(search))
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">No se encontraron ejercicios.</p>`;
+                return;
+            }
+
+            // Agrupar por categoría si está en "Todos"
+            if (activeCategory === 'Todos' && !search) {
+                let html = '';
+                CATEGORIES.filter(c => c !== 'Todos').forEach(cat => {
+                    const group = filtered.filter(e => e.category === cat);
+                    if (group.length > 0) {
+                        html += `
+                            <div class="pt-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-2 px-1 border-b border-slate-700/50 pb-1">🏋️‍♂️ ${cat}</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    ${group.map(ex => getExerciseCardHTML(ex)).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        ${filtered.map(ex => getExerciseCardHTML(ex)).join('')}
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        function getExerciseCardHTML(ex) {
+            return `
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl overflow-hidden p-3 flex flex-col justify-between hover:border-slate-600 transition shadow-sm">
+                    <div class="flex gap-3">
+                        <img src="${ex.img}" alt="${ex.name}" class="w-16 h-16 rounded-lg object-cover bg-slate-900 shrink-0" onerror="this.src='https://via.placeholder.com/150?text=Gym'">
+                        <div class="flex-1 min-w-0">
+                            <span class="text-[10px] font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-800/40 px-1.5 py-0.5 rounded">${ex.category}</span>
+                            <h4 class="font-bold text-slate-200 text-sm truncate mt-1">${ex.name}</h4>
+                            <p class="text-xs text-slate-400 line-clamp-2 mt-0.5">${ex.desc}</p>
+                        </div>
+                    </div>
+                    <button onclick="addToDay('${ex.id}')" class="mt-3 w-full bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 font-semibold py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1">
+                        <i data-lucide="plus" class="w-3.5 h-3.5"></i> Agregar a ${activeDay}
+                    </button>
+                </div>
+            `;
+        }
+
+        // Selección de Día
+        function selectDay(day) {
+            activeDay = day;
+            ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].forEach(d => {
+                const btn = document.getElementById(`day-btn-${d}`);
+                if (d === day) {
+                    btn.className = "py-2 text-xs font-bold rounded-lg transition bg-indigo-600 text-white shadow-md";
+                } else {
+                    btn.className = "py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:bg-slate-800";
+                }
+            });
+            document.getElementById('current-day-title').innerText = `Rutina del ${day}`;
+            renderRoutine();
+            renderExercises();
+        }
+
+        function addToDay(exerciseId) {
+            const ex = EXERCISES.find(e => e.id === exerciseId);
+            if (!ex) return;
+            userRoutine[activeDay].push({
+                instanceId: Date.now().toString(),
+                id: ex.id,
+                name: ex.name,
+                category: ex.category,
+                sets: 4,
+                reps: '10-12',
+                weight: '15 kg'
+            });
+            saveRoutine();
+        }
+
+        function removeFromDay(instanceId) {
+            userRoutine[activeDay] = userRoutine[activeDay].filter(e => e.instanceId !== instanceId);
+            saveRoutine();
+        }
+
+        function updateItem(instanceId, field, value) {
+            const item = userRoutine[activeDay].find(e => e.instanceId === instanceId);
+            if (item) {
+                item[field] = value;
+                saveRoutine();
+            }
+        }
+
+        function clearCurrentDay() {
+            if (confirm(`¿Vaciar todos los ejercicios del ${activeDay}?`)) {
+                userRoutine[activeDay] = [];
+                saveRoutine();
+            }
+        }
+
+        function renderRoutine() {
+            const container = document.getElementById('routine-exercises-list');
+            const items = userRoutine[activeDay] || [];
+            document.getElementById('exercise-count-badge').innerText = `${items.length} ejercicios`;
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 border border-dashed border-slate-700/80 rounded-xl p-4">
+                        <i data-lucide="dumbbell" class="w-8 h-8 text-slate-600 mx-auto mb-2"></i>
+                        <p class="text-slate-400 text-xs font-medium">No hay ejercicios para el ${activeDay}.</p>
+                        <p class="text-slate-500 text-[11px] mt-1">Selecciona del catálogo para agregar.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = items.map((item, idx) => `
+                <div class="bg-slate-900/90 border border-slate-700/70 rounded-xl p-3 shadow-md space-y-2">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold bg-indigo-600/30 text-indigo-300 w-5 h-5 flex items-center justify-center rounded-full text-[10px]">${idx + 1}</span>
+                            <span class="font-bold text-slate-200 text-sm">${item.name}</span>
+                        </div>
+                        <button onclick="removeFromDay('${item.instanceId}')" class="text-slate-500 hover:text-rose-400 p-1 no-print">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 pt-1 text-xs">
+                        <div>
+                            <label class="text-[10px] text-slate-400 block mb-0.5">Series</label>
+                            <input type="number" value="${item.sets}" onchange="updateItem('${item.instanceId}', 'sets', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-slate-200 font-semibold focus:outline-none focus:border-indigo-500 text-center">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-400 block mb-0.5">Reps</label>
+                            <input type="text" value="${item.reps}" onchange="updateItem('${item.instanceId}', 'reps', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-slate-200 font-semibold focus:outline-none focus:border-indigo-500 text-center">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-400 block mb-0.5">Peso</label>
+                            <input type="text" value="${item.weight}" onchange="updateItem('${item.instanceId}', 'weight', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-slate-200 font-semibold focus:outline-none focus:border-indigo-500 text-center">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function exportRoutine() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userRoutine, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "mi_rutina_gimnasio.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        }
+
+        // Init App
+        renderCategoryFilters();
+        selectDay('Lunes');
+    </script>
+</body>
+</html>

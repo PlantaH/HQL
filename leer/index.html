@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lector de Códigos de Barras</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html5-qrcode Library -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        /* Personalizaciones para el visor de escaneo */
+        #reader {
+            width: 100%;
+            height: 100%;
+            border: none !important;
+            position: relative;
+            background: #000;
+        }
+
+        #reader video {
+            object-fit: cover !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0.75rem;
+        }
+
+        /* Ocultar elementos predeterminados que inserta html5-qrcode */
+        #reader__dashboard_section,
+        #reader__status_span,
+        #reader__header_message {
+            display: none !important;
+        }
+
+        /* Escáner Animación Láser */
+        @keyframes scanAnimation {
+            0% { top: 10%; opacity: 0.8; }
+            50% { top: 85%; opacity: 1; }
+            100% { top: 10%; opacity: 0.8; }
+        }
+
+        .scan-laser {
+            position: absolute;
+            height: 2px;
+            width: 80%;
+            left: 10%;
+            background: linear-gradient(90deg, transparent, #ef4444, #f87171, #ef4444, transparent);
+            box-shadow: 0 0 12px #ef4444, 0 0 4px #ef4444;
+            animation: scanAnimation 2.2s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        /* Overlay con bordes en las esquinas */
+        .scanner-corner {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-color: #3b82f6;
+            border-style: solid;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .corner-tl { top: 15%; left: 10%; border-width: 4px 0 0 4px; border-top-left-radius: 8px; }
+        .corner-tr { top: 15%; right: 10%; border-width: 4px 4px 0 0; border-top-right-radius: 8px; }
+        .corner-bl { bottom: 15%; left: 10%; border-width: 0 0 4px 4px; border-bottom-left-radius: 8px; }
+        .corner-br { bottom: 15%; right: 10%; border-width: 0 4px 4px 0; border-bottom-right-radius: 8px; }
+
+        /* Estilos de barra de desplazamiento personalizado */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Encabezado -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 sticky top-0 z-30 px-4 py-3 shadow-md">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 text-white p-2 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-barcode text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-white">Escáner Barcode</h1>
+                    <p class="text-xs text-slate-400">EAN, UPC, QR, CODE-128</p>
+                </div>
+            </div>
+            <!-- Estado Visual -->
+            <span id="statusBadge" class="text-xs px-2.5 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Detenido
+            </span>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-md w-full mx-auto p-4 flex flex-col gap-4 overflow-x-hidden">
+
+        <!-- Mensajes de Estado / Alertas -->
+        <div id="alertBox" class="hidden p-3 rounded-xl border text-sm flex items-start gap-2 animate-fade-in">
+            <i id="alertIcon" class="fa-solid fa-circle-info mt-0.5 text-base"></i>
+            <div id="alertText" class="flex-1"></div>
+            <button onclick="closeAlert()" class="text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Visor de Cámara y Overlay -->
+        <div class="relative bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-xl aspect-square flex flex-col items-center justify-center">
+            
+            <!-- Contenedor del Visor -->
+            <div id="reader" class="w-full h-full"></div>
+
+            <!-- Overlay Visual de Escaneo -->
+            <div id="scannerOverlay" class="absolute inset-0 pointer-events-none hidden">
+                <div class="scan-laser"></div>
+                <div class="scanner-corner corner-tl"></div>
+                <div class="scanner-corner corner-tr"></div>
+                <div class="scanner-corner corner-bl"></div>
+                <div class="scanner-corner corner-br"></div>
+                <!-- Sombra de enfoque -->
+                <div class="absolute inset-0 border-[32px] border-black/40 rounded-2xl"></div>
+            </div>
+
+            <!-- Pantalla Inactiva / Inicial -->
+            <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-800/95 z-20">
+                <div class="w-16 h-16 bg-blue-600/20 text-blue-400 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
+                    <i class="fa-solid fa-camera text-2xl"></i>
+                </div>
+                <h2 class="text-lg font-bold text-white mb-1">Cámara Inactiva</h2>
+                <p class="text-xs text-slate-400 mb-6">Inicia el escáner para comenzar a leer códigos de barras o QR en tiempo real.</p>
+                <button id="btnStart" onclick="startScanner()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 active:scale-95">
+                    <i class="fa-solid fa-play"></i> Iniciar Escáner
+                </button>
+            </div>
+        </div>
+
+        <!-- Barra de Controles de Cámara -->
+        <div class="grid grid-cols-3 gap-2">
+            <button id="btnToggleScanner" onclick="toggleScanner()" disabled class="bg-slate-800 border border-slate-700 text-slate-400 font-medium p-3 rounded-xl flex flex-col items-center justify-center gap-1 opacity-50 transition-all">
+                <i id="btnToggleIcon" class="fa-solid fa-power-off text-base"></i>
+                <span id="btnToggleText" class="text-xs">Encender</span>
+            </button>
+
+            <button id="btnSwitchCamera" onclick="switchCamera()" disabled class="bg-slate-800 border border-slate-700 text-slate-400 font-medium p-3 rounded-xl flex flex-col items-center justify-center gap-1 opacity-50 transition-all">
+                <i class="fa-solid fa-camera-rotate text-base"></i>
+                <span class="text-xs">Cambiar</span>
+            </button>
+
+            <button id="btnFlash" onclick="toggleFlash()" disabled class="bg-slate-800 border border-slate-700 text-slate-400 font-medium p-3 rounded-xl flex flex-col items-center justify-center gap-1 opacity-50 transition-all">
+                <i id="flashIcon" class="fa-solid fa-bolt text-base"></i>
+                <span id="flashText" class="text-xs">Flash Off</span>
+            </button>
+        </div>
+
+        <!-- Configuración de Sonido / Vibración rápida -->
+        <div class="flex items-center justify-between bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-xs text-slate-300">
+            <span class="font-medium flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-blue-400"></i> Feedback
+            </span>
+            <div class="flex items-center gap-4">
+                <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="checkbox" id="chkAudio" checked class="rounded bg-slate-700 border-slate-600 text-blue-600 focus:ring-0">
+                    <span>Sonido</span>
+                </label>
+                <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="checkbox" id="chkVibrate" checked class="rounded bg-slate-700 border-slate-600 text-blue-600 focus:ring-0">
+                    <span>Vibración</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Último Escaneo Detectado -->
+        <div id="lastResultCard" class="hidden bg-slate-800 border border-emerald-500/40 rounded-2xl p-4 shadow-lg animate-fade-in">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> Código Detectado
+                </span>
+                <span id="lastTime" class="text-[10px] text-slate-400">Ahora</span>
+            </div>
+            <div id="lastFormat" class="text-xs font-medium text-blue-400 mb-1">FORMATO</div>
+            <div id="lastText" class="text-base font-mono font-bold text-white break-all bg-slate-900/60 p-2.5 rounded-lg border border-slate-700/60 select-all mb-3">
+                -
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="copyLastCode()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-white text-xs font-medium py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-copy"></i> Copiar
+                </button>
+                <a id="btnSearch" href="#" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-all">
+                    <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i> <span id="searchText">Buscar</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Historial de Escaneos -->
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 flex-1 flex flex-col">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-sm text-white flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-blue-400"></i> Historial (<span id="historyCount">0</span>)
+                </h3>
+                <button onclick="clearHistory()" class="text-xs text-rose-400 hover:text-rose-300 font-medium flex items-center gap-1">
+                    <i class="fa-solid fa-trash-can"></i> Limpiar
+                </button>
+            </div>
+
+            <div id="historyList" class="space-y-2 overflow-y-auto max-h-56 pr-1 flex-1">
+                <!-- Estado vacío por defecto -->
+                <div id="emptyHistory" class="text-center py-8 text-slate-500 text-xs">
+                    <i class="fa-solid fa-inbox text-2xl mb-2 block opacity-40"></i>
+                    No hay códigos escaneados aún
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal / Notificación Toast de copiado -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-700 text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-2xl border border-slate-600 opacity-0 transition-opacity pointer-events-none z-50 flex items-center gap-2">
+        <i class="fa-solid fa-check text-emerald-400"></i> <span id="toastMsg">Copiado al portapapeles</span>
+    </div>
+
+    <!-- Script Principal JS -->
+    <script>
+        // Variables globales de estado
+        let html5QrcodeScanner = null;
+        let isScanning = false;
+        let currentCameraId = null;
+        let availableCameras = [];
+        let isFlashOn = false;
+        let history = JSON.parse(localStorage.getItem('barcode_history') || '[]');
+        let audioCtx = null;
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHistory();
+            initCameras();
+        });
+
+        // Configuración de Web Audio API para reproducir el pitido
+        function playBeep() {
+            if (!document.getElementById('chkAudio').checked) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1800, audioCtx.currentTime); // Frecuencia del pitido (Hz)
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime); // Volumen
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.12); // Duración de 120ms
+            } catch (e) {
+                console.warn('Audio Context error:', e);
+            }
+        }
+
+        // Feedback de Vibración
+        function triggerVibration() {
+            if (!document.getElementById('chkVibrate').checked) return;
+            if ('vibrate' in navigator) {
+                navigator.vibrate(150); // Vibrar 150ms
+            }
+        }
+
+        // Obtener la lista de cámaras disponibles
+        async function initCameras() {
+            try {
+                const devices = await Html5Qrcode.getCameras();
+                if (devices && devices.length > 0) {
+                    availableCameras = devices;
+                    // Preferir cámara trasera por defecto
+                    const backCam = devices.find(cam => cam.label.toLowerCase().includes('back') || cam.label.toLowerCase().includes('trasera') || cam.label.toLowerCase().includes('environment'));
+                    currentCameraId = backCam ? backCam.id : devices[0].id;
+                } else {
+                    showAlert('No se detectaron cámaras en este dispositivo.', 'error');
+                }
+            } catch (err) {
+                console.warn("Error al enumerar cámaras:", err);
+                // Si falla la enumeración por permisos, intentaremos pedir permisos al iniciar el escáner
+            }
+        }
+
+        // Iniciar el Lector
+        async function startScanner() {
+            if (isScanning) return;
+
+            showStatus('Iniciando...', 'amber');
+            closeAlert();
+
+            if (!html5QrcodeScanner) {
+                html5QrcodeScanner = new Html5Qrcode("reader");
+            }
+
+            // Opciones de configuración de escaneo
+            const config = {
+                fps: 15,
+                qrbox: (viewfinderWidth, viewfinderHeight) => {
+                    // Tamaño adaptativo según la pantalla
+                    const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+                    return {
+                        width: Math.floor(minEdge * 0.75),
+                        height: Math.floor(minEdge * 0.5) // Rectangular para códigos de barras
+                    };
+                },
+                aspectRatio: 1.0,
+                experimentalFeatures: {
+                    useBarCodeDetectorIfSupported: true
+                }
+            };
+
+            const cameraIdOrConfig = currentCameraId ? currentCameraId : { facingMode: "environment" };
+
+            try {
+                await html5QrcodeScanner.start(
+                    cameraIdOrConfig,
+                    config,
+                    onScanSuccess,
+                    onScanFailure
+                );
+
+                isScanning = true;
+                updateUIState(true);
+                showStatus('Escaneando', 'emerald');
+
+                // Si no teníamos cámaras enumeradas previamente
+                if (availableCameras.length === 0) {
+                    initCameras();
+                }
+
+            } catch (err) {
+                isScanning = false;
+                updateUIState(false);
+                showStatus('Error', 'rose');
+                
+                let errMsg = 'No se pudo acceder a la cámara.';
+                if (err?.toString().includes('NotAllowedError') || err?.name === 'NotAllowedError') {
+                    errMsg = 'Permiso de cámara denegado. Permite el acceso a la cámara en los ajustes de tu navegador.';
+                } else if (err?.toString().includes('NotFoundError')) {
+                    errMsg = 'No se encontró ninguna cámara disponible en el dispositivo.';
+                } else {
+                    errMsg = `Error al iniciar cámara: ${err.message || err}`;
+                }
+                showAlert(errMsg, 'error');
+            }
+        }
+
+        // Detener el Lector
+        async function stopScanner() {
+            if (!isScanning || !html5QrcodeScanner) return;
+
+            try {
+                await html5QrcodeScanner.stop();
+                isScanning = false;
+                isFlashOn = false;
+                updateFlashUI(false);
+                updateUIState(false);
+                showStatus('Detenido', 'amber');
+            } catch (err) {
+                console.error("Error al detener el escáner:", err);
+            }
+        }
+
+        // Alternar Encendido / Apagado
+        function toggleScanner() {
+            if (isScanning) {
+                stopScanner();
+            } else {
+                startScanner();
+            }
+        }
+
+        // Cambiar entre cámara frontal/trasera
+        async function switchCamera() {
+            if (availableCameras.length < 2) {
+                showAlert('No hay múltiples cámaras disponibles para cambiar.', 'info');
+                return;
+            }
+
+            const currentIndex = availableCameras.findIndex(c => c.id === currentCameraId);
+            const nextIndex = (currentIndex + 1) % availableCameras.length;
+            currentCameraId = availableCameras[nextIndex].id;
+
+            if (isScanning) {
+                await stopScanner();
+                await startScanner();
+                showToast(`Cámara cambiada: ${availableCameras[nextIndex].label || 'Cámara ' + (nextIndex + 1)}`);
+            }
+        }
+
+        // Alternar Linterna / Flash
+        async function toggleFlash() {
+            if (!isScanning || !html5QrcodeScanner) return;
+
+            try {
+                const capabilities = html5QrcodeScanner.getRunningTrackCapabilities();
+                if (!capabilities.torch) {
+                    showAlert('La linterna/flash no es soportada por esta cámara o dispositivo.', 'info');
+                    return;
+                }
+
+                isFlashOn = !isFlashOn;
+                await html5QrcodeScanner.applyVideoConstraints({
+                    advanced: [{ torch: isFlashOn }]
+                });
+
+                updateFlashUI(isFlashOn);
+            } catch (err) {
+                console.warn('Error al activar/desactivar flash:', err);
+                showAlert('No se pudo controlar la linterna.', 'info');
+            }
+        }
+
+        // Callback al detectar un código exitosamente
+        function onScanSuccess(decodedText, decodedResult) {
+            // Pitido y Vibración
+            playBeep();
+            triggerVibration();
+
+            const format = decodedResult?.result?.format?.formatName || 'DESCONOCIDO';
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const fullDate = new Date().toLocaleString();
+
+            // Actualizar vista del último escaneo
+            document.getElementById('lastResultCard').classList.remove('hidden');
+            document.getElementById('lastText').innerText = decodedText;
+            document.getElementById('lastFormat').innerText = `FORMATO: ${format}`;
+            document.getElementById('lastTime').innerText = timestamp;
+
+            // Configurar botón de búsqueda / enlace
+            const btnSearch = document.getElementById('btnSearch');
+            const searchText = document.getElementById('searchText');
+            const searchIcon = document.getElementById('searchIcon');
+
+            if (isValidUrl(decodedText)) {
+                btnSearch.href = decodedText;
+                searchText.innerText = "Abrir Enlace";
+                searchIcon.className = "fa-solid fa-arrow-up-right-from-square";
+            } else {
+                btnSearch.href = `https://www.google.com/search?q=${encodeURIComponent(decodedText)}`;
+                searchText.innerText = "Buscar Google";
+                searchIcon.className = "fa-solid fa-magnifying-glass";
+            }
+
+            // Guardar en el Historial (evitando duplicados inmediatos)
+            if (history.length === 0 || history[0].code !== decodedText) {
+                const item = {
+                    code: decodedText,
+                    format: format,
+                    date: fullDate,
+                    id: Date.now()
+                };
+                history.unshift(item);
+                if (history.length > 50) history.pop(); // Máximo 50 elementos
+                localStorage.setItem('barcode_history', JSON.stringify(history));
+                renderHistory();
+            }
+        }
+
+        // Callback silencioso para cuando no detecta en un frame
+        function onScanFailure(error) {
+            // Se ignora para no saturar la consola
+        }
+
+        // Copiar el último código detectado
+        function copyLastCode() {
+            const code = document.getElementById('lastText').innerText;
+            if (code && code !== '-') {
+                copyToClipboard(code);
+            }
+        }
+
+        // Copiar texto genérico al portapapeles
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Copiado al portapapeles");
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(text);
+                });
+            } else {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Copiado al portapapeles");
+            } catch (err) {
+                showAlert("No se pudo copiar el texto automáticamente", "error");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Renderizar Lista de Historial
+        function renderHistory() {
+            const listEl = document.getElementById('historyList');
+            const emptyEl = document.getElementById('emptyHistory');
+            const countEl = document.getElementById('historyCount');
+
+            countEl.innerText = history.length;
+
+            if (history.length === 0) {
+                emptyEl.classList.remove('hidden');
+                listEl.innerHTML = '';
+                listEl.appendChild(emptyEl);
+                return;
+            }
+
+            emptyEl.classList.add('hidden');
+            listEl.innerHTML = '';
+
+            history.forEach(item => {
+                const isUrl = isValidUrl(item.code);
+                const el = document.createElement('div');
+                el.className = "bg-slate-900/70 border border-slate-700/80 rounded-xl p-3 flex flex-col gap-1.5 transition-all hover:border-slate-600";
+                
+                el.innerHTML = `
+                    <div class="flex items-center justify-between text-[11px] text-slate-400">
+                        <span class="font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">${escapeHtml(item.format)}</span>
+                        <span>${escapeHtml(item.date)}</span>
+                    </div>
+                    <div class="font-mono text-sm font-semibold text-slate-100 break-all">${escapeHtml(item.code)}</div>
+                    <div class="flex items-center justify-end gap-2 mt-1">
+                        <button onclick="copyToClipboard('${escapeJsString(item.code)}')" class="text-xs text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700 transition-all flex items-center gap-1">
+                            <i class="fa-solid fa-copy text-[10px]"></i> Copiar
+                        </button>
+                        <a href="${isUrl ? escapeHtml(item.code) : 'https://www.google.com/search?q=' + encodeURIComponent(item.code)}" target="_blank" class="text-xs text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-lg border border-blue-500/20 transition-all flex items-center gap-1">
+                            <i class="fa-solid ${isUrl ? 'fa-arrow-up-right-from-square' : 'fa-magnifying-glass'} text-[10px]"></i> ${isUrl ? 'Abrir' : 'Buscar'}
+                        </a>
+                    </div>
+                `;
+                listEl.appendChild(el);
+            });
+        }
+
+        // Limpiar Historial
+        function clearHistory() {
+            if (history.length === 0) return;
+            history = [];
+            localStorage.removeItem('barcode_history');
+            renderHistory();
+            showToast("Historial borrado");
+        }
+
+        // Utilidad: Validar URL
+        function isValidUrl(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === "http:" || url.protocol === "https:";
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // Actualizar UI según estado del escáner
+        function updateUIState(active) {
+            const startScreen = document.getElementById('startScreen');
+            const overlay = document.getElementById('scannerOverlay');
+            const btnToggle = document.getElementById('btnToggleScanner');
+            const btnSwitch = document.getElementById('btnSwitchCamera');
+            const btnFlash = document.getElementById('btnFlash');
+            const btnToggleText = document.getElementById('btnToggleText');
+            const btnToggleIcon = document.getElementById('btnToggleIcon');
+
+            if (active) {
+                startScreen.classList.add('hidden');
+                overlay.classList.remove('hidden');
+
+                btnToggle.disabled = false;
+                btnToggle.classList.remove('opacity-50');
+                btnToggle.classList.add('bg-rose-500/20', 'text-rose-300', 'border-rose-500/30');
+                btnToggleText.innerText = 'Apagar';
+                btnToggleIcon.className = 'fa-solid fa-power-off text-rose-400';
+
+                btnSwitch.disabled = availableCameras.length < 2;
+                if (availableCameras.length >= 2) {
+                    btnSwitch.classList.remove('opacity-50');
+                    btnSwitch.classList.add('text-slate-200');
+                }
+
+                btnFlash.disabled = false;
+                btnFlash.classList.remove('opacity-50');
+                btnFlash.classList.add('text-slate-200');
+
+            } else {
+                startScreen.classList.remove('hidden');
+                overlay.classList.add('hidden');
+
+                btnToggle.disabled = false;
+                btnToggle.classList.remove('bg-rose-500/20', 'text-rose-300', 'border-rose-500/30');
+                btnToggle.classList.add('opacity-50');
+                btnToggleText.innerText = 'Encender';
+                btnToggleIcon.className = 'fa-solid fa-power-off';
+
+                btnSwitch.disabled = true;
+                btnSwitch.classList.add('opacity-50');
+
+                btnFlash.disabled = true;
+                btnFlash.classList.add('opacity-50');
+            }
+        }
+
+        // Actualizar UI del Flash
+        function updateFlashUI(active) {
+            const flashIcon = document.getElementById('flashIcon');
+            const flashText = document.getElementById('flashText');
+            const btnFlash = document.getElementById('btnFlash');
+
+            if (active) {
+                flashIcon.className = 'fa-solid fa-bolt text-amber-400';
+                flashText.innerText = 'Flash On';
+                btnFlash.classList.add('bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+            } else {
+                flashIcon.className = 'fa-solid fa-bolt text-slate-400';
+                flashText.innerText = 'Flash Off';
+                btnFlash.classList.remove('bg-amber-500/20', 'border-amber-500/40', 'text-amber-300');
+            }
+        }
+
+        // Cambiar Badge de Estado Visual
+        function showStatus(text, color) {
+            const badge = document.getElementById('statusBadge');
+            const colors = {
+                amber: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+                emerald: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+                rose: 'bg-rose-500/20 text-rose-300 border-rose-500/30'
+            };
+            const dotColors = {
+                amber: 'bg-amber-400',
+                emerald: 'bg-emerald-400',
+                rose: 'bg-rose-400'
+            };
+
+            badge.className = `text-xs px-2.5 py-1 rounded-full font-medium border flex items-center gap-1.5 ${colors[color] || colors.amber}`;
+            badge.innerHTML = `<span class="w-2 h-2 rounded-full ${dotColors[color]} ${color === 'emerald' ? 'animate-ping' : ''}"></span> ${text}`;
+        }
+
+        // Mostrar Alerta / Banner de mensaje
+        function showAlert(msg, type = 'info') {
+            const box = document.getElementById('alertBox');
+            const icon = document.getElementById('alertIcon');
+            const text = document.getElementById('alertText');
+
+            box.classList.remove('hidden', 'bg-rose-500/10', 'border-rose-500/30', 'text-rose-300', 'bg-blue-500/10', 'border-blue-500/30', 'text-blue-300');
+
+            if (type === 'error') {
+                box.classList.add('bg-rose-500/10', 'border-rose-500/30', 'text-rose-300');
+                icon.className = 'fa-solid fa-triangle-exclamation text-rose-400 mt-0.5 text-base';
+            } else {
+                box.classList.add('bg-blue-500/10', 'border-blue-500/30', 'text-blue-300');
+                icon.className = 'fa-solid fa-circle-info text-blue-400 mt-0.5 text-base';
+            }
+
+            text.innerText = msg;
+        }
+
+        function closeAlert() {
+            document.getElementById('alertBox').classList.add('hidden');
+        }
+
+        // Notificación flotante (Toast)
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2500);
+        }
+
+        // Sanitización para evitar XSS en el historial
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function escapeJsString(str) {
+            return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+    </script>
+</body>
+</html>

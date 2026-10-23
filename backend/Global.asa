@@ -1,0 +1,69 @@
+<script language="vbscript" runat="server">
+Sub Session_OnStart
+	session("ClienteID") = session.SessionID*-1	
+	Session.timeout = 60*4
+
+	session.LCID = 1033
+	session("SessionID") =  session.SessionID
+	 
+End Sub 
+
+Sub Session_OnEnd
+	 
+
+End sub
+
+
+Sub Application_OnStart     
+	 
+	 
+	Application("String") = "Provider=SQLOLEDB; Data Source=WIN-IFK26VFLCQ9; Initial Catalog=Conectta; User ID=Conectta; Password=Conectta1905"	
+	Application("String.Net") = "Data Source=WIN-IFK26VFLCQ9; Initial Catalog=Conectta; User ID=Conectta; Password=Conectta1905"
+	
+	Application("SiteSkin") = "skin-green"
+	Application("SiteLang") = "plugins/datatables/dataTables.spanish.lang.json"
+	
+	Application("SiteName") = "BACKEND"   
+	
+	Application("SenderName") = "Conectta"
+	Application("Sender") = "h@rss.com.ar"
+	
+	Application("AddRecipient") = "h@rss.com.ar"
+	Application("AddRecipientContact") = "h@rss.com.ar"
+	  
+	Application("Dominio") = "https://hql.com.ar/backend/"
+	Application("pathImagenes") = "https://hql.com.ar/backend/"  
+	Application("global_host") = "http://148.113.197.232"  
+	Application("MapPath") = Server.MapPath(".")  
+	 
+	Application("URL_BASE") = "https://hql.com.ar/backend/"
+	Application("SITE_NAME") = "BACKEND" 
+	'Carga Diccionario XML
+	'CargarDiccionario() 
+	
+	Application("RSS_ServerAddres") = ""
+	Application("RSS_Usuario") = ""
+	Application("RSS_Password") = ""
+	Application("RSS_Puerto") = ""
+	Application("RSS_SSL") = ""
+	
+	
+	Application("CDNpath") = "http://148.113.197.232/cdn"
+	Application("CDNpathAdmin") = Application("CDNpath") & "/admin/v5/"	
+	Application("PDFpath") = "http://148.113.197.232/pdf"
+	
+	 
+
+	Application("url_optimizar_jpg") = "https://compressjpeg.com/es/"
+	Application("url_optimizar_png") = "https://compresspng.com/es/" 
+	
+End sub 
+
+Function CargarDiccionario()
+	Set XMLdoc = Server.CreateObject("Microsoft.XMLDOM")
+	XMLdoc.async = false	
+	XMLdoc.load(Application("MapPath") & "\includes\diccionario.xml")	
+	Application("XMLDictionario") = XMLdoc.xml	
+End function
+</script>
+ 

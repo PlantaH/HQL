@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portero Eléctrico Inteligente</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        metal: {
+                            50: '#f6f8fa',
+                            100: '#eaeef2',
+                            200: '#d0d7de',
+                            300: '#afb8c1',
+                            400: '#8c959f',
+                            500: '#6e7781',
+                            600: '#57606a',
+                            700: '#424a53',
+                            800: '#32383e',
+                            900: '#24292f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para acabado metálico de portero eléctrico */
+        .intercom-panel {
+            background: linear-gradient(145deg, #2a2e35, #1e2126);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 
+                        inset 0 1px 1px rgba(255,255,255,0.1),
+                        inset 0 -2px 5px rgba(0,0,0,0.8);
+            border: 1px solid #3d444e;
+        }
+        
+        .bell-button {
+            background: linear-gradient(145deg, #333a42, #212529);
+            box-shadow: 3px 3px 6px #181b1e, -3px -3px 6px #3c434c;
+            transition: all 0.15s ease;
+        }
+
+        .bell-button:active, .bell-button.ringing {
+            background: linear-gradient(145deg, #1c1e22, #282d33);
+            box-shadow: inset 2px 2px 5px #121416, inset -2px -2px 5px #383f47;
+            transform: scale(0.97);
+        }
+
+        .speaker-grille {
+            background-image: radial-gradient(#111 20%, transparent 20%);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+        }
+
+        /* Scrollbar estilizada */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body class="h-full font-sans text-slate-100 flex flex-col justify-between items-center p-2 sm:p-4 md:p-6 select-none">
+
+    <!-- Header Principal -->
+    <header class="w-full max-w-lg mb-4 flex justify-between items-center px-2">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i class="fa-solid fa-building-user text-xl"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight text-white flex items-center gap-2">
+                    Edificio Central
+                    <span id="building-code" class="text-xs font-normal px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">Torre A</span>
+                </h1>
+                <p class="text-xs text-slate-400">Portero Eléctrico Digital v2.5</p>
+            </div>
+        </div>
+        
+        <!-- Botón Configuración 
+        <button onclick="toggleConfigModal(true)" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 transition-colors duration-200" title="Configurar Departamentos">
+            <i class="fa-solid fa-gear text-lg"></i>
+        </button>-->
+    </header>
+
+    <!-- Contenedor Principal del Portero Eléctrico -->
+    <main class="w-full max-w-lg intercom-panel rounded-3xl p-4 sm:p-6 flex flex-col gap-4 border border-slate-700/50 flex-1 max-h-[85vh] shadow-2xl relative overflow-hidden">
+        
+        <!-- Rejilla de Parlante Superior (Efecto Estético Portero Real) -->
+        <div class="flex justify-between items-center border-b border-slate-700/60 pb-3">
+            <div class="w-24 h-6 speaker-grille opacity-40 rounded"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span class="text-[10px] tracking-widest text-slate-400 font-semibold uppercase">En Línea</span>
+            </div>
+            <div class="w-24 h-6 speaker-grille opacity-40 rounded"></div>
+        </div>
+
+        <!-- Buscador y Filtros -->
+        <div class="space-y-2">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Buscar por piso (ej: 2) o depto (ej: 2B, PB)..." 
+                    class="w-full pl-10 pr-9 py-2.5 bg-slate-900/80 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/80 transition-colors"
+                    oninput="filterDepartments()"
+                >
+                <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Chips de Filtro por Piso -->
+            <div id="floor-chips" class="flex gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar scroll-smooth">
+                <!-- Generados dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Lista de Timbres / Departamentos -->
+        <div id="dept-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto pr-1 flex-1 py-1">
+            <!-- Los botones de los departamentos se cargarán dinámicamente aquí -->
+        </div>
+
+        <!-- Mensaje si no hay resultados -->
+        <div id="no-results" class="hidden flex-1 flex flex-col items-center justify-center py-8 text-center text-slate-500">
+            <i class="fa-solid fa-bell-slash text-3xl mb-2 opacity-50"></i>
+            <p class="text-sm">No se encontraron departamentos</p>
+        </div>
+
+        <!-- Indicador de pie -->
+        <div class="pt-2 border-t border-slate-700/50 flex justify-between items-center text-[11px] text-slate-400">
+            <span><i class="fa-regular fa-hand-pointer mr-1"></i> Toca un timbre para llamar</span>
+            <span id="total-count" class="font-medium bg-slate-800 px-2 py-0.5 rounded text-slate-300">0 deptos</span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-4 text-center text-xs text-slate-500">
+        <p>Sistema de Citofonía Virtual • Conexión directa a WhatsApp</p>
+    </footer>
+
+    <!-- MODAL 1: Enviar Mensaje de Visita (Al presionar un timbre) -->
+    <div id="ring-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200 opacity-0">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-5 shadow-2xl space-y-4 transform transition-transform duration-200 scale-95" id="ring-modal-card">
+            
+            <!-- Encabezado Modal -->
+            <div class="flex justify-between items-start border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                        <i class="fa-solid fa-bell text-xl animate-bounce"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">Tocando Timbre</span>
+                        <h2 id="modal-dept-title" class="text-xl font-bold text-white">Depto ---</h2>
+                    </div>
+                </div>
+                <button onclick="closeRingModal()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Formulario de Mensaje -->
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Nombre de quien visita (Opcional):</label>
+                    <input type="text" id="visitor-name" placeholder="Ej: Juan Pérez / Delivery PedidosYa" 
+                           class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Seleccionar mensaje rápido:</label>
+                    <div class="space-y-1.5" id="quick-messages">
+                        <button onclick="selectQuickMsg(this)" class="quick-msg-btn w-full text-left text-xs p-2.5 rounded-lg border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 font-medium hover:bg-emerald-500/20 transition-colors">
+                            👋 Hola! Estoy abajo en la puerta.
+                        </button>
+                        <button onclick="selectQuickMsg(this)" class="quick-msg-btn w-full text-left text-xs p-2.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-300 hover:bg-slate-800 transition-colors">
+                            📦 Hola, te traigo un paquete / delivery.
+                        </button>
+                        <button onclick="selectQuickMsg(this)" class="quick-msg-btn w-full text-left text-xs p-2.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-300 hover:bg-slate-800 transition-colors">
+                            🚗 Hola, ya llegué para buscarte.
+                        </button>
+                        <button onclick="selectQuickMsg(this)" class="quick-msg-btn w-full text-left text-xs p-2.5 rounded-lg border border-slate-700 bg-slate-800/60 text-slate-300 hover:bg-slate-800 transition-colors">
+                            🔧 Hola, soy el personal de mantenimiento/servicio.
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Personalizado opcional -->
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">O escribe un mensaje personalizado:</label>
+                    <textarea id="custom-message" rows="2" placeholder="Escribe algo específico..." 
+                              class="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white focus:outline-none focus:border-emerald-500"></textarea>
+                </div>
+            </div>
+
+            <!-- Acciones -->
+            <div class="pt-2 flex gap-2">
+                <button onclick="closeRingModal()" class="w-1/3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-xl text-xs transition-colors">
+                    Cancelar
+                </button>
+                <button onclick="sendWhatsAppNotification()" class="w-2/3 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/40 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Avisar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Panel de Configuración y Gestión de Deptos -->
+    <div id="config-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200 opacity-0">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl p-5 shadow-2xl flex flex-col max-h-[90vh]" id="config-modal-card">
+            
+            <!-- Header Modal Config -->
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-emerald-400"></i>
+                    <h2 class="text-lg font-bold text-white">Administración de Portero</h2>
+                </div>
+                <button onclick="toggleConfigModal(false)" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="overflow-y-auto space-y-5 pr-1 flex-1">
+                
+                <!-- Formulario Agregar / Editar -->
+                <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/80 space-y-3">
+                    <h3 id="form-config-title" class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Agregar Nuevo Departamento</h3>
+                    
+                    <input type="hidden" id="edit-dept-id" value="">
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Piso (ej: PB, 1, 2):</label>
+                            <input type="text" id="input-floor" placeholder="PB / 1 / 2" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white focus:border-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Depto / Letra (ej: A, 101):</label>
+                            <input type="text" id="input-number" placeholder="A / 101" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white focus:border-emerald-500 outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">Propietario / Nombre:</label>
+                            <input type="text" id="input-owner" placeholder="Ej: Familia Silva" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white focus:border-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-slate-400 mb-1">WhatsApp (con código país):</label>
+                            <input type="text" id="input-phone" placeholder="5491112345678" class="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white focus:border-emerald-500 outline-none">
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button onclick="saveDepartment()" class="flex-1 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs rounded-lg transition-colors">
+                            <i class="fa-solid fa-plus mr-1"></i> Guardar Departamento
+                        </button>
+                        <button id="cancel-edit-btn" onclick="resetConfigForm()" class="hidden py-2 px-3 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs rounded-lg">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabla / Lista de Deptos Existentes -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Departamentos Registrados</h3>
+                        <button onclick="resetToDefaults()" class="text-[11px] text-amber-400 hover:text-amber-300 underline">
+                            Restablecer Ejemplos
+                        </button>
+                    </div>
+
+                    <div class="space-y-1.5 max-h-56 overflow-y-auto pr-1" id="config-dept-list">
+                        <!-- Lista cargada por JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Cerrar -->
+            <div class="pt-4 border-t border-slate-800 mt-2">
+                <button onclick="toggleConfigModal(false)" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs rounded-xl">
+                    Listo / Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICACIÓN TOAST -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-4 py-2.5 rounded-xl border border-slate-700 shadow-xl text-xs flex items-center gap-2 transition-all duration-300 opacity-0 translate-y-10 pointer-events-none z-50">
+        <i id="toast-icon" class="fa-solid fa-circle-info text-emerald-400"></i>
+        <span id="toast-message">Notificación</span>
+    </div>
+
+    <!-- JAVASCRIPT DE LA APLICACIÓN -->
+    <script>
+        // --- 1. DATOS INICIALES POR DEFECTO ---
+        const DEFAULT_DEPARTMENTS = [
+            { id: '1', floor: 'PB', number: 'A', owner: 'cintia', phone: '5491159053325' },
+            { id: '2', floor: 'PB', number: 'B', owner: 'hernan', phone: '5491169309425' },
+            { id: '3', floor: '1', number: 'A', owner: 'NHZ', phone: '5491136028247' } 
+        ];
+
+        let departments = [];
+        let selectedDept = null;
+        let selectedQuickText = "Hola! Estoy abajo en la puerta.";
+        let currentFilterFloor = 'ALL';
+
+        // --- 2. SINTETIZADOR DE SONIDO (WEB AUDIO API) ---
+        // Simula el tono de timbre digital electrónico
+        function playChimeSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                
+                const ctx = new AudioContext();
+                
+                // Generar dos tonos armoniosos tipo portero (Ding-Dong / Beep digital)
+                const playTone = (freq, startTime, duration) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + startTime);
+                    
+                    gain.gain.setValueAtTime(0, ctx.currentTime + startTime);
+                    gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + startTime + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + startTime + duration);
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    
+                    osc.start(ctx.currentTime + startTime);
+                    osc.stop(ctx.currentTime + startTime + duration);
+                };
+
+                // Primer tono agudo
+                playTone(880, 0, 0.4); // A5
+                // Segundo tono más grave (Ding-Dong)
+                playTone(659.25, 0.25, 0.6); // E5
+            } catch (e) {
+                console.log("Audio no soportado o bloqueado por el navegador.");
+            }
+        }
+
+        // --- 3. INICIALIZACIÓN Y PERSISTENCIA ---
+        window.onload = function() {
+            loadDepartments();
+            renderChips();
+            renderGrid();
+        };
+
+        function loadDepartments() {
+            departments = [...DEFAULT_DEPARTMENTS];
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('intercom_departments', JSON.stringify(departments));
+        }
+
+        // --- 4. RENDERIZADO DE INTERFAZ ---
+        function renderChips() {
+            const container = document.getElementById('floor-chips');
+            
+            // Obtener pisos únicos
+            const floors = ['ALL', ...new Set(departments.map(d => d.floor))];
+            
+            container.innerHTML = floors.map(floor => {
+                const isSelected = currentFilterFloor === floor;
+                const label = floor === 'ALL' ? 'Todos' : `Piso ${floor}`;
+                
+                return `
+                    <button 
+                        onclick="filterByFloor('${floor}')"
+                        class="px-3 py-1 rounded-full whitespace-nowrap transition-colors duration-150 border ${
+                            isSelected 
+                            ? 'bg-emerald-500 border-emerald-400 text-slate-950 font-semibold' 
+                            : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700'
+                        }">
+                        ${label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function filterByFloor(floor) {
+            currentFilterFloor = floor;
+            renderChips();
+            filterDepartments();
+        }
+
+        function renderGrid(filteredList = null) {
+            const grid = document.getElementById('dept-grid');
+            const noResults = document.getElementById('no-results');
+            const countLabel = document.getElementById('total-count');
+
+            const listToRender = filteredList || departments;
+            countLabel.textContent = `${listToRender.length} depto${listToRender.length !== 1 ? 's' : ''}`;
+
+            if (listToRender.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+
+            grid.innerHTML = listToRender.map(dept => {
+                return `
+                    <button 
+                        onclick="triggerRing('${dept.id}')"
+                        id="btn-dept-${dept.id}"
+                        class="bell-button group flex items-center justify-between p-3.5 rounded-2xl border border-slate-700/70 text-left hover:border-emerald-500/50 transition-all cursor-pointer">
+                        
+                        <div class="flex items-center gap-3">
+                            <!-- Indicador / Placa de Piso -->
+                            <div class="w-11 h-11 rounded-xl bg-slate-900/90 border border-slate-700 flex flex-col items-center justify-center text-emerald-400 shadow-inner group-hover:border-emerald-500/40 transition-colors">
+                                <span class="text-[10px] uppercase font-bold text-slate-500 leading-none">PISO</span>
+                                <span class="text-sm font-extrabold leading-tight text-white">${dept.floor}</span>
+                            </div>
+
+                            <!-- Información Departamento -->
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-base font-bold text-slate-100">Depto ${dept.number}</span>
+                                </div>
+                                <p class="text-xs text-slate-400 truncate max-w-[130px] sm:max-w-[150px]">
+                                    ${dept.owner || 'Residente'}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Botón Campana / Acción -->
+                        <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-emerald-400 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-all">
+                            <i class="fa-solid fa-bell text-sm"></i>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function filterDepartments() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-search');
+            
+            clearBtn.classList.toggle('hidden', query === '');
+
+            const filtered = departments.filter(dept => {
+                const matchFloorFilter = (currentFilterFloor === 'ALL' || dept.floor.toString() === currentFilterFloor);
+                const fullDeptStr = `${dept.floor} ${dept.number}`.toLowerCase();
+                const ownerStr = (dept.owner || '').toLowerCase();
+                
+                const matchQuery = fullDeptStr.includes(query) || 
+                                   dept.floor.toLowerCase().includes(query) || 
+                                   dept.number.toLowerCase().includes(query) || 
+                                   ownerStr.includes(query);
+
+                return matchFloorFilter && matchQuery;
+            });
+
+            renderGrid(filtered);
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            filterDepartments();
+        }
+
+        // --- 5. INTERACCIÓN Y WHATSAPP ---
+        function triggerRing(deptId) {
+            selectedDept = departments.find(d => d.id === deptId);
+            if (!selectedDept) return;
+
+            // Reproducir sonido de timbre
+            playChimeSound();
+
+            // Animación en el botón presionado
+            const btn = document.getElementById(`btn-dept-${deptId}`);
+            if (btn) {
+                btn.classList.add('ringing');
+                setTimeout(() => btn.classList.remove('ringing'), 400);
+            }
+
+            // Configurar modal
+            document.getElementById('modal-dept-title').textContent = `Piso ${selectedDept.floor} - Depto ${selectedDept.number}`;
+            document.getElementById('visitor-name').value = '';
+            document.getElementById('custom-message').value = '';
+
+            // Mostrar modal
+            openRingModal();
+        }
+
+        function selectQuickMsg(buttonElement) {
+            // Desmarcar anteriores
+            document.querySelectorAll('.quick-msg-btn').forEach(btn => {
+                btn.classList.remove('border-emerald-500/50', 'bg-emerald-500/10', 'text-emerald-300', 'font-medium');
+                btn.classList.add('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+            });
+
+            // Marcar actual
+            buttonElement.classList.remove('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
+            buttonElement.classList.add('border-emerald-500/50', 'bg-emerald-500/10', 'text-emerald-300', 'font-medium');
+
+            selectedQuickText = buttonElement.innerText.trim();
+        }
+
+        function sendWhatsAppNotification() {
+            if (!selectedDept) return;
+
+            const phone = selectedDept.phone ? selectedDept.phone.replace(/[^0-9]/g, '') : '';
+            if (!phone) {
+                showToast('Este departamento no tiene un número configurado', 'error');
+                return;
+            }
+
+            const visitorName = document.getElementById('visitor-name').value.trim();
+            const customMsg = document.getElementById('custom-message').value.trim();
+
+            let messageBody = "";
+
+            if (customMsg) {
+                messageBody = customMsg;
+            } else {
+                messageBody = selectedQuickText;
+            }
+
+            // Formatear mensaje final para WhatsApp
+            let finalMessage = `🔔 *TIMBRE DE ENTRADA*\n`;
+            finalMessage += `*Depto:* ${selectedDept.floor} "${selectedDept.number}"\n`;
+            if (visitorName) {
+                finalMessage += `*Visita:* ${visitorName}\n`;
+            }
+            finalMessage += `\n💬 ${messageBody}`;
+
+            const encodedMessage = encodeURIComponent(finalMessage);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+            // Abrir WhatsApp en pestaña nueva
+            window.open(whatsappUrl, '_blank');
+
+            closeRingModal();
+            showToast(`Avisando a Depto ${selectedDept.number}...`, 'success');
+        }
+
+        // Control de visibilidad del modal de timbre
+        function openRingModal() {
+            const modal = document.getElementById('ring-modal');
+            const card = document.getElementById('ring-modal-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeRingModal() {
+            const modal = document.getElementById('ring-modal');
+            const card = document.getElementById('ring-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // --- 6. PANEL DE ADMINISTRACIÓN Y CONFIGURACIÓN ---
+        function toggleConfigModal(show) {
+            const modal = document.getElementById('config-modal');
+            const card = document.getElementById('config-modal-card');
+
+            if (show) {
+                renderConfigList();
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    card.classList.remove('scale-95');
+                    card.classList.add('scale-100');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                card.classList.remove('scale-100');
+                card.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    resetConfigForm();
+                }, 200);
+            }
+        }
+
+        function renderConfigList() {
+            const container = document.getElementById('config-dept-list');
+            
+            if (departments.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">No hay departamentos agregados</p>`;
+                return;
+            }
+
+            container.innerHTML = departments.map(d => `
+                <div class="flex items-center justify-between p-2.5 bg-slate-800/80 rounded-lg border border-slate-700/60">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-emerald-400">Piso ${d.floor} - ${d.number}</span>
+                            <span class="text-[11px] text-slate-300 font-medium">${d.owner || 'Sin nombre'}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400"><i class="fa-brands fa-whatsapp text-emerald-500"></i> ${d.phone || 'Sin WhatsApp'}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button onclick="editDepartment('${d.id}')" class="p-1.5 text-slate-400 hover:text-amber-400 text-xs">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button onclick="deleteDepartment('${d.id}')" class="p-1.5 text-slate-400 hover:text-rose-400 text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveDepartment() {
+            const floor = document.getElementById('input-floor').value.trim().toUpperCase();
+            const number = document.getElementById('input-number').value.trim().toUpperCase();
+            const owner = document.getElementById('input-owner').value.trim();
+            const phone = document.getElementById('input-phone').value.trim();
+            const editId = document.getElementById('edit-dept-id').value;
+
+            if (!floor || !number) {
+                showToast('Por favor completa Piso y Número/Letra', 'error');
+                return;
+            }
+
+            if (editId) {
+                // Modificar existente
+                const index = departments.findIndex(d => d.id === editId);
+                if (index !== -1) {
+                    departments[index] = { id: editId, floor, number, owner, phone };
+                    showToast('Departamento actualizado', 'success');
+                }
+            } else {
+                // Crear nuevo
+                const newDept = {
+                    id: Date.now().toString(),
+                    floor,
+                    number,
+                    owner,
+                    phone
+                };
+                departments.push(newDept);
+                showToast('Nuevo departamento agregado', 'success');
+            }
+
+            // Ordenar por piso
+            departments.sort((a, b) => a.floor.localeCompare(b.floor, undefined, { numeric: true }));
+
+            saveToLocalStorage();
+            resetConfigForm();
+            renderConfigList();
+            renderChips();
+            renderGrid();
+        }
+
+        function editDepartment(id) {
+            const dept = departments.find(d => d.id === id);
+            if (!dept) return;
+
+            document.getElementById('edit-dept-id').value = dept.id;
+            document.getElementById('input-floor').value = dept.floor;
+            document.getElementById('input-number').value = dept.number;
+            document.getElementById('input-owner').value = dept.owner || '';
+            document.getElementById('input-phone').value = dept.phone || '';
+
+            document.getElementById('form-config-title').textContent = 'Editar Departamento';
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+        }
+
+        function resetConfigForm() {
+            document.getElementById('edit-dept-id').value = '';
+            document.getElementById('input-floor').value = '';
+            document.getElementById('input-number').value = '';
+            document.getElementById('input-owner').value = '';
+            document.getElementById('input-phone').value = '';
+
+            document.getElementById('form-config-title').textContent = 'Agregar Nuevo Departamento';
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteDepartment(id) {
+            departments = departments.filter(d => d.id !== id);
+            saveToLocalStorage();
+            renderConfigList();
+            renderChips();
+            renderGrid();
+            showToast('Departamento eliminado', 'info');
+        }
+
+        function resetToDefaults() {
+            departments = [...DEFAULT_DEPARTMENTS];
+            saveToLocalStorage();
+            renderConfigList();
+            renderChips();
+            renderGrid();
+            showToast('Lista restaurada a valores por defecto', 'info');
+        }
+
+        // --- 7. TOAST NOTIFICACIONES ---
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            } else if (type === 'error') {
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-info text-sky-400';
+            }
+
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
