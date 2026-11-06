@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lector de Código QR con Alerta de ID</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .controls {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .btn-restart {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-restart:hover {
+      background-color: #0056b3;
+    }
+
+    #reader {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 6px;
+      color: #2e7d32;
+      font-weight: bold;
+      word-break: break-all;
+      display: none;
+    }
+  </style>
+
+  <!-- Librería para lectura de QR desde la cámara -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Lector de Asistencia QR</h2>
+
+    <div class="controls">
+      <label for="camera-select">Seleccionar Cámara:</label>
+      <select id="camera-select">
+        <option value="">Cargando cámaras...</option>
+      </select>
+      <button class="btn-restart" onclick="restartCurrentCamera()">Reiniciar Transmisión de Cámara</button>
+    </div>
+
+    <!-- Visualizador de la cámara -->
+    <div id="reader"></div>
+
+    <!-- Contenedor del resultado -->
+    <div id="result">
+      <span>Última lectura:</span>
+      <p id="qr-text" style="margin: 5px 0 0 0;"></p>
+    </div>
+  </div>
+
+  <script>
+    let html5QrCode;
+    let isProcessing = false; // Control de bloqueo para evitar múltiples alertas seguidas
+    const cameraSelect = document.getElementById('camera-select');
+    const resultDiv = document.getElementById('result');
+    const qrText = document.getElementById('qr-text');
+
+    function onScanSuccess(decodedText, decodedResult) {
+      if (isProcessing) return; // Si ya se está mostrando un alert, ignorar nuevas lecturas
+      isProcessing = true;
+
+      qrText.innerText = decodedText;
+      resultDiv.style.display = 'block';
+
+      try {
+        // Intentar parsear el contenido escaneado como URL
+        const urlObj = new URL(decodedText);
+        const idParam = urlObj.searchParams.get("id");
+
+        if (idParam !== null) {
+          alert(`ID capturado: ${idParam}`);
+        } else {
+          alert(`QR leído correctamente, pero no contiene el parámetro "id".\nContenido: ${decodedText}`);
+        }
+      } catch (e) {
+        // En caso de que el QR leído no sea una URL válida
+        alert(`Texto escaneado: ${decodedText}`);
+      }
+
+      // Permite volver a escanear después de cerrar el alert
+      setTimeout(() => {
+        isProcessing = false;
+      }, 1000);
+    }
+
+    function startScanning(cameraId) {
+      if (html5QrCode) {
+        html5QrCode.stop().then(() => {
+          initScanner(cameraId);
+        }).catch(err => {
+          initScanner(cameraId);
+        });
+      } else {
+        initScanner(cameraId);
+      }
+    }
+
+    function initScanner(cameraId) {
+      html5QrCode = new Html5Qrcode("reader");
+      
+      const config = {
+        fps: 20,
+        qrbox: { width: 220, height: 220 }
+      };
+
+      html5QrCode.start(
+        cameraId, 
+        config, 
+        onScanSuccess, 
+        (errorMessage) => {
+          // Escaneo continuo
+        }
+      ).catch(err => {
+        console.error("Error al iniciar cámara:", err);
+      });
+    }
+
+    function restartCurrentCamera() {
+      const selectedCameraId = cameraSelect.value;
+      if (selectedCameraId) {
+        startScanning(selectedCameraId);
+      }
+    }
+
+    // Inicialización y carga de cámaras
+    Html5Qrcode.getCameras().then(devices => {
+      if (devices && devices.length) {
+        cameraSelect.innerHTML = '';
+        devices.forEach((device, index) => {
+          const option = document.createElement('option');
+          option.value = device.id;
+          option.text = device.label || `Cámara ${index + 1}`;
+          cameraSelect.appendChild(option);
+        });
+
+        startScanning(devices[0].id);
+
+        cameraSelect.addEventListener('change', (e) => {
+          if (e.target.value) {
+            startScanning(e.target.value);
+          }
+        });
+      } else {
+        cameraSelect.innerHTML = '<option value="">No se encontraron cámaras</option>';
+      }
+    }).catch(err => {
+      console.error("Error al obtener cámaras:", err);
+      cameraSelect.innerHTML = '<option value="">Error de permisos o sin cámara</option>';
+    });
+  </script>
+
+</body>
+</html>
