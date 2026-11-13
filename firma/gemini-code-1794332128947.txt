@@ -1,0 +1,113 @@
+<%@ Language=VBScript CodePage=65001 %>
+<%
+Response.CharSet = "utf-8"
+
+' 1. Configurar la cadena de conexión a SQL Server
+Dim connStr, conn, rs, sql
+connStr = "Provider=SQLOLEDB;Server=TU_SERVIDOR;Database=TU_BASE_DATOS;Uid=TU_USUARIO;Pwd=TU_PASSWORD;"
+
+On Error Resume Next
+
+Set conn = Server.CreateObject("ADODB.Connection")
+conn.Open connStr
+
+If Err.Number <> 0 Then
+    Response.Write "<h3>Error de conexión a la base de datos: " & Err.Description & "</h3>"
+    Response.End
+End If
+
+' 2. Consultar las firmas ordenadas de la más reciente a la más antigua
+sql = "SELECT Id, FirmaBase64, FechaCreacion FROM Firmas ORDER BY Id DESC"
+Set rs = conn.Execute(sql)
+%>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Firmas Registradas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .firma-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .firma-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .firma-img {
+            border: 1px dashed #ccc;
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            max-width: 100%;
+            height: auto;
+        }
+        .no-data {
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Listado de Firmas Registradas</h2>
+
+        <%
+        If rs.EOF Then
+            Response.Write "<div class=""no-data"">No hay firmas guardadas en la base de datos.</div>"
+        Else
+            Do While Not rs.EOF
+                Dim firmaId, firmaData, fechaCreacion
+                firmaId = rs("Id")
+                firmaData = rs("FirmaBase64")
+                fechaCreacion = rs("FechaCreacion")
+        %>
+                <div class="firma-card">
+                    <div class="firma-info">
+                        <strong>ID:</strong> <%= firmaId %> | <strong>Fecha:</strong> <%= fechaCreacion %>
+                    </div>
+                    <!-- Se inyecta la cadena Base64 directamente en el atributo src de la etiqueta img -->
+                    <img src="<%= firmaData %>" alt="Firma ID <%= firmaId %>" class="firma-img">
+                </div>
+        <%
+                rs.MoveNext
+            Loop
+        End If
+
+        ' 3. Limpiar recursos y cerrar conexiones
+        rs.Close
+        Set rs = Nothing
+        conn.Close
+        Set conn = Nothing
+        %>
+    </div>
+
+</body>
+</html>
